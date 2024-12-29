@@ -1,0 +1,11 @@
+{
+  "files.associations": {
+    "stdio.h": "c",
+    "stdlib.h": "c",
+    ".env*": "dotenv",
+    "libft.h": "c",
+    "random": "c",
+    "unistd.h": "c",
+    "moves.h": "c"
+  }
+}

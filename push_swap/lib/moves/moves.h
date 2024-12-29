@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   moves.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:50:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/29 20:50:53 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/29 20:50:36 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/12/29 20:50:37 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef MOVES_H
+# define MOVES_H
 
-# include "./lib/moves/moves.h"
-# include <stdlib.h>
+# include "../include/push_swap.h"
 
-typedef struct s_item
-{
-	int				val;
-	int				index;
-	struct s_item	*next;
-	struct s_item	*prev;
-}					t_item;
-
-typedef struct s_move
-{
-	char			*move;
-	struct s_move	*move;
-
-}					t_move;
+void	sa(t_item **head);
+void	sb(t_item **head);
+void	ss(t_item **head_a, t_item **head_b);
+void	pa(t_item **head_a, t_item **head_b);
+void	pb(t_item **head_b, t_item **head_a);
+void	ra(t_item **head_a);
+void	rb(t_item **head_b);
+void	rr(t_item **head_a, t_item **head_b);
 
 #endif
