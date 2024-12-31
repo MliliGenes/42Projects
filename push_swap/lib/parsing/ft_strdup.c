@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 02:26:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/10/27 01:44:39 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:57:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
 
 char	*ft_strdup(const char *s)
 {

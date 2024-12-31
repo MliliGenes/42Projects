@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_word_cout.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 02:06:12 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/10/23 02:06:50 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 13:59:00 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/12/31 14:00:07 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isdigit(int c)
+int	ft_word_count(char *s, char sep)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
+	int	i;
+	int	in_word;
+	int	cp;
+
+	i = 0;
+	in_word = 0;
+	cp = 0;
+	while (s[i])
+	{
+		if (s[i] == sep)
+			in_word = 0;
+		else if (s[i] != sep && in_word == 0)
+		{
+			in_word = 1;
+			cp++;
+		}
+		i++;
+	}
+	return (cp);
 }

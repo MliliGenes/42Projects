@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:31:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:57:11 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/10/23 02:31:46 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/12/31 13:59:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "parsing.h"
 
-# include "../include/push_swap.h"
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
 
-long	ft_atol(const char *nptr);
-
-#endif
+	len = 0;
+	while (s && s[len])
+		len++;
+	return (len);
+}

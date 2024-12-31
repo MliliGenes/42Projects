@@ -6,36 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:35:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/10/28 03:13:02 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:59:18 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	word_count(char *s, char sep)
-{
-	int	i;
-	int	in_word;
-	int	cp;
-
-	i = 0;
-	in_word = 0;
-	cp = 0;
-	while (s[i])
-	{
-		if (s[i] == sep)
-		{
-			in_word = 0;
-		}
-		else if (s[i] != sep && in_word == 0)
-		{
-			in_word = 1;
-			cp++;
-		}
-		i++;
-	}
-	return (cp);
-}
+#include "parsing.h"
 
 static void	*free_arr(char **arr, int i)
 {

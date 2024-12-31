@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 04:30:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/11/01 20:28:21 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/12/31 13:57:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
 	long long	nb;
 	int			sign;
