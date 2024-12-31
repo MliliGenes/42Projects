@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:50:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:30:04 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/10/28 04:27:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "./lib/moves/moves.h"
-# include <stdlib.h>
-
-typedef struct s_item
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int				val;
-	int				index;
-	int				cost;
-	int				cheapest;
-	struct s_item	*target;
-	struct s_item	*next;
-	struct s_item	*prev;
-}					t_item;
+	int		i;
+	int		j;
+	char	*ptr;
 
-// typedef struct s_move
-// {
-// 	char			*move;
-// }					t_move;
-
-#endif
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!ptr)
+		return (NULL);
+	j = 0;
+	i = 0;
+	while (s1[i])
+		ptr[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		ptr[j++] = s2[i++];
+	ptr[j] = '\0';
+	return (ptr);
+}
