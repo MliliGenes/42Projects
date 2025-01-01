@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:31:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 17:17:38 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/10/23 02:26:43 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 21:26:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "parser.h"
 
-# include "../include/push_swap.h"
+char	*ft_strdup(const char *s)
+{
+	size_t	len;
+	size_t	i;
+	char	*dup;
 
-long	ft_atol(const char *nptr);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-int		ft_word_count(char *s, char sep);
-char	*ft_holy_joint(char **argv);
-int		ft_validate(char *joined_argv);
-
-#endif
+	len = ft_strlen(s);
+	dup = malloc(len + 1);
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}

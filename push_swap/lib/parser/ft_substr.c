@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 16:54:51 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/10/26 16:37:58 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/02 00:10:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parser.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
-	int		j;
-	char	*joined;
+	size_t	i;
+	size_t	s_len;
+	char	*ptr;
 
-	if (!s1 && !s2)
+	s_len = ft_strlen(s);
+	if (start > s_len)
 		return (ft_strdup(""));
-	joined = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!joined)
+	if (len > s_len - start)
+		len = s_len - start;
+	ptr = (char *)malloc(len + 1);
+	if (!ptr)
 		return (NULL);
-	j = 0;
 	i = 0;
-	while (s1[i])
-		joined[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		joined[j++] = s2[i++];
-	joined[j] = '\0';
-	return (free(s1), s1 = NULL, joined);
+	while (s[start + i] && i < len)
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

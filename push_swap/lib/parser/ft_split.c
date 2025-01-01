@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:35:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:59:18 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 00:05:16 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parser.h"
 
 static void	*free_arr(char **arr, int i)
 {
@@ -60,7 +60,7 @@ char	**ft_split(char const *s, char c)
 		splitted[0] = NULL;
 		return (splitted);
 	}
-	words = word_count((char *)s, c);
+	words = ft_word_count((char *)s, c);
 	splitted = (char **)malloc((words + 1) * sizeof(char *));
 	if (!splitted)
 		return (NULL);

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_validate_args.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:50:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 23:29:37 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/01 17:27:16 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/02 00:07:57 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "parser.h"
 
-# include <limits.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-typedef struct s_item
+int ft_validate_args(char **num)
 {
-	int				value;
-	int				index;
-	struct s_item	*next;
-	struct s_item	*prev;
-}					t_item;
+    int i;
 
-typedef char		*t_move;
+    while (*num)
+    {
+        i = 0;
+        if ((*num)[i] == '+' || (*num)[i] == '-')
+            i++;
+        if (!(*num)[i])
+            return (0);
+        while ((*num)[i] && (*num)[i] >= '0' && (*num)[i] <= '9')
+            i++;
+        if ((*num)[i] != '\0')
+            return (0);
+        num++;
+    }
+    return (1);
+}
 
-# include "../lib/parser/parser.h"
-# include "../lib/stack/moves/moves.h"
-
-#endif

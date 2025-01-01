@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 17:08:24 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 17:17:30 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/01 21:26:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parser.h"
 
 int	ft_validate(char *joined_argv)
 {

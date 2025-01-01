@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ft_holy_joint.c                                    :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 15:53:46 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 17:09:12 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 22:25:00 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parser.h"
 
-char	*ft_holy_joint(char **argv)
+long	ft_atol(const char *nptr, int *is_valid)
 {
-	char	*result;
+	long	nb;
+	int		sign;
 	int		i;
 
-	result = ft_strdup("");
-	if (!result)
-		return (NULL);
-	i = 1;
-	while (argv[i])
+	nb = 0;
+	sign = 1;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		result = ft_strjoin(result, argv[i]);
-		if (!result)
-			return (NULL);
-        if (argv[i + 1])
-        {
-            result = ft_strjoin(result, " ");
-            if (!result)
-                return (NULL);
-        }
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (result);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = nb * 10 + (nptr[i] - '0');
+		i++;
+	}
+	if (nb * sign > INT_MAX || nb * sign < INT_MIN)
+		*is_valid = 0;
+	return (nb * sign);
 }

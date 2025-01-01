@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_ft_holy_joint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 02:26:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:57:44 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 15:53:46 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 17:09:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parser.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_holy_joint(char **argv)
 {
-	size_t	len;
-	size_t	i;
-	char	*dup;
+	char	*result;
+	int		i;
 
-	len = ft_strlen(s);
-	dup = malloc(len + 1);
-	if (!dup)
+	result = ft_strdup("");
+	if (!result)
 		return (NULL);
-	i = 0;
-	while (s[i])
+	i = 1;
+	while (argv[i])
 	{
-		dup[i] = s[i];
+		result = ft_strjoin(result, argv[i]);
+		if (!result)
+			return (NULL);
+        if (argv[i + 1])
+        {
+            result = ft_strjoin(result, " ");
+            if (!result)
+                return (NULL);
+        }
 		i++;
 	}
-	dup[i] = '\0';
-	return (dup);
+	return (result);
 }

@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 02:31:46 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:59:54 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/01 21:29:59 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 21:37:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	len;
+# include "../../../include/push_swap.h"
 
-	len = 0;
-	while (s && s[len])
-		len++;
-	return (len);
-}
+#endif

@@ -7,6 +7,8 @@
     "random": "c",
     "unistd.h": "c",
     "moves.h": "c",
-    "parsing.h": "c"
+    "parser.h": "c",
+    "push_swap.h": "c",
+    "parser.h": "c"
   }
 }

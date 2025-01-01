@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   moves.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 16:33:54 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/29 20:50:36 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 23:26:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#ifndef MOVES_H
+# define MOVES_H
 
-long	ft_atol(const char *nptr)
-{
-	long	nb;
-	int		sign;
-	int		i;
+# include "../../../include/push_swap.h"
 
-	nb = 0;
-	sign = 1;
-	i = 0;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		nb = nb * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (nb * sign);
-}
+void	sa(t_item **head);
+void	sb(t_item **head);
+void	ss(t_item **head_a, t_item **head_b);
+void	pa(t_item **head_a, t_item **head_b);
+void	pb(t_item **head_b, t_item **head_a);
+void	ra(t_item **head_a);
+void	rb(t_item **head_b);
+void	rr(t_item **head_a, t_item **head_b);
+
+#endif
