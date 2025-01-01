@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_word_count.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:31:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 17:17:38 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 13:59:00 by sel-mlil          #+#    #+#             */
+/*   Updated: 2024/12/31 16:48:07 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+int	ft_word_count(char *s, char sep)
+{
+	int	i;
+	int	in_word;
+	int	cp;
 
-# include "../include/push_swap.h"
-
-long	ft_atol(const char *nptr);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-int		ft_word_count(char *s, char sep);
-char	*ft_holy_joint(char **argv);
-int		ft_validate(char *joined_argv);
-
-#endif
+	i = 0;
+	in_word = 0;
+	cp = 0;
+	while (s[i])
+	{
+		if (s[i] == sep)
+			in_word = 0;
+		else if (s[i] != sep && in_word == 0)
+		{
+			in_word = 1;
+			cp++;
+		}
+		i++;
+	}
+	return (cp);
+}

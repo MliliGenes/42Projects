@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 16:54:51 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 17:58:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "./include/push_swap.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+int	main(int argc, char **argv)
 {
 	int		i;
 	int		j;
-	char	*joined;
+	char	*joined_argv;
+	char	**new_argv;
 
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	joined = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!joined)
-		return (NULL);
-	j = 0;
-	i = 0;
-	while (s1[i])
-		joined[j++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		joined[j++] = s2[i++];
-	joined[j] = '\0';
-	return (free(s1), s1 = NULL, joined);
+	if (argc < 2)
+		return (1);
+	if (argc == 2 && ft_word_count(argv[1], ' ') < 2)
+		return (1);
+	joined_argv = ft_holy_joint(argv);
+	if (!joined_argv)
+		return (1);
+	if (ft_validate(joined_argv))
+		return (1);
+	new_argv = ft_split(joined_argv, ' ');
+	if (!new_argv)
+		return (1);
+	if (!ft_validate_args(new_argv))
+		return (1);
 }

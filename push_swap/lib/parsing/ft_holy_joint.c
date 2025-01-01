@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_word_cout.c                                     :+:      :+:    :+:   */
+/*   ft_ft_holy_joint.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:59:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 14:00:07 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/31 15:53:46 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 17:09:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_word_count(char *s, char sep)
-{
-	int	i;
-	int	in_word;
-	int	cp;
+#include "parsing.h"
 
-	i = 0;
-	in_word = 0;
-	cp = 0;
-	while (s[i])
+char	*ft_holy_joint(char **argv)
+{
+	char	*result;
+	int		i;
+
+	result = ft_strdup("");
+	if (!result)
+		return (NULL);
+	i = 1;
+	while (argv[i])
 	{
-		if (s[i] == sep)
-			in_word = 0;
-		else if (s[i] != sep && in_word == 0)
-		{
-			in_word = 1;
-			cp++;
-		}
+		result = ft_strjoin(result, argv[i]);
+		if (!result)
+			return (NULL);
+        if (argv[i + 1])
+        {
+            result = ft_strjoin(result, " ");
+            if (!result)
+                return (NULL);
+        }
 		i++;
 	}
-	return (cp);
+	return (result);
 }

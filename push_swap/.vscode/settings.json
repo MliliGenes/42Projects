@@ -6,6 +6,7 @@
     "libft.h": "c",
     "random": "c",
     "unistd.h": "c",
-    "moves.h": "c"
+    "moves.h": "c",
+    "parsing.h": "c"
   }
 }

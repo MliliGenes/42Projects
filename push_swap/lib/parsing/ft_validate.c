@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 13:31:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 17:17:38 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/01 17:08:24 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/01 17:17:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "parsing.h"
 
-# include "../include/push_swap.h"
-
-long	ft_atol(const char *nptr);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-int		ft_word_count(char *s, char sep);
-char	*ft_holy_joint(char **argv);
-int		ft_validate(char *joined_argv);
-
-#endif
+int	ft_validate(char *joined_argv)
+{
+	while (*joined_argv)
+	{
+		if (!(*joined_argv == ' ' || *joined_argv == '+' || *joined_argv == '-'
+				|| (*joined_argv >= '0' && *joined_argv <= '9')))
+			return (0);
+		joined_argv++;
+	}
+	return (1);
+}

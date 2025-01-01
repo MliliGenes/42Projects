@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 13:57:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/01 16:33:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 long	ft_atol(const char *nptr)
 {
-	long long	nb;
-	int			sign;
-	int			i;
+	long	nb;
+	int		sign;
+	int		i;
 
 	nb = 0;
 	sign = 1;
