@@ -15,6 +15,7 @@ SRC_FILES = \
     $(SRC_DIR)/parser/ft_validate.c \
     $(SRC_DIR)/parser/ft_validate_args.c \
     $(SRC_DIR)/parser/ft_word_count.c \
+    $(SRC_DIR)/parser/ft_free_split.c \
     $(SRC_DIR)/stack/moves/push.c \
     $(SRC_DIR)/stack/moves/rotate.c \
     $(SRC_DIR)/stack/moves/swap.c \

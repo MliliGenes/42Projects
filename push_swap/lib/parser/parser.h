@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:31:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 00:09:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 00:42:21 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int		ft_validate(char *joined_argv);
 int		ft_validate_args(char **num);
 int		*ft_str_to_int(char **strs, int ints);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	ft_free_split(char **split);
 
 #endif
