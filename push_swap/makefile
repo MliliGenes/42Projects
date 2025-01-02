@@ -22,13 +22,14 @@ SRC_PARSER = $(PARSER_DIR)/ft_atol.c \
              $(PARSER_DIR)/ft_validate.c \
              $(PARSER_DIR)/ft_validate_args.c \
              $(PARSER_DIR)/ft_word_count.c \
+             $(PARSER_DIR)/ft_int_to_stack.c \
              $(PARSER_DIR)/parser.c
 SRC_MOVES = $(MOVES_DIR)/push.c \
             $(MOVES_DIR)/rotate.c \
             $(MOVES_DIR)/reverse_rotate.c \
             $(MOVES_DIR)/swap.c
-SRC_UTILS = $(UTILS_DIR)/creat_item.c \
-            $(UTILS_DIR)/init_stack.c
+SRC_UTILS = $(UTILS_DIR)/create_item.c \
+            $(UTILS_DIR)/add_back.c
 
 SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS)
 

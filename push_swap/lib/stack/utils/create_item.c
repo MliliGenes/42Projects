@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
+/*   creat_item.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 21:42:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 21:26:02 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/01 21:29:50 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/02 23:54:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/push_swap.h"
 
-void	add_to_end(t_item *head, t_item *new_item)
+t_item	*create_item(int value)
 {
-	if (!head || !new_item)
-		return ;
+	t_item	*item;
+
+	item = (t_item *)malloc(sizeof(t_item));
+	if (!item)
+		return (NULL);
+	item->value = value;
+	item->index = 0;
+	item->next = NULL;
+	item->prev = NULL;
+	return (item);
 }

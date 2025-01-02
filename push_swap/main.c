@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 22:02:15 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 00:19:58 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int	main(int argc, char **argv)
 {
-	t_item **stack_a;
-	t_item **stack_b;
-	
-	if (!parser(argc, argv))
-		write(1,"KO",2);
+	t_item	*stack_a;
+	t_item	*stack_b;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	if (!parser(argc, argv, &stack_a))
+		write(1, "KO", 2);
 	else
-		write(1,"OK",2);
+	{
+		while (stack_a)
+		{
+			printf("%d => %d\n", stack_a->value, stack_a->index);
+			stack_a = stack_a->next;
+		}
+	}
 	return (0);
 }
 

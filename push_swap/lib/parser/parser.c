@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:05:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 17:54:30 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 00:17:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	split_and_validate(char *joined_argv, char ***new_argv)
 	return (1);
 }
 
-int	parser(int argc, char **argv)
+int	parser(int argc, char **argv, t_item **head)
 {
 	char	**new_argv;
 	char	*joined_argv;
@@ -68,6 +68,7 @@ int	parser(int argc, char **argv)
 	int_arr = NULL;
 	if (!ft_str_to_int(&int_arr, &new_argv, len))
 		return (0);
-	free(int_arr);
+	if (!ft_int_to_stack(int_arr, head, len))
+		return  (0);
 	return (1);
 }

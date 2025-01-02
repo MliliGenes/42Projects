@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 21:20:24 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 00:15:09 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int					ft_validate_args(char **num);
 int					ft_str_to_int(int **int_arr, char ***strs, int ints);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				ft_free_split(char **split);
-int					parser(int argc, char **argv);
+int					ft_int_to_stack(int *arr, t_item **stack, int size);
+int					parser(int argc, char **argv, t_item **head);
 void				sa(t_item **head);
 void				sb(t_item **head);
 void				ss(t_item **head_a, t_item **head_b);
@@ -50,5 +51,7 @@ void				rr(t_item **head_a, t_item **head_b);
 void				rra(t_item **head_a);
 void				rrb(t_item **head_b);
 void				rrr(t_item **head_a, t_item **head_b);
+t_item				*create_item(int value);
+void				add_back(t_item *head, t_item *new_item);
 
 #endif
