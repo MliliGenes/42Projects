@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 16:23:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/../../include/push_swap.h"
+#include "./include/push_swap.h"
 
 // int	main(int argc, char **argv)
 // {
@@ -43,78 +43,86 @@
 // 		return (1);
 // }
 
+// int	main(int argc, char **argv)
+// {
+// 	int		*int_argv;
+// 	char	*joined_argv;
+// 	char	**new_argv;
+// 	int		len;
+
+// 	if (argc < 2)
+// 	{
+// 		printf("Error: Not enough arguments.\n");
+// 		return (1);
+// 	}
+
+// 	if (argc == 2 && ft_word_count(argv[1], ' ') < 2)
+// 	{
+// 		printf("Error: Single argument has less than two words.\n");
+// 		return (1);
+// 	}
+
+// 	joined_argv = ft_holy_joint(argv);
+// 	if (!joined_argv)
+// 	{
+// 		printf("Error: Failed to join arguments.\n");
+// 		return (1);
+// 	}
+
+// 	printf("Debug: Joined arguments: %s\n", joined_argv);
+
+// 	len = ft_word_count(joined_argv, ' ');
+// 	printf("Debug: Word count in joined arguments: %d\n", len);
+
+// 	if (!ft_validate(joined_argv))
+// 	{
+// 		printf("Error: Validation failed for joined arguments.\n");
+// 		free(joined_argv);
+// 		return (1);
+// 	}
+
+// 	new_argv = ft_split(joined_argv, ' ');
+// 	free(joined_argv);
+
+// 	if (!new_argv)
+// 	{
+// 		printf("Error: Failed to split joined arguments.\n");
+// 		return (1);
+// 	}
+
+// 	printf("Debug: Split arguments:\n");
+// 	for (int i = 0; new_argv[i]; i++)
+// 		printf("  [%d]: %s\n", i, new_argv[i]);
+
+// 	if (!ft_validate_args(new_argv))
+// 	{
+// 		printf("Error: Validation failed for split arguments.\n");
+// 		ft_free_split(new_argv);
+// 		return (1);
+// 	}
+
+// 	int_argv = ft_str_to_int(new_argv, len);
+// 	ft_free_split(new_argv);
+
+// 	if (!int_argv)
+// 	{
+// 		printf("Error: Failed to convert arguments to integers.\n");
+// 		return (1);
+// 	}
+
+// 	printf("Debug: Converted arguments to integers:\n");
+// 	for (int i = 0; i < len; i++)
+// 		printf("  [%d]: %d\n", i, int_argv[i]);
+
+// 	free(int_argv);
+// 	return (0);
+// }
+
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	int		*int_argv;
-	char	*joined_argv;
-	char	**new_argv;
-	int		len;
-
-	if (argc < 2)
-	{
-		printf("Error: Not enough arguments.\n");
-		return (1);
-	}
-
-	if (argc == 2 && ft_word_count(argv[1], ' ') < 2)
-	{
-		printf("Error: Single argument has less than two words.\n");
-		return (1);
-	}
-
-	joined_argv = ft_holy_joint(argv);
-	if (!joined_argv)
-	{
-		printf("Error: Failed to join arguments.\n");
-		return (1);
-	}
-
-	printf("Debug: Joined arguments: %s\n", joined_argv);
-
-	len = ft_word_count(joined_argv, ' ');
-	printf("Debug: Word count in joined arguments: %d\n", len);
-
-	if (!ft_validate(joined_argv))
-	{
-		printf("Error: Validation failed for joined arguments.\n");
-		free(joined_argv);
-		return (1);
-	}
-
-	new_argv = ft_split(joined_argv, ' ');
-	free(joined_argv);
-
-	if (!new_argv)
-	{
-		printf("Error: Failed to split joined arguments.\n");
-		return (1);
-	}
-
-	printf("Debug: Split arguments:\n");
-	for (int i = 0; new_argv[i]; i++)
-		printf("  [%d]: %s\n", i, new_argv[i]);
-
-	if (!ft_validate_args(new_argv))
-	{
-		printf("Error: Validation failed for split arguments.\n");
-		ft_free_split(new_argv);
-		return (1);
-	}
-
-	int_argv = ft_str_to_int(new_argv, len);
-	ft_free_split(new_argv);
-
-	if (!int_argv)
-	{
-		printf("Error: Failed to convert arguments to integers.\n");
-		return (1);
-	}
-
-	printf("Debug: Converted arguments to integers:\n");
-	for (int i = 0; i < len; i++)
-		printf("  [%d]: %d\n", i, int_argv[i]);
-
-	free(int_argv);
-	return (0);
+	if (!parser(argc, argv))
+		printf("KO");
+	printf("OK");
 }

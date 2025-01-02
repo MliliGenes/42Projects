@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDE = ../../include/push_swap.h
+# INCLUDE = ./include/push_swap.h
 
 SRC_DIR = lib
 SRC_FILES = \
@@ -31,11 +31,11 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) ./include/$(INCLUDE) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) ./include/$(INCLUDE) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)

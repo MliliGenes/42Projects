@@ -16,26 +16,35 @@
 # include <limits.h>
 # include <stdlib.h>
 
-long	ft_atol(const char *nptr, int *is_valid);
-char	**ft_split(char const *s, char c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-int		ft_word_count(char *s, char sep);
-char	*ft_holy_joint(char **argv);
-int		ft_validate(char *joined_argv);
-int		ft_validate_args(char **num);
-int		*ft_str_to_int(char **strs, int ints);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	ft_free_split(char **split);
+typedef struct s_item
+{
+	int				value;
+	int				index;
+	struct s_item	*next;
+	struct s_item	*prev;
+}					t_item;
 
-void	sa(t_item **head);
-void	sb(t_item **head);
-void	ss(t_item **head_a, t_item **head_b);
-void	pa(t_item **head_a, t_item **head_b);
-void	pb(t_item **head_b, t_item **head_a);
-void	ra(t_item **head_a);
-void	rb(t_item **head_b);
-void	rr(t_item **head_a, t_item **head_b);
+long				ft_atol(const char *nptr, int *is_valid);
+char				**ft_split(char const *s, char c);
+char				*ft_strdup(const char *s);
+char				*ft_strjoin(char *s1, char *s2);
+size_t				ft_strlen(const char *s);
+int					ft_word_count(char *s, char sep);
+char				*ft_holy_joint(char **argv);
+int					ft_validate(char *joined_argv);
+int					ft_validate_args(char **num);
+int					ft_str_to_int(int *int_arr, char **strs, int ints);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+void				ft_free_split(char **split);
+int					parser(int argc, char **argv);
+
+void				sa(t_item **head);
+void				sb(t_item **head);
+void				ss(t_item **head_a, t_item **head_b);
+void				pa(t_item **head_a, t_item **head_b);
+void				pb(t_item **head_b, t_item **head_a);
+void				ra(t_item **head_a);
+void				rb(t_item **head_b);
+void				rr(t_item **head_a, t_item **head_b);
 
 #endif
