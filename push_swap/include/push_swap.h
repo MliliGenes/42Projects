@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ../../include/push_swap.h                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:50:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 14:56:53 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/02 21:20:24 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_item
 {
@@ -38,7 +39,6 @@ int					ft_str_to_int(int **int_arr, char ***strs, int ints);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				ft_free_split(char **split);
 int					parser(int argc, char **argv);
-
 void				sa(t_item **head);
 void				sb(t_item **head);
 void				ss(t_item **head_a, t_item **head_b);

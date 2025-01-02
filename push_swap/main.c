@@ -6,11 +6,23 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 20:19:23 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 22:02:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/push_swap.h"
+
+int	main(int argc, char **argv)
+{
+	t_item **stack_a;
+	t_item **stack_b;
+	
+	if (!parser(argc, argv))
+		write(1,"KO",2);
+	else
+		write(1,"OK",2);
+	return (0);
+}
 
 // int	main(int argc, char **argv)
 // {
@@ -117,14 +129,3 @@
 // 	free(int_argv);
 // 	return (0);
 // }
-
-#include <stdio.h>
-
-int	main(int argc, char **argv)
-{
-	if (!parser(argc, argv))
-		printf("KO");
-	else
-		printf("OK");
-	return 0;
-}

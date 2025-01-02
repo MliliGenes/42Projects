@@ -27,8 +27,8 @@ SRC_MOVES = $(MOVES_DIR)/push.c \
             $(MOVES_DIR)/rotate.c \
             $(MOVES_DIR)/reverse_rotate.c \
             $(MOVES_DIR)/swap.c
-SRC_UTILS = $(UTILS_DIR)/add_to_end.c \
-            $(UTILS_DIR)/creat_item.c
+SRC_UTILS = $(UTILS_DIR)/creat_item.c \
+            $(UTILS_DIR)/init_stack.c
 
 SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS)
 
