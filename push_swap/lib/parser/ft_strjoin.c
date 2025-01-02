@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 17:36:38 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i])
 		joined[j++] = s2[i++];
 	joined[j] = '\0';
-	return (free(s1), s1 = NULL, joined);
+	return (free(s1), joined);
 }

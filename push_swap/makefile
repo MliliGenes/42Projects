@@ -1,44 +1,52 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-# INCLUDE = ./include/push_swap.h
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
-SRC_DIR = lib
-SRC_FILES = \
-    $(SRC_DIR)/parser/ft_atol.c \
-    $(SRC_DIR)/parser/ft_holy_joint.c \
-    $(SRC_DIR)/parser/ft_split.c \
-    $(SRC_DIR)/parser/ft_str_to_int.c \
-    $(SRC_DIR)/parser/ft_strdup.c \
-    $(SRC_DIR)/parser/ft_strjoin.c \
-    $(SRC_DIR)/parser/ft_substr.c \
-    $(SRC_DIR)/parser/ft_strlen.c \
-    $(SRC_DIR)/parser/ft_validate.c \
-    $(SRC_DIR)/parser/ft_validate_args.c \
-    $(SRC_DIR)/parser/ft_word_count.c \
-    $(SRC_DIR)/parser/ft_free_split.c \
-    $(SRC_DIR)/stack/moves/push.c \
-    $(SRC_DIR)/stack/moves/rotate.c \
-    $(SRC_DIR)/stack/moves/swap.c \
-    $(SRC_DIR)/stack/utils/add_to_end.c \
-    $(SRC_DIR)/stack/utils/creat_item.c \
-    main.c
+INCLUDE_DIR = include
+LIB_DIR = lib
+PARSER_DIR = $(LIB_DIR)/parser
+STACK_DIR = $(LIB_DIR)/stack
+MOVES_DIR = $(STACK_DIR)/moves
+UTILS_DIR = $(STACK_DIR)/utils
+BUILD_DIR = build
 
-OBJ_DIR = build
-OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
+SRC_MAIN = main.c
+SRC_PARSER = $(PARSER_DIR)/ft_atol.c \
+             $(PARSER_DIR)/ft_free_split.c \
+             $(PARSER_DIR)/ft_holy_joint.c \
+             $(PARSER_DIR)/ft_split.c \
+             $(PARSER_DIR)/ft_str_to_int.c \
+             $(PARSER_DIR)/ft_strdup.c \
+             $(PARSER_DIR)/ft_strjoin.c \
+             $(PARSER_DIR)/ft_strlen.c \
+             $(PARSER_DIR)/ft_substr.c \
+             $(PARSER_DIR)/ft_validate.c \
+             $(PARSER_DIR)/ft_validate_args.c \
+             $(PARSER_DIR)/ft_word_count.c \
+             $(PARSER_DIR)/parser.c
+SRC_MOVES = $(MOVES_DIR)/push.c \
+            $(MOVES_DIR)/rotate.c \
+            $(MOVES_DIR)/reverse_rotate.c \
+            $(MOVES_DIR)/swap.c
+SRC_UTILS = $(UTILS_DIR)/add_to_end.c \
+            $(UTILS_DIR)/creat_item.c
+
+SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS)
+
+OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 
 NAME = push_swap
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) -o $@ $^
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(OBJ) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@) # Create necessary subdirectories
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(BUILD_DIR)
 
 fclean: clean
 	rm -f $(NAME)

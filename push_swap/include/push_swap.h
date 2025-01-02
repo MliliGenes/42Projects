@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
+# include <stdio.h>
 # include <stdlib.h>
 
 typedef struct s_item
@@ -33,7 +34,7 @@ int					ft_word_count(char *s, char sep);
 char				*ft_holy_joint(char **argv);
 int					ft_validate(char *joined_argv);
 int					ft_validate_args(char **num);
-int					ft_str_to_int(int *int_arr, char **strs, int ints);
+int					ft_str_to_int(int **int_arr, char ***strs, int ints);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				ft_free_split(char **split);
 int					parser(int argc, char **argv);
@@ -46,5 +47,8 @@ void				pb(t_item **head_b, t_item **head_a);
 void				ra(t_item **head_a);
 void				rb(t_item **head_b);
 void				rr(t_item **head_a, t_item **head_b);
+void				rra(t_item **head_a);
+void				rrb(t_item **head_b);
+void				rrr(t_item **head_a, t_item **head_b);
 
 #endif

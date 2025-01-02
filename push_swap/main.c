@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 16:23:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 20:19:23 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,7 @@ int	main(int argc, char **argv)
 {
 	if (!parser(argc, argv))
 		printf("KO");
-	printf("OK");
+	else
+		printf("OK");
+	return 0;
 }
