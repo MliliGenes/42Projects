@@ -6,9 +6,9 @@
     "libft.h": "c",
     "random": "c",
     "unistd.h": "c",
-    "moves.h": "c",
-    "parser.h": "c",
-    "push_swap.h": "c",
-    "parser.h": "c"
+    "../../include/push_swap.h": "c",
+    "../../include/push_swap.h": "c",
+    "../../include/push_swap.h": "c",
+    "../../include/push_swap.h": "c"
   }
 }

@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -Iinclude -Ilib/error -Ilib/parser -Ilib/stack/moves -Ilib/stack/utils
+INCLUDE = ../../include/push_swap.h
 
 SRC_DIR = lib
 SRC_FILES = \
@@ -23,7 +23,7 @@ SRC_FILES = \
     $(SRC_DIR)/stack/utils/creat_item.c \
     main.c
 
-OBJ_DIR = dist
+OBJ_DIR = build
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 NAME = push_swap
@@ -31,11 +31,11 @@ NAME = push_swap
 all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
+	$(CC) $(CFLAGS) ./include/$(INCLUDE) -o $@ $^
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) ./include/$(INCLUDE) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)

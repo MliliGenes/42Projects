@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 22:25:00 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:10:56 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/push_swap.h"
 
 long	ft_atol(const char *nptr, int *is_valid)
 {

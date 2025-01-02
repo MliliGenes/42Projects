@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:24:07 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/29 20:50:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:12:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "moves.h"
+#include "../../../include/push_swap.h"
 
 static void	swap_first_two(t_item **head)
 {

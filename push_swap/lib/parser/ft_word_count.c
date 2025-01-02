@@ -6,9 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:59:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/31 16:48:07 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../include/push_swap.h"
 
 int	ft_word_count(char *s, char sep)
 {

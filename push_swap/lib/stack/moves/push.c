@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:25:55 by sel-mlil          #+#    #+#             */
-/*   Updated: 2024/12/29 20:19:54 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:12:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "moves.h"
+#include "../../../include/push_swap.h"
 
 static void	push(t_item **dest, t_item **src)
 {

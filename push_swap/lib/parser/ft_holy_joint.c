@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/push_swap.h"
 
 char	*ft_holy_joint(char **argv)
 {

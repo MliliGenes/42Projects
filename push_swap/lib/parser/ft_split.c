@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:35:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 00:05:16 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/push_swap.h"
 
 static void	*free_arr(char **arr, int i)
 {

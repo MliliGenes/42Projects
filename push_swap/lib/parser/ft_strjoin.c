@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 21:26:12 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/push_swap.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

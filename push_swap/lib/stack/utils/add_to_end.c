@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:42:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 23:57:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:12:16 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../../../include/push_swap.h"
 
 // void	add_to_end(t_item *head, t_item *new_item)
 // {

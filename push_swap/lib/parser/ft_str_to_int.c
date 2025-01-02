@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:09:59 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 00:28:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:10:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../include/push_swap.h"
 
 static int	already_exists(int index, int *int_arr, int current)
 {

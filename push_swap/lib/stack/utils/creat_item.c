@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:29:50 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/01 22:06:23 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:12:25 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "../../../include/push_swap.h"
 
 t_item	*creat_item(int value)
 {
