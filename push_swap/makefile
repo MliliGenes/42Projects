@@ -23,7 +23,7 @@ SRC_FILES = \
     $(SRC_DIR)/stack/utils/creat_item.c \
     main.c
 
-OBJ_DIR = obj_files
+OBJ_DIR = dist
 OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
 NAME = push_swap
