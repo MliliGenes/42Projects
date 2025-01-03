@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 03:25:48 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 07:50:47 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				ft_free_split(char **split);
 int					ft_int_to_stack(int *arr, t_item **stack, int size);
 int					parser(int argc, char **argv, t_item **head);
+
 void				sa(t_item **head);
 void				sb(t_item **head);
 void				ss(t_item **head_a, t_item **head_b);
@@ -51,9 +52,18 @@ void				rr(t_item **head_a, t_item **head_b);
 void				rra(t_item **head_a);
 void				rrb(t_item **head_b);
 void				rrr(t_item **head_a, t_item **head_b);
+
 t_item				*create_item(int value);
 void				add_back(t_item *head, t_item *new_item);
 int					find_max_by_index(t_item *head);
 int					list_size(t_item *head);
+void				clear_list(t_item *stack);
+
+void				sort(t_item **stack_a, t_item **stack_b);
+void				push_to_b(t_item **stack_a, t_item **stack_b);
+void				push_back_to_a(t_item **stack_a, t_item **stack_b);
+int					is_sorted(t_item *stack_a);
+int					has_nums_in_range(t_item *stack_a, int range_start,
+						int range_end);
 
 #endif

@@ -4,6 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 INCLUDE_DIR = include
 LIB_DIR = lib
 PARSER_DIR = $(LIB_DIR)/parser
+SORT = $(LIB_DIR)/sort
 STACK_DIR = $(LIB_DIR)/stack
 MOVES_DIR = $(STACK_DIR)/moves
 UTILS_DIR = $(STACK_DIR)/utils
@@ -29,9 +30,17 @@ SRC_MOVES = $(MOVES_DIR)/push.c \
             $(MOVES_DIR)/reverse_rotate.c \
             $(MOVES_DIR)/swap.c
 SRC_UTILS = $(UTILS_DIR)/create_item.c \
-            $(UTILS_DIR)/add_back.c
+            $(UTILS_DIR)/add_back.c \
+            $(UTILS_DIR)/find_max_by_index.c \
+            $(UTILS_DIR)/list_size.c \
+            $(UTILS_DIR)/clear_list.c 
+SRC_SORT = $(SORT)/sort.c \
+            $(SORT)/push_to_b.c \
+            $(SORT)/is_sorted.c \
+            $(SORT)/has_nums_in_range.c \
+            $(SORT)/push_back_to_a.c
 
-SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS)
+SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS) $(SRC_SORT)
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 

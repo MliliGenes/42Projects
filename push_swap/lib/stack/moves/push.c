@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:25:55 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 15:12:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 07:20:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ static void	push(t_item **dest, t_item **src)
 void	pa(t_item **head_a, t_item **head_b)
 {
 	push(head_a, head_b);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_item **head_b, t_item **head_a)
 {
 	push(head_b, head_a);
+	write(1, "pb\n", 3);
 }

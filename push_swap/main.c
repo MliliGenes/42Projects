@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 02:34:50 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 08:19:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/push_swap.h"
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -23,9 +24,13 @@ int	main(int argc, char **argv)
 		write(1, "KO", 2);
 	else
 	{
+		sort(&stack_a, &stack_b);
 		while (stack_a)
 		{
-			printf("%d => %d\n", stack_a->index, stack_a->value);
+			printf("%d\t==> ",(stack_a)->index);
+			for (int i = 0; i < (stack_a)->value; i ++)
+				printf("|");
+			printf("\n");
 			stack_a = stack_a->next;
 		}
 	}
