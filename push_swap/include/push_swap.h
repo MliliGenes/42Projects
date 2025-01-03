@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 00:15:09 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/03 03:25:48 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ void				rrb(t_item **head_b);
 void				rrr(t_item **head_a, t_item **head_b);
 t_item				*create_item(int value);
 void				add_back(t_item *head, t_item *new_item);
+int					find_max_by_index(t_item *head);
+int					list_size(t_item *head);
 
 #endif
