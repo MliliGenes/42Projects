@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:23:59 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 08:12:32 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/04 16:58:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	rrr(t_item **head_a, t_item **head_b)
 {
 	reverse_rotate(head_a);
 	reverse_rotate(head_b);
-		write(1, "rrr\n", 4);
+	write(1, "rrr\n", 4);
 }

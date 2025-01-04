@@ -6,19 +6,23 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 22:21:25 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 09:57:55 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:28:20 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-static void sort_three(t_item **stack_a)
-{
-	int max = find_max_by_index(*stack_a);
-	if (max == (*stack_a)->index)
-		ra(stack_a);
-	if ((*stack_a)->next->index  == 0)
+// static void sort_four_and_five(t_item **stack_a)
+// {
 	
+// }
+
+static void	sort_three(t_item **stack_a)
+{
+	if ((*stack_a)->index == 2)
+		ra(stack_a);
+	if ((*stack_a)->index > (*stack_a)->next->index)
+		sa(stack_a);
 }
 
 void	sort(t_item **stack_a, t_item **stack_b)
@@ -33,9 +37,8 @@ void	sort(t_item **stack_a, t_item **stack_b)
 	if (stack_a_size == 2)
 		sa(stack_a);
 	else if (stack_a_size == 3)
-
-	// else if (stack_a_size > 3)
-	// 	return ; // sort 3
+		sort_three(stack_a);
+	// else if (stack_a_size >= 4)
 	else
 	{
 		push_to_b(stack_a, stack_b);

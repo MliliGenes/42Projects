@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 22:28:21 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 05:45:08 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:01:02 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int	ft_int_to_stack(int *arr, t_item **stack, int size)
 	{
 		new_node = create_item(arr[i]);
 		if (!new_node)
-		{
-			
 			return (0);
-		}
 		j = 0;
 		while (j < size)
 		{

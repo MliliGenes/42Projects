@@ -6,20 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:05:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 00:17:52 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:34:26 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
-
-static int	validate_argc(int ac, char **av)
-{
-	if (ac < 2)
-		return (0);
-	if (ac == 2 && ft_word_count(av[1], ' ') < 2)
-		return (0);
-	return (1);
-}
 
 static int	join_and_validate(char **joined_argv, int *len, char **argv)
 {
@@ -49,15 +40,13 @@ static int	split_and_validate(char *joined_argv, char ***new_argv)
 	return (1);
 }
 
-int	parser(int argc, char **argv, t_item **head)
+int	parser(char **argv, t_item **head)
 {
 	char	**new_argv;
 	char	*joined_argv;
 	int		*int_arr;
 	int		len;
 
-	if (!validate_argc(argc, argv))
-		return (0);
 	len = 0;
 	joined_argv = NULL;
 	if (!join_and_validate(&joined_argv, &len, argv))

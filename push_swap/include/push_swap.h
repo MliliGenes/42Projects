@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 07:50:47 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:31:29 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct s_item
 	struct s_item	*prev;
 }					t_item;
 
+void				error(void);
+
 long				ft_atol(const char *nptr, int *is_valid);
 char				**ft_split(char const *s, char c);
 char				*ft_strdup(const char *s);
@@ -39,7 +41,7 @@ int					ft_str_to_int(int **int_arr, char ***strs, int ints);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				ft_free_split(char **split);
 int					ft_int_to_stack(int *arr, t_item **stack, int size);
-int					parser(int argc, char **argv, t_item **head);
+int					parser(char **argv, t_item **head);
 
 void				sa(t_item **head);
 void				sb(t_item **head);
