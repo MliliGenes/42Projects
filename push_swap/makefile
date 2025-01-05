@@ -1,73 +1,120 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/01/05 06:34:11 by sel-mlil          #+#    #+#              #
+#    Updated: 2025/01/05 06:48:59 by sel-mlil         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-INCLUDE_DIR = include
-LIB_DIR = lib
-PARSER_DIR = $(LIB_DIR)/parser
-SORT_DIR = $(LIB_DIR)/sort
-ERROR_DIR = $(LIB_DIR)/error
-STACK_DIR = $(LIB_DIR)/stack
-MOVES_DIR = $(STACK_DIR)/moves
-UTILS_DIR = $(STACK_DIR)/utils
-BUILD_DIR = build
+CLR_RMV:= \033[0m
+RED:= \033[1;31m
+GREEN:= \033[1;32m
+YELLOW:= \033[1;33m
+BLUE:= \033[1;34m
+CYAN:= \033[1;36m
 
-SRC_MAIN = push_swap.c
+CC = cc
 
-SRC_PARSER = $(PARSER_DIR)/ft_atol.c \
-             $(PARSER_DIR)/ft_free_split.c \
-             $(PARSER_DIR)/ft_holy_joint.c \
-             $(PARSER_DIR)/ft_split.c \
-             $(PARSER_DIR)/ft_str_to_int.c \
-             $(PARSER_DIR)/ft_strdup.c \
-             $(PARSER_DIR)/ft_strjoin.c \
-             $(PARSER_DIR)/ft_strlen.c \
-             $(PARSER_DIR)/ft_substr.c \
-             $(PARSER_DIR)/ft_validate.c \
-             $(PARSER_DIR)/ft_validate_args.c \
-             $(PARSER_DIR)/ft_word_count.c \
-             $(PARSER_DIR)/ft_int_to_stack.c \
-             $(PARSER_DIR)/parser.c
+CFLAGS = -Wall -Wextra -Werror -O3
 
-SRC_MOVES = $(MOVES_DIR)/push.c \
-            $(MOVES_DIR)/rotate.c \
-            $(MOVES_DIR)/reverse_rotate.c \
-            $(MOVES_DIR)/swap.c
+SRC_CHECKER = ./checker.c \
+            ./checker/error/error_bonus.c \
+            ./checker/error/ko_bonus.c \
+            ./checker/error/ok_bonus.c \
+            ./checker/parser/ft_atol_bonus.c \
+            ./checker/parser/ft_free_split_bonus.c \
+            ./checker/parser/ft_holy_joint_bonus.c \
+            ./checker/parser/ft_int_to_stack_bonus.c \
+            ./checker/parser/ft_split_bonus.c \
+            ./checker/parser/ft_str_to_int_bonus.c \
+            ./checker/parser/ft_strdup_bonus.c \
+            ./checker/parser/ft_strjoin_bonus.c \
+            ./checker/parser/ft_strlen_bonus.c \
+            ./checker/parser/ft_substr_bonus.c \
+            ./checker/parser/ft_validate_bonus.c \
+            ./checker/parser/ft_validate_args_bonus.c \
+            ./checker/parser/ft_word_count_bonus.c \
+            ./checker/parser/parser_bonus.c \
+            ./checker/stack/moves/push_bonus.c \
+            ./checker/stack/moves/reverse_rotate_bonus.c \
+            ./checker/stack/moves/rotate_bonus.c \
+            ./checker/stack/moves/swap_bonus.c \
+            ./checker/stack/utils/add_back_bonus.c \
+            ./checker/stack/utils/clear_list_bonus.c \
+            ./checker/stack/utils/create_item_bonus.c \
+            ./checker/stack/utils/find_max_by_index_bonus.c \
+            ./checker/stack/utils/find_min_by_index_bonus.c \
+            ./checker/stack/utils/list_size_bonus.c
 
-SRC_UTILS = $(UTILS_DIR)/create_item.c \
-            $(UTILS_DIR)/add_back.c \
-            $(UTILS_DIR)/find_max_by_index.c \
-            $(UTILS_DIR)/list_size.c \
-            $(UTILS_DIR)/clear_list.c 
+SRC_COMMON = ./push_swap.c \
+            ./lib/error/error.c \
+            ./lib/parser/ft_atol.c \
+            ./lib/parser/ft_free_split.c \
+            ./lib/parser/ft_holy_joint.c \
+            ./lib/parser/ft_int_to_stack.c \
+            ./lib/parser/ft_split.c \
+            ./lib/parser/ft_str_to_int.c \
+            ./lib/parser/ft_strdup.c \
+            ./lib/parser/ft_strjoin.c \
+            ./lib/parser/ft_strlen.c \
+            ./lib/parser/ft_substr.c \
+            ./lib/parser/ft_validate.c \
+            ./lib/parser/ft_validate_args.c \
+            ./lib/parser/ft_word_count.c \
+            ./lib/parser/pa
+            ./lib/sort/has_nums_in_range.c \
+            ./lib/sort/is_sorted.c \
+            ./lib/sort/push_back_to_a.c \
+            ./lib/sort/push_to_b.c \
+            ./lib/sort/sort.c \
+            ./lib/stack/moves/push.c \
+            ./lib/stack/moves/reverse_rotate.c \
+            ./lib/stack/moves/rotate.c \
+            ./lib/stack/moves/swap.c \
+            ./lib/stack/utils/add_back.c \
+            ./lib/stack/utils/clear_list.c \
+            ./lib/stack/utils/create_item.c \
+            ./lib/stack/utils/find_max_by_index.c \
+            ./lib/stack/utils/find_min_by_index.c \
+            ./lib/stack/utils/list_size.c 
 
-SRC_SORT = $(SORT_DIR)/sort.c \
-            $(SORT_DIR)/push_to_b.c \
-            $(SORT_DIR)/is_sorted.c \
-            $(SORT_DIR)/has_nums_in_range.c \
-            $(SORT_DIR)/push_back_to_a.c
+OBJ_COMMON = $(SRC_COMMON:.c=.o)
 
-SRC_ERROR = $(ERROR_DIR)/error.c
+OBJ_CHECKER = $(SRC_CHECKER:.c=.o)
 
-SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS) $(SRC_SORT) $(SRC_ERROR)
-
-OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
+INCLUDE = ./include
 
 NAME = push_swap
 
+NAME_CHECKER = checker
+
+RM = rm -rf
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(OBJ) -o $(NAME)
+bonus : $(NAME_CHECKER)
+.c.o:
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o ${<:.c=.o}
 
-$(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(dir $@) # Create necessary subdirectories
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+$(NAME): $(OBJ_COMMON)
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME) $(OBJ_COMMON)
+	@echo "$(BLUE)Compilation of ${YELLOW}$(NAME) $(RED)BY 7ARZAN ..."
+	@echo "$(GREEN)HAK HAHOWA $(YELLOW)$(NAME) $(GREEN)M9AD  ✔️"
+
+$(NAME_CHECKER): $(OBJ_CHECKER)
+	@$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME_CHECKER) $(OBJ_CHECKER)
+	@echo "$(BLUE)Compilation of ${YELLOW}$(NAME_CHECKER) $(RED)BY 7ARZAN ..."
+	@echo "$(GREEN)HAK HAHOWA $(YELLOW)$(NAME_CHECKER) $(GREEN)M9AD  ✔️"
 
 clean:
-	rm -rf $(BUILD_DIR)
+	@$(RM) $(OBJ_CHECKER) $(OBJ_COMMON)
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME) $(NAME_CHECKER)
+	@echo "$(RED)7ARZAN $(CYAN)GALIK MSA7 $(GREEN)L7ZA9 ✔️"
 
-re: fclean all
-
-.PHONY: all clean fclean re
+re : fclean all
