@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 04:57:24 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:10 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 void	push_to_b(t_item **stack_a, t_item **stack_b)
 {

@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:58:22 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:34 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

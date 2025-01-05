@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:29:50 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:56 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 t_item	*create_item(int value)
 {

@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 00:40:45 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:23:49 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:50:58 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 void	ft_free_split(char **split)
 {

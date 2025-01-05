@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:53:46 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:23:51 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 char	*ft_holy_joint(char **argv)
 {

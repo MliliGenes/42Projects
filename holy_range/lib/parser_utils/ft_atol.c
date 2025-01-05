@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:57:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:23:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:50:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 long	ft_atol(const char *nptr, int *is_valid)
 {

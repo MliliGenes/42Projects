@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:09:59 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:01 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:18 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 static int	already_exists(int index, int *int_arr, int current)
 {

@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:37:58 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:11 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

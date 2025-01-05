@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 03:22:47 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:25:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 int	list_size(t_item *head)
 {

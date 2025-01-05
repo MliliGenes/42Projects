@@ -6,9 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 20:35:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:23:57 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/lib.h"
 
 static void	*free_arr(char **arr, int i)
 {

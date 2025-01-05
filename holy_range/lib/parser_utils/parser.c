@@ -6,10 +6,25 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:05:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:28 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:01:27 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
+
+static int	validate_argv(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if (ft_word_count(argv[i], ' ') == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 static int	join_and_validate(char **joined_argv, int *len, char **argv)
 {
@@ -48,7 +63,9 @@ int	parser(char **argv, t_item **head)
 
 	len = 0;
 	joined_argv = NULL;
-	if (!join_and_validate(&joined_argv, &len, argv))
+	if (!validate_argv(argv))
+		return (0);
+	else if (!join_and_validate(&joined_argv, &len, argv))
 		return (0);
 	new_argv = NULL;
 	if (!split_and_validate(joined_argv, &new_argv))
@@ -57,6 +74,6 @@ int	parser(char **argv, t_item **head)
 	if (!ft_str_to_int(&int_arr, &new_argv, len))
 		return (0);
 	if (!ft_int_to_stack(int_arr, head, len))
-		return  (0);
+		return (0);
 	return (1);
 }

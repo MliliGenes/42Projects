@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 02:26:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 char	*ft_strdup(const char *s)
 {

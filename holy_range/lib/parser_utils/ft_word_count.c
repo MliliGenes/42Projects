@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 13:59:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:26 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:49 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 int	ft_word_count(char *s, char sep)
 {

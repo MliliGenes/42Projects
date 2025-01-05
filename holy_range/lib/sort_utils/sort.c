@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 22:21:25 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 static void	sort_three(t_item **stack_a)
 {

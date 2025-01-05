@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:24:07 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:25:17 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:42 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 static void	swap_first_two(t_item **head)
 {

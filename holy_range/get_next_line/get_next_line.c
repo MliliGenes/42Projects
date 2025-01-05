@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:02:17 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:37:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:02:29 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/checker.h"
+#include "../includes/get_next_line.h"
 
-char	*get_next(char *stash)
+static char	*get_next(char *stash)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ char	*get_next(char *stash)
 	return (free(stash), stash = NULL, next);
 }
 
-char	*ft_get_line(char *stash)
+static char	*ft_get_line(char *stash)
 {
 	char	*line;
 	int		i;
@@ -61,7 +61,7 @@ char	*ft_get_line(char *stash)
 	return (line);
 }
 
-char	*get_chunk(char *stash, int fd)
+static char	*get_chunk(char *stash, int fd)
 {
 	int		read_bytes;
 	char	*tmp;

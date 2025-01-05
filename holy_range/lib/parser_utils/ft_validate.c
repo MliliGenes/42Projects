@@ -6,9 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 17:08:24 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:22 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/lib.h"
 
 int	ft_validate(char *joined_argv)
 {

@@ -6,7 +6,15 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 22:38:02 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:38:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:10:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CHECKER_H
+# define CHECKER_H
+
+# include "lib.h"
+
+int	main(int argc, char **argv);
+
+#endif

@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 05:27:56 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:39 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 int	is_sorted(t_item *stack_a)
 {

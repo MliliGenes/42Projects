@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:25:55 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:25:09 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 static void	push(t_item **dest, t_item **src)
 {

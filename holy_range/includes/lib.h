@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 22:32:15 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:35:45 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:09:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,8 @@ void				push_back_to_a(t_item **stack_a, t_item **stack_b);
 int					is_sorted(t_item *stack_a);
 int					has_nums_in_range(t_item *stack_a, int range_start,
 						int range_end);
+
+// execution
+void				execution(t_item **stack_a, t_item **stack_b, char *move);
 
 #endif

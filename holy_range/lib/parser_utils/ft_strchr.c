@@ -6,9 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 22:37:01 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:37:04 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/lib.h"
 
 char	*ft_strchr(const char *s, char c)
 {

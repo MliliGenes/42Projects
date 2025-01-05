@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 01:07:47 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:25:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:57:42 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 int	find_min_by_index(t_item *stack)
 {
@@ -30,8 +30,8 @@ int	find_min_by_index(t_item *stack)
 			min_value = current->value;
 			min_pos = i;
 		}
-		current = current->next;
 		i++;
+		current = current->next;
 	}
 	return (min_pos);
 }

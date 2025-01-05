@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:23:59 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:25:12 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:52:36 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 static void	reverse_rotate(t_item **head)
 {

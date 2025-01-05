@@ -6,11 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 02:31:46 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:09 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:37 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "../../includes/lib.h"
 
 size_t	ft_strlen(const char *s)
 {

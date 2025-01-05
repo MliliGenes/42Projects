@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 22:28:21 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:23:55 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:10 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 int	ft_int_to_stack(int *arr, t_item **stack, int size)
 {

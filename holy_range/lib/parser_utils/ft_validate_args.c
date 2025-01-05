@@ -6,10 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 17:27:16 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 22:24:17 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:51:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/lib.h"
 
 int	ft_validate_args(char **num)
 {
