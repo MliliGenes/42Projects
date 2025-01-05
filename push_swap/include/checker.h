@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 00:06:19 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 06:10:12 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:06:20 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ typedef struct s_item
 char				*get_next_line(int fd);
 char				*get_chunk(char *stash, int fd);
 char				*ft_get_line(char *stash);
-size_t				ft_strlen(const char *str);
-char				*ft_strdup(const char *s);
 char				*ft_strchr(const char *s, char c);
-char				*ft_strjoin(char *s1, char *s2);
 
 int					ft_strcmp(char *a, char *b);
 void				execution(t_item **stack_a, t_item **stack_b, char *move);

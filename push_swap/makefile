@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/05 08:46:31 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/05 09:31:35 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/05 10:15:39 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 INCLUDE_DIR = include
-
 BUILD_DIR = build
-
 LIB_DIR = lib
 
+# Push_swap directories
 PARSER_DIR = $(LIB_DIR)/parser
 SORT_DIR = $(LIB_DIR)/sort
 ERROR_DIR = $(LIB_DIR)/error
@@ -26,6 +25,7 @@ STACK_DIR = $(LIB_DIR)/stack
 MOVES_DIR = $(STACK_DIR)/moves
 UTILS_DIR = $(STACK_DIR)/utils
 
+# Push_swap sources
 SRC_MAIN = push_swap.c
 
 SRC_PARSER = $(PARSER_DIR)/ft_atol.c \
@@ -56,28 +56,30 @@ SRC_UTILS = $(UTILS_DIR)/create_item.c \
             $(UTILS_DIR)/clear_list.c 
 
 SRC_SORT = $(SORT_DIR)/sort.c \
-            $(SORT_DIR)/push_to_b.c \
-            $(SORT_DIR)/is_sorted.c \
-            $(SORT_DIR)/has_nums_in_range.c \
-            $(SORT_DIR)/push_back_to_a.c
+           $(SORT_DIR)/push_to_b.c \
+           $(SORT_DIR)/is_sorted.c \
+           $(SORT_DIR)/has_nums_in_range.c \
+           $(SORT_DIR)/push_back_to_a.c
 
-SRC_ERROR = $(ERROR_DIR)/error.c
+SRC_ERROR = $(ERROR_DIR)/error.c 
 
 SRC = $(SRC_MAIN) $(SRC_PARSER) $(SRC_MOVES) $(SRC_UTILS) $(SRC_SORT) $(SRC_ERROR)
 
 OBJ = $(SRC:%.c=$(BUILD_DIR)/%.o)
 
-NAME = push_swap
+NAME = $(BUILD_DIR)/push_swap
 
+# Checker directories
 CHECKER_DIR = checker
-
 PARSER_CHECKER_DIR = $(CHECKER_DIR)/parser
 SORT_CHECKER_DIR = $(CHECKER_DIR)/sort
 ERROR_CHECKER_DIR = $(CHECKER_DIR)/error
 STACK_CHECKER_DIR = $(CHECKER_DIR)/stack
 MOVES_CHECKER_DIR = $(STACK_CHECKER_DIR)/moves
 UTILS_CHECKER_DIR = $(STACK_CHECKER_DIR)/utils
+EXEC_CHECKER_DIR = $(CHECKER_DIR)/exec
 
+# Checker sources
 SRC_CHECKER_MAIN = checker.c
 
 SRC_CHECKER_PARSER = $(PARSER_CHECKER_DIR)/ft_atol_bonus.c \
@@ -102,36 +104,53 @@ SRC_CHECKER_MOVES = $(MOVES_CHECKER_DIR)/push_bonus.c \
 
 SRC_CHECKER_UTILS = $(UTILS_CHECKER_DIR)/create_item_bonus.c \
             $(UTILS_CHECKER_DIR)/add_back_bonus.c \
-            $(UTILS_CHECKER_DIR)/clear_list_bonus.c 
+            $(UTILS_CHECKER_DIR)/clear_list_bonus.c \
+            $(CHECKER_DIR)/utils/ft_strcmp_bonus.c \
+            $(CHECKER_DIR)/utils/get_next_line_bonus.c \
+            $(CHECKER_DIR)/utils/get_next_line_utils_bonus.c
 
-SRC_CHECKER_SORT = $(SORT_CHECKER_DIR)/is_sorted_bonus.c \
+SRC_CHECKER_SORT = $(SORT_CHECKER_DIR)/is_sorted_bonus.c
 
 SRC_CHECKER_ERROR = $(ERROR_CHECKER_DIR)/error_bonus.c \
-					$(ERROR_CHECKER_DIR)/ok_bonus.c \
-					$(ERROR_CHECKER_DIR)/ko_bonus.c
+                   $(ERROR_CHECKER_DIR)/ok_bonus.c \
+                   $(ERROR_CHECKER_DIR)/ko_bonus.c
 
+SRC_CHECKER_EXEC = $(EXEC_CHECKER_DIR)/execution_bonus.c
 
-SRC_CHECKER = $(SRC_CHECKER_MAIN) $(SRCSRC_CHECKER_PARSER_PARSER) $(SRC_CHECKER_MOVES) $(SRC_CHECKER_UTILS) $(SRC_CHECKER_SORT) $(SRC_CHECKER_ERROR) 
+SRC_CHECKER = $(SRC_CHECKER_MAIN) \
+              $(SRC_CHECKER_PARSER) \
+              $(SRC_CHECKER_MOVES) \
+              $(SRC_CHECKER_UTILS) \
+              $(SRC_CHECKER_SORT) \
+              $(SRC_CHECKER_ERROR) \
+              $(SRC_CHECKER_EXEC)
 
 OBJ_CHECKER = $(SRC_CHECKER:%.c=$(BUILD_DIR)/%.o)
 
-NAME = checker
+NAME_CHECKER = $(BUILD_DIR)/checker
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(OBJ) -o $(NAME)
+	
+bonus: $(NAME_CHECKER)
+
+$(NAME_CHECKER): $(OBJ_CHECKER)
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) $(OBJ_CHECKER) -o $(NAME_CHECKER)
 
 $(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(dir $@) # Create necessary subdirectories
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 clean:
 	rm -rf $(BUILD_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_CHECKER)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

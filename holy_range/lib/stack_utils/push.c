@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_size.c                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 03:22:47 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/04 16:57:53 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/12/29 18:25:55 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/05 22:25:09 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/push_swap.h"
 
-int	list_size(t_item *head)
+
+static void	push(t_item **dest, t_item **src)
 {
-	int	list_len;
+	t_item	*tmp;
 
-	list_len = 0;
-	while (head)
-	{
-		list_len++;
-		head = head->next;
-	}
-	return (list_len);
+	if (!*src)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	tmp->next = *dest;
+	if (*dest)
+		(*dest)->prev = tmp;
+	*dest = tmp;
+}
+
+void	pa(t_item **head_a, t_item **head_b)
+{
+	push(head_a, head_b);
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_item **head_b, t_item **head_a)
+{
+	push(head_b, head_a);
+	write(1, "pb\n", 3);
 }

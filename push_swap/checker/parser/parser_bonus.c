@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:05:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/04 18:34:26 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:11:34 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../../include/checker.h"
 
 static int	join_and_validate(char **joined_argv, int *len, char **argv)
 {
@@ -58,6 +58,6 @@ int	parser(char **argv, t_item **head)
 	if (!ft_str_to_int(&int_arr, &new_argv, len))
 		return (0);
 	if (!ft_int_to_stack(int_arr, head, len))
-		return  (0);
+		return (0);
 	return (1);
 }

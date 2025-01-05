@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_nums_in_range.c                                :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 05:54:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 06:58:18 by sel-mlil         ###   ########.fr       */
+/*   Created: 2024/10/26 16:37:58 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/05 22:24:11 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
 
-int	has_nums_in_range(t_item *stack_a, int range_start, int range_end)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    while (stack_a)
-    {
-        if (stack_a->index >= range_start && stack_a->index <= range_end)
-            return (1);
-        stack_a = stack_a->next;
-    }
-    return (0);
+	size_t	i;
+	size_t	s_len;
+	char	*ptr;
+
+	s_len = ft_strlen(s);
+	if (start > s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	ptr = (char *)malloc(len + 1);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (s[start + i] && i < len)
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

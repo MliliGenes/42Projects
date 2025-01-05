@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_max_by_index.c                                :+:      :+:    :+:   */
+/*   is_sorted.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 02:53:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 11:53:54 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/03 05:27:56 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/05 22:24:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../include/push_swap.h"
 
-int	find_max_by_index(t_item *head)
+
+int	is_sorted(t_item *stack_a)
 {
-	int		max_index;
-	int		current_pos;
-	int		max_pos;
-	t_item	*current;
-
-	if (!head)
+	if (!stack_a)
 		return (0);
-	max_index = head->index;
-	max_pos = 0;
-	current_pos = 0;
-	current = head;
-	while (current)
-	{
-		if (current->index > max_index)
-		{
-			max_index = current->index;
-			max_pos = current_pos;
-		}
-		current_pos++;
-		current = current->next;
-	}
-	return (max_pos);
+    while (stack_a->next)
+    {
+        if (stack_a->value > stack_a->next->value)
+            return (0);
+        stack_a = stack_a->next;
+    }
+	return (1);
 }

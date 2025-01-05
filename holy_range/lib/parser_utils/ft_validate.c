@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_back_to_a.c                                   :+:      :+:    :+:   */
+/*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 07:47:05 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/03 11:55:13 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/01 17:08:24 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/05 22:24:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
-
-void	push_back_to_a(t_item **stack_a, t_item **stack_b)
+int	ft_validate(char *joined_argv)
 {
-	while (*stack_b)
+	while (*joined_argv)
 	{
-		int max_pos = find_max_by_index(*stack_b);
-		int size = list_size(*stack_b);
-
-		if (max_pos <= size / 2)
-		{
-			while (max_pos--)
-				rb(stack_b);
-		}
-		else
-		{
-			while (max_pos++ < size)
-				rrb(stack_b);
-		}
-		pa(stack_a, stack_b);
+		if (!(*joined_argv == ' ' || *joined_argv == '+' || *joined_argv == '-'
+				|| (*joined_argv >= '0' && *joined_argv <= '9')))
+			return (0);
+		joined_argv++;
 	}
+	return (1);
 }

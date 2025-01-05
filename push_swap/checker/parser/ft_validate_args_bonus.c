@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_args.c                                 :+:      :+:    :+:   */
+/*   ft_validate_args_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 17:27:16 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/02 20:41:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:11:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/push_swap.h"
+#include "../../include/checker.h"
 
 int	ft_validate_args(char **num)
 {
