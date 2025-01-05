@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 20:37:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/04 18:31:29 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/05 07:36:35 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void				rrr(t_item **head_a, t_item **head_b);
 t_item				*create_item(int value);
 void				add_back(t_item *head, t_item *new_item);
 int					find_max_by_index(t_item *head);
+int					find_min_by_index(t_item *head);
 int					list_size(t_item *head);
 void				clear_list(t_item *stack);
 
