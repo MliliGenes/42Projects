@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 00:06:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:56:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 04:41:48 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	execution(t_item **stack_a, t_item **stack_b, char *move)
 	if (!ft_strcmp(move, "pa\n"))
 		pa(stack_a, stack_b, 0);
 	else if (!ft_strcmp(move, "pb\n"))
-		pb(stack_a, stack_b, 0);
+		pb(stack_b, stack_a, 0);
 	else if (!ft_strcmp(move, "sa\n"))
 		sa(stack_a, 0);
 	else if (!ft_strcmp(move, "sb\n"))
@@ -41,7 +41,7 @@ void	execution(t_item **stack_a, t_item **stack_b, char *move)
 	else if (!ft_strcmp(move, "rrb\n"))
 		rrb(stack_b, 0);
 	else if (!ft_strcmp(move, "rrr\n"))
-		rrr(stack_a, stack_a, 0);
+		rrr(stack_a, stack_b, 0); 
 	else
 		dd();
 }

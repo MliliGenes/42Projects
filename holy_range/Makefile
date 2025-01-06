@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 00:43:04 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/06 01:04:25 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/06 03:44:32 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,19 +104,20 @@ RM = rm -f
 all: $(NAME)
 
 bonus : $(NAME_CHECKER)
-.c.o:
-	@$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o ${<:.c=.o}
+
+%.o: %.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o ${<:.c=.o}
 
 $(NAME): $(OBJ_COMMON)
-	@$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME) $(OBJ_COMMON)
+	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME) $(OBJ_COMMON)
 
 $(NAME_CHECKER): $(OBJ_CHECKER)
-	@$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME_CHECKER) $(OBJ_CHECKER)
+	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME_CHECKER) $(OBJ_CHECKER)
 
 clean:
-	@$(RM) $(OBJ_CHECKER) $(OBJ_COMMON)
+	$(RM) $(OBJ_CHECKER) $(OBJ_COMMON)
 
 fclean: clean
-	@$(RM) $(NAME) $(NAME_CHECKER)
+	$(RM) $(NAME) $(NAME_CHECKER)
 
 re : fclean all
