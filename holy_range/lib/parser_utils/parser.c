@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:05:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:01:27 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:14:17 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
+#include <stdio.h>
 
 static int	validate_argv(char **argv)
 {
@@ -65,7 +66,7 @@ int	parser(char **argv, t_item **head)
 	joined_argv = NULL;
 	if (!validate_argv(argv))
 		return (0);
-	else if (!join_and_validate(&joined_argv, &len, argv))
+	if (!join_and_validate(&joined_argv, &len, argv))
 		return (0);
 	new_argv = NULL;
 	if (!split_and_validate(joined_argv, &new_argv))

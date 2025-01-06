@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 22:32:15 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:09:39 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:56:10 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ int					ft_int_to_stack(int *arr, t_item **stack, int size);
 int					parser(char **argv, t_item **head);
 
 // stack
-void				sa(t_item **head);
-void				sb(t_item **head);
-void				ss(t_item **head_a, t_item **head_b);
-void				pa(t_item **head_a, t_item **head_b);
-void				pb(t_item **head_b, t_item **head_a);
-void				ra(t_item **head_a);
-void				rb(t_item **head_b);
-void				rr(t_item **head_a, t_item **head_b);
-void				rra(t_item **head_a);
-void				rrb(t_item **head_b);
-void				rrr(t_item **head_a, t_item **head_b);
+void				sa(t_item **head, int print);
+void				sb(t_item **head, int print);
+void				ss(t_item **head_a, t_item **head_b, int print);
+void				pa(t_item **head_a, t_item **head_b, int print);
+void				pb(t_item **head_b, t_item **head_a, int print);
+void				ra(t_item **head_a, int print);
+void				rb(t_item **head_b, int print);
+void				rr(t_item **head_a, t_item **head_b, int print);
+void				rra(t_item **head_a, int print);
+void				rrb(t_item **head_b, int print);
+void				rrr(t_item **head_a, t_item **head_b, int print);
 t_item				*create_item(int value);
 void				add_back(t_item *head, t_item *new_item);
 int					find_max_by_index(t_item *head);

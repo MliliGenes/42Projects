@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:02:17 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:02:29 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:02:55 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
+#include <stdio.h>
 
 static char	*get_next(char *stash)
 {

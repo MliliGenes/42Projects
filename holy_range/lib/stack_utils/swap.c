@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 17:24:07 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 23:52:42 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:57:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,24 @@ static void	swap_first_two(t_item **head)
 	*head = tmp;
 }
 
-void	sa(t_item **head_a)
+void	sa(t_item **head_a, int print)
 {
 	swap_first_two(head_a);
-	write(1, "sa\n", 3);
+	if (print)
+		write(1, "sa\n", 3);
 }
 
-void	sb(t_item **head_b)
+void	sb(t_item **head_b, int print)
 {
 	swap_first_two(head_b);
-	write(1, "sb\n", 3);
+	if (print)
+		write(1, "sb\n", 3);
 }
 
-void	ss(t_item **head_a, t_item **head_b)
+void	ss(t_item **head_a, t_item **head_b, int print)
 {
 	swap_first_two(head_a);
 	swap_first_two(head_b);
-	write(1, "ss\n", 3);
+	if (print)
+		write(1, "ss\n", 3);
 }

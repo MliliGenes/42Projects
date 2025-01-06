@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 00:06:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:07:22 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:56:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@ static void	dd(void)
 void	execution(t_item **stack_a, t_item **stack_b, char *move)
 {
 	if (!ft_strcmp(move, "pa\n"))
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, 0);
 	else if (!ft_strcmp(move, "pb\n"))
-		pb(stack_a, stack_b);
+		pb(stack_a, stack_b, 0);
 	else if (!ft_strcmp(move, "sa\n"))
-		sa(stack_a);
+		sa(stack_a, 0);
 	else if (!ft_strcmp(move, "sb\n"))
-		sb(stack_b);
+		sb(stack_b, 0);
 	else if (!ft_strcmp(move, "ss\n"))
-		ss(stack_a, stack_b);
+		ss(stack_a, stack_b, 0);
 	else if (!ft_strcmp(move, "ra\n"))
-		ra(stack_a);
+		ra(stack_a, 0);
 	else if (!ft_strcmp(move, "rb\n"))
-		rb(stack_b);
+		rb(stack_b, 0);
 	else if (!ft_strcmp(move, "rr\n"))
-		rr(stack_a, stack_b);
+		rr(stack_a, stack_b, 0);
 	else if (!ft_strcmp(move, "rra\n"))
-		rra(stack_a);
+		rra(stack_a, 0);
 	else if (!ft_strcmp(move, "rrb\n"))
-		rrb(stack_b);
+		rrb(stack_b, 0);
 	else if (!ft_strcmp(move, "rrr\n"))
-		rrr(stack_a, stack_a);
+		rrr(stack_a, stack_a, 0);
 	else
 		dd();
 }

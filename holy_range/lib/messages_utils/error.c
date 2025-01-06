@@ -6,13 +6,13 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:54:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 23:50:41 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:54:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void error(void)
+void	error(void)
 {
-    write(1,"ERROR",5);
+	write(1, "ERROR", 5);
 }

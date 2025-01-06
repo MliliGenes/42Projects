@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 04:57:24 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 23:52:10 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:58:11 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	push_to_b(t_item **stack_a, t_item **stack_b)
 	{
 		if ((*stack_a)->index <= end)
 		{
-			pb(stack_b, stack_a);
+			pb(stack_b, stack_a, 1);
 			if ((*stack_b)->index < start)
-				rb(stack_b);
+				rb(stack_b, 1);
 			start++;
 			end++;
 		}
 		else if ((*stack_a)->index > end)
-			ra(stack_a);
+			ra(stack_a, 1);
 	}
 }
 

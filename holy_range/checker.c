@@ -6,12 +6,19 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 18:00:56 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/06 00:47:39 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 01:16:16 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/checker.h"
 #include "./includes/get_next_line.h"
+#include <i386/limits.h>
+
+static void	dd(void)
+{
+	error();
+	exit(1);
+}
 
 static void	check_sort(t_item *stack_a, t_item *stack_b)
 {
@@ -32,14 +39,14 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	move = NULL;
 	if (!parser(argv, &stack_a))
-		error();
+		dd();
 	else
 	{
 		while (1)
 		{
 			move = get_next_line(0);
 			if (!move)
-				return (error(), 1);
+				break;
 			execution(&stack_a, &stack_b, move);
 			free(move);
 		}

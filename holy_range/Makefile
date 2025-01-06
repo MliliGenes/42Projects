@@ -6,20 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 00:43:04 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/06 00:51:26 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/06 01:04:25 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CLR_RMV:= \033[0m
-RED:= \033[1;31m
-GREEN:= \033[1;32m
-YELLOW:= \033[1;33m
-BLUE:= \033[1;34m
-CYAN:= \033[1;36m
-
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 SRC_COMMON = push_swap.c \
 	lib/exec/execution.c \

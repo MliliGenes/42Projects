@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 22:21:25 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 23:52:13 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/06 00:58:41 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	sort_three(t_item **stack_a)
 {
 	if ((*stack_a)->index > (*stack_a)->next->index
 		&& (*stack_a)->index > (*stack_a)->next->next->index)
-		ra(stack_a);
+		ra(stack_a, 1);
 	if ((*stack_a)->index < (*stack_a)->next->index
 		&& (*stack_a)->next->index > (*stack_a)->next->next->index)
-		rra(stack_a);
+		rra(stack_a, 1);
 	if ((*stack_a)->index > (*stack_a)->next->index)
-		sa(stack_a);
+		sa(stack_a, 1);
 }
 
 static void	sort_four_and_five(int size, t_item **stack_a, t_item **stack_b)
@@ -36,21 +36,21 @@ static void	sort_four_and_five(int size, t_item **stack_a, t_item **stack_b)
 		if (min_pos <= l_size / 2)
 		{
 			while (min_pos--)
-				ra(stack_a);
+				ra(stack_a, 1);
 		}
 		else
 		{
 			while (min_pos++ < l_size)
-				rra(stack_a);
+				rra(stack_a, 1);
 		}
-		pb(stack_b, stack_a);
+		pb(stack_b, stack_a, 1);
 		l_size--;
 		min_pos = find_min_by_index(*stack_a);
 	}
 	if (!is_sorted(*stack_a))
 		sort_three(stack_a);
-	pa(stack_a,stack_b);
-	pa(stack_a,stack_b);
+	pa(stack_a, stack_b, 1);
+	pa(stack_a, stack_b, 1);
 }
 
 void	sort(t_item **stack_a, t_item **stack_b)
@@ -63,7 +63,7 @@ void	sort(t_item **stack_a, t_item **stack_b)
 		return ;
 	stack_a_size = list_size(*stack_a);
 	if (stack_a_size == 2)
-		sa(stack_a);
+		sa(stack_a, 1);
 	else if (stack_a_size == 3)
 		sort_three(stack_a);
 	else if (stack_a_size <= 5)
