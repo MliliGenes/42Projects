@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLX42 Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold text-gray-800">MLX42 Documentation</div>
+                <div class="flex space-x-4">
+                    <a href="#getting-started" class="text-gray-600 hover:text-gray-900">Getting Started</a>
+                    <a href="#window-management" class="text-gray-600 hover:text-gray-900">Window Management</a>
+                    <a href="#events" class="text-gray-600 hover:text-gray-900">Events</a>
+                    <a href="#examples" class="text-gray-600 hover:text-gray-900">Examples</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Introduction -->
+        <section class="mb-12">
+            <h1 class="text-4xl font-bold mb-4">MLX42 Library</h1>
+            <p class="text-gray-600 text-lg mb-4">
+                MLX42 is a cross-platform graphics library written in C that uses OpenGL and GLFW for windowing and rendering.
+                It provides a simple interface for creating windows, handling events, and rendering graphics.
+            </p>
+        </section>
+
+        <!-- Getting Started -->
+        <section id="getting-started" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Getting Started</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-xl font-semibold mb-4">Installation</h3>
+                <div class="bg-gray-800 text-white p-4 rounded-md mb-4">
+                    <code>cc program.c -I include -L lib -lmlx42 -lglfw -framework Cocoa -framework OpenGL -framework IOKit</code>
+                </div>
+                <p class="text-gray-600">For macOS, include the frameworks as shown. For Linux, link against required libraries: <code class="bg-gray-100 px-2 py-1 rounded">-lglfw -lm</code></p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-4">Basic Window Creation</h3>
+                <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
+<code>
+#include "MLX42/MLX42.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    mlx_t* mlx = mlx_init(800, 600, "Hello world!", true);
+    if (!mlx)
+    {
+        fprintf(stderr, "Error: mlx_init failed\n");
+        return EXIT_FAILURE;
+    }
+
+    mlx_loop(mlx);
+    mlx_terminate(mlx);
+    return EXIT_SUCCESS;
+}
+</code>
+                </pre>
+            </div>
+        </section>
+
+        <!-- Window Management -->
+        <section id="window-management" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Window Management</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Window Control Functions</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <h4 class="font-semibold text-gray-800">mlx_set_window_pos</h4>
+                            <p class="text-gray-600">Sets the window position on screen</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-gray-800">mlx_set_window_size</h4>
+                            <p class="text-gray-600">Changes window dimensions</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-gray-800">mlx_set_window_limit</h4>
+                            <p class="text-gray-600">Sets minimum and maximum window size</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold mb-4">Window Settings</h3>
+                    <ul class="space-y-4">
+                        <li>
+                            <h4 class="font-semibold text-gray-800">MLX_STRETCH_IMAGE</h4>
+                            <p class="text-gray-600">Enable/disable image stretching with window</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-gray-800">MLX_FULLSCREEN</h4>
+                            <p class="text-gray-600">Start in fullscreen mode</p>
+                        </li>
+                        <li>
+                            <h4 class="font-semibold text-gray-800">MLX_MAXIMIZED</h4>
+                            <p class="text-gray-600">Start window maximized</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Event Handling</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-4">Event Hooks</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Keyboard Events</h4>
+                        <pre class="bg-gray-800 text-white p-4 rounded-md">
+<code>void mlx_key_hook(
+    mlx_t* mlx,
+    mlx_keyfunc func,
+    void* param
+);</code>
+                        </pre>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Mouse Events</h4>
+                        <pre class="bg-gray-800 text-white p-4 rounded-md">
+<code>void mlx_mouse_hook(
+    mlx_t* mlx,
+    mlx_mousefunc func,
+    void* param
+);</code>
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section id="examples" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Complete Example</h2>
+            
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto">
+<code>
+#include "MLX42/MLX42.h"
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+void my_key_hook(mlx_key_data_t keydata, void* param)
+{
+    mlx_t* mlx = param;
+    if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+        mlx_close_window(mlx);
+}
+
+void my_resize_hook(int32_t width, int32_t height, void* param)
+{
+    printf("Window resized to: %dx%d\n", width, height);
+}
+
+int main(void)
+{
+    mlx_t* mlx = mlx_init(800, 600, "Example Window", true);
+    if (!mlx) return EXIT_FAILURE;
+
+    mlx_key_hook(mlx, my_key_hook, mlx);
+    mlx_resize_hook(mlx, my_resize_hook, mlx);
+
+    mlx_loop(mlx);
+    mlx_terminate(mlx);
+    return EXIT_SUCCESS;
+}
+</code>
+                </pre>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>MLX42 Documentation - made with hate by sax</p>
+        </div>
+    </footer>
+</body>
+</html>
