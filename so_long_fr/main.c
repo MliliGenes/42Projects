@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/08 03:52:13 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:12:51 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,24 @@ void	my_key_hook(mlx_key_data_t keydata, void *obj)
 		mlx_close_window(box->window);
 	if ((keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		|| (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT))
-		box->x += box->size;
+		box->x += ;
 	if ((keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		|| (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT))
-		box->x -= box->size;
+		box->x -= 10;
 	if ((keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
 		|| (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_REPEAT))
-		box->y += box->size;
+		box->y += 10;
 	if ((keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 		|| (keydata.key == MLX_KEY_UP && keydata.action == MLX_REPEAT))
-		box->y -= box->size;
-
-	
-	if (box->x >= 800)
-		box->x = 0; 
+		box->y -= 10;
+	if (box->x >= 64 *20)
+		box->x = 0;
 	if (box->x < 0)
-		box->x = 800 - box->size;
-
-
-	if (box->y >= 800)
-		box->y = 0;  
+		box->x = 64 * 20 - box->size;
+	if (box->y >= 64 *10)
+		box->y = 0;
 	if (box->y < 0)
-		box->y = 800 - box->size;  
-	
+		box->y = 64 * 10 - box->size;
 	mlx_delete_image(box->window, box->image);
 	box->image = mlx_new_image(box->window, box->size, box->size);
 		for (int y = 0; y < box->size; y++)
@@ -80,39 +75,73 @@ void	my_resize_hook(int32_t width, int32_t height, void *param)
 
 int	main(void)
 {
-	box		box;
-	mlx_t	*mlx;
-	int		center_x;
-	int		center_y;
-	int		radius;
+	box			box;
+	mlx_t		*mlx;
+	int			center_x;
+	int			center_y;
+	int			radius;
+	int			i;
+	int			x;
+	int			y;
+	int			j;
+			mlx_texture_t *texture;
+	mlx_image_t	*tile;
 
 	box.size = 25;
-	box.window = mlx_init(800, 800, "box moving", true);
-	box.image = mlx_new_image(box.window, box.size, box.size);
-	box.bg = mlx_new_image(box.window, 800, 800);
-	box.x = 0;
-	box.y = 0;
-	for (int y = 0; y < box.size; y++)
-	{
-		for (int x = 0; x < box.size; x++)
-		{
-			mlx_put_pixel(box.image, x, y, 0xffffffff);
-		}
-	}
-	for (int y = 0; y < 800; y++)
-	{
-		for (int x = 0; x < 800; x++)
-		{
-			mlx_put_pixel(box.bg, x, y, 0x000000FF);
-		}
-	}
+	box.window = mlx_init(64 * 20, 64 * 10, "box moving", true);
 	if (!box.window)
 	{
 		fprintf(stderr, "Error: mlx_init failed\n");
 		return (EXIT_FAILURE);
 	}
-	mlx_image_to_window(box.window, box.bg, 0, 0);
-	mlx_image_to_window(box.window, box.image, box.x, box.y);
+	box.image = mlx_new_image(box.window, 64 * 20, 64 * 10);
+	for (int y = 0; y < 640; y++)
+	{
+		for (int x = 0; x < 64 * 20; x++)
+		{
+			mlx_put_pixel(box.image, x, y, 0x00000080);
+		}
+	}
+	i = 0;
+	x = 0;
+	y = 0;
+	while (i < 10)
+	{
+		j = 0;
+		while (j < 20)
+		{
+			if (j == 0)
+			{
+				texture = mlx_load_png("./edge-4.png");
+			}
+			else if (j == 19)
+			{
+				texture = mlx_load_png("./edge-3.png");
+			}
+			else if (i == 0)
+			{
+				texture = mlx_load_png("./edge-1.png");
+			}
+			else if (i == 9)
+			{
+				texture = mlx_load_png("./edge-2.png");
+			}
+			else
+			{
+				texture = mlx_load_png("./tile-1.png");
+			}
+			tile = mlx_texture_to_image(box.window, texture);
+			mlx_image_to_window(box.window, tile, x, y);
+			x += 64;
+			j++;
+		}
+		x = 0;
+		y += 64;
+		i++;
+	}
+	
+	// mlx_image_to_window(box.window, box.image, 0, 0);
+
 	mlx_key_hook(box.window, my_key_hook, &box);
 	mlx_resize_hook(box.window, my_resize_hook, &box);
 	mlx_loop(box.window);
