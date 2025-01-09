@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/08 09:12:51 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/09 20:55:09 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,21 @@ void	my_key_hook(mlx_key_data_t keydata, void *obj)
 	box = obj;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(box->window);
-	if ((keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT))
-		box->x += ;
-	if ((keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT))
-		box->x -= 10;
-	if ((keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_REPEAT))
-		box->y += 10;
-	if ((keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		|| (keydata.key == MLX_KEY_UP && keydata.action == MLX_REPEAT))
-		box->y -= 10;
+	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
+	{	
+		if (box->x + box->size / 2 <= 1280 - (64 * 2))
+			box->x += box->size / 2;
+	}
+	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
+		if (box->x - box->size / 2 >= 64)
+			box->x -= box->size / 2;
+	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
+		if (box->y + box->size / 2 <= 640 - (64 * 2))
+			box->y += box->size / 2 ;
+	if (mlx_is_key_down(box->window, MLX_KEY_UP))
+		if (box->y - box->size / 2 >= 64)
+			box->y -= box->size / 2 ;
+	
 	if (box->x >= 64 *20)
 		box->x = 0;
 	if (box->x < 0)
@@ -66,6 +69,7 @@ void	my_key_hook(mlx_key_data_t keydata, void *obj)
 		}
 	}
 	mlx_image_to_window(box->window, box->image, box->x, box->y);
+	printf("x:%d | y:%d\n", box->x, box->y);
 }
 
 void	my_resize_hook(int32_t width, int32_t height, void *param)
@@ -87,20 +91,12 @@ int	main(void)
 			mlx_texture_t *texture;
 	mlx_image_t	*tile;
 
-	box.size = 25;
+	box.size = 64;
 	box.window = mlx_init(64 * 20, 64 * 10, "box moving", true);
 	if (!box.window)
 	{
 		fprintf(stderr, "Error: mlx_init failed\n");
 		return (EXIT_FAILURE);
-	}
-	box.image = mlx_new_image(box.window, 64 * 20, 64 * 10);
-	for (int y = 0; y < 640; y++)
-	{
-		for (int x = 0; x < 64 * 20; x++)
-		{
-			mlx_put_pixel(box.image, x, y, 0x00000080);
-		}
 	}
 	i = 0;
 	x = 0;
@@ -139,7 +135,18 @@ int	main(void)
 		y += 64;
 		i++;
 	}
+	box.x = 64;
+	box.y = 64;
+	box.image = mlx_new_image(box.window, box.size, box.size);
 	
+	for (int y = 0; y < box.size; y++)
+	{
+		for (int x = 0; x < box.size; x++)
+		{
+			mlx_put_pixel(box.image, x, y, 0xffffffff);
+		}
+	}
+	mlx_image_to_window(box.window, box.image, box.x, box.y);
 	// mlx_image_to_window(box.window, box.image, 0, 0);
 
 	mlx_key_hook(box.window, my_key_hook, &box);
