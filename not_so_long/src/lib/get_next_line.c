@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:02:17 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 00:48:25 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:41:37 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
-#include <stdio.h>
+#include "../../includes/lib.h"
 
 static char	*get_next(char *stash)
 {

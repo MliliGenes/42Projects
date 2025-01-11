@@ -1,8 +1,9 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-#include "mlx42.h"
-#include "lib.h"
+# include "./lib.h"
+# include "./mlx42.h"
+
 
 typedef struct assets_s
 {
@@ -54,9 +55,6 @@ typedef struct map_s
 	char			**grid;
 	int				width;
 	int				height;
-	mlx_image_t		*wall_texture;
-	mlx_image_t		*floor_texture;
-	mlx_image_t		*collectible_texture;
 }					map_t;
 
 typedef struct game_s

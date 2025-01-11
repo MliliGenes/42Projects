@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 01:40:19 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 08:02:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <fcntl.h>
 # include <limits.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -34,8 +35,10 @@ char				*ft_strdup(const char *s);
 char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strchr(const char *s, char c);
 int					file_to_fd(char *path);
+list_t				*create_map(char *path);
 list_t				*create_list_t_node(char *line);
-void				add_back_list_t(list_t *head, list_t *new_node);
+void				add_back_list_t(list_t **head, list_t *new_node);
 void				clear_list_t_list(list_t *head);
+int					parser(char *path, list_t **map);
 
 #endif
