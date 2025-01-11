@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 09:08:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:46:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct list_s
 
 typedef struct validate_s
 {
-	int				found_exit;
-	int				collectibles_found;
 	int				line_len;
+	int				collectibles_found;
+	int				found_exit;
 }					validate_t;
 
 char				*get_next_line(int fd);
@@ -48,5 +48,8 @@ list_t				*create_list_t_node(char *line);
 void				add_back_list_t(list_t **head, list_t *new_node);
 void				clear_list_t_list(list_t *head);
 int					parser(char *path, list_t **map);
+list_t				*list_dup(list_t *list);
+int					is_map_enclosed(list_t *map);
+int					list_length(list_t *list);
 
 #endif

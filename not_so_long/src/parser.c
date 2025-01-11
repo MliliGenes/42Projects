@@ -6,66 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 08:02:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:46:36 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lib.h"
-
-static int	list_length(list_t *list)
-{
-	int	i;
-
-	i = 0;
-	while (list)
-	{
-		i++;
-		list = list->next;
-	}
-	return (i);
-}
-
-static int	is_all_ones(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] != '1')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-static int	is_enclosed(list_t *map)
-{
-	list_t	*tmp;
-	int		map_width;
-
-	map_width = ft_strlen(map->line);
-	if (!is_all_ones(map->line)) // Check first line
-		return (0);
-	tmp = map;
-	while (tmp)
-	{
-		if (tmp->line[0] != '1' || tmp->line[map_width - 1] != '1')
-			return (0);
-		tmp = tmp->next;
-	}
-	tmp = map;
-	while (tmp->next)
-		tmp = tmp->next;
-	if (!is_all_ones(tmp->line))
-		return (0);
-	return (1);
-}
-
-static int	is_valid_char(char c)
-{
-	return (c == '0' || c == '1' || c == 'P' || c == 'C' || c == 'E');
-}
 
 static int	lexer(list_t *map)
 {
@@ -76,7 +21,7 @@ static int	lexer(list_t *map)
 		i = 0;
 		while (map->line[i])
 		{
-			if (!is_valid_char(map->line[i]))
+			if (!(map->line[i] == '0' || map->line[i] == '1' || map->line[i] == 'P' || map->line[i] == 'C' || map->line[i] == 'E'))
 				return (0);
 			i++;
 		}
@@ -102,14 +47,24 @@ static int	is_map_rec(list_t *map)
 
 int	parser(char *path, list_t **map)
 {
-	list_t	*tmp_map;
+	list_t		*tmp_map;
+	list_t		*cpy;
+	validate_t	results;
 
 	tmp_map = create_map(path);
 	if (!tmp_map)
 		return (0);
 	if (!is_map_rec(*map))
-		return (0);
+		return (clear_list_t_list(tmp_map), 0);
 	if (!lexer(tmp_map))
-		return (0);
+		return (clear_list_t_list(tmp_map), 0);
+    if (!is_map_enclosed(tmp_map))
+        return (clear_list_t_list(tmp_map), 0);
+	cpy = list_dup(tmp_map);
+	if (!cpy)
+		return (clear_list_t_list(tmp_map), 0);
+	// results.collectibles_found = find_collectibles();
+	// results.line_len = str_len();
+	// results.found_exit = 0;
 	return (1);
 }

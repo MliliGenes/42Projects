@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_back_list_t.c                                  :+:      :+:    :+:   */
+/*   list_len.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 01:20:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 09:27:09 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/11 09:39:49 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/11 09:40:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void	add_back_list_t(list_t **head, list_t *new_node)
+int	list_length(list_t *list)
 {
-	list_t	*tmp;
+	int	i;
 
-	if (!new_node)
-		return ;
-	if (!*head)
+	i = 0;
+	while (list)
 	{
-		*head = new_node;
-		return ;
+		i++;
+		list = list->next;
 	}
-	tmp = *head;
-	while (tmp->next)
-		tmp = tmp->next;
-	new_node->prev = tmp;
-	tmp->next = new_node;
+	return (i);
 }

@@ -6,49 +6,30 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 09:14:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 09:19:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:27:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-static void link_back(list_t **list)
+list_t	*list_dup(list_t *list)
 {
-    list_t *current;
-    list_t *tmp;
-    
-    current = *list;
-    tmp = NULL;
-    while (current)
-    {
-        current->prev = tmp;
-        tmp = current;
-        current = current->next;
-    }
-}
+	list_t	*new_list;
+	list_t	*node_copy;
 
-list_t  *list_dup(list_t *list)
-{
-    list_t  *new_list;
-    list_t  *current;
-    list_t  *temp;
-
-    if (!list)
-        return (NULL);
-    new_list = NULL;
-    current = list;
-    while (current)
-    {
-        temp = malloc(sizeof(list_t));
-        if (!temp)
-            return (clear_list_t_list(new_list), NULL);
-        temp->line = ft_strdup(current->line);
-        if (!temp->line)
-            return (clear_list_t_list(new_list), NULL);
-        temp->next = new_list;
-        new_list = temp;
-        current = current->next;
-    }
-
-    return (new_list);
+	if (!list)
+		return (NULL);
+	new_list = NULL;
+	while (list)
+	{
+		node_copy = malloc(sizeof(list_t));
+		if (!node_copy)
+			return (clear_list_t_list(new_list), NULL);
+		node_copy->line = ft_strdup(list->line);
+		if (!node_copy->line)
+			return (clear_list_t_list(new_list), free(node_copy), NULL);
+		add_back_list_t(&new_list, node_copy);
+		list = list->next;
+	}
+	return (new_list);
 }
