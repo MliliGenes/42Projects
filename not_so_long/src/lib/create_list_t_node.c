@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 01:11:21 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 06:47:32 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 08:04:02 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ list_t	*create_list_t_node(char *line)
 		return (NULL);
     tmp->line = line;
     tmp->next = NULL;
+    tmp->prev = NULL;
     return (tmp);
 }

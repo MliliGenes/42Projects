@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 08:02:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:08:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,15 @@ typedef struct list_s
 {
 	char			*line;
 	struct list_s	*next;
+	struct list_s	*prev;
 }					list_t;
+
+typedef struct validate_s
+{
+	int				found_exit;
+	int				collectibles_found;
+	int				line_len;
+}					validate_t;
 
 char				*get_next_line(int fd);
 size_t				ft_strlen(const char *s);

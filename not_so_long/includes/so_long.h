@@ -52,9 +52,10 @@ typedef struct play_s
 typedef struct map_s
 {
 	mlx_t			*mlx;
-	char			**grid;
+	list_t			**grid;
 	int				width;
 	int				height;
+	int				coins;
 }					map_t;
 
 typedef struct game_s
@@ -64,7 +65,6 @@ typedef struct game_s
 	play_t			*player;
 	map_t			*map;
 	int				score;
-	int				lives;
 	int				moves;
 	const char		*title;
 }					game_t;
