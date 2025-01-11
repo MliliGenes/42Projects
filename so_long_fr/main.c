@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/09 20:55:09 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:48:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,19 @@ void	my_key_hook(mlx_key_data_t keydata, void *obj)
 		mlx_close_window(box->window);
 	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
 	{	
-		if (box->x + box->size / 2 <= 1280 - (64 * 2))
-			box->x += box->size / 2;
+		if (box->x + 64 <= 1280 - (64 * 2))
+			box->x += 64; ;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
-		if (box->x - box->size / 2 >= 64)
-			box->x -= box->size / 2;
+		if (box->x - 64  >= 64)
+			box->x -= 64; ;
 	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
-		if (box->y + box->size / 2 <= 640 - (64 * 2))
-			box->y += box->size / 2 ;
+		if (box->y + 64  <= 640 - (64 * 2))
+			box->y += 64;  ;
 	if (mlx_is_key_down(box->window, MLX_KEY_UP))
-		if (box->y - box->size / 2 >= 64)
-			box->y -= box->size / 2 ;
+		if (box->y - 64 >= 64)
+			box->y -= 64; 
 	
-	if (box->x >= 64 *20)
-		box->x = 0;
-	if (box->x < 0)
-		box->x = 64 * 20 - box->size;
-	if (box->y >= 64 *10)
-		box->y = 0;
-	if (box->y < 0)
-		box->y = 64 * 10 - box->size;
 	mlx_delete_image(box->window, box->image);
 	box->image = mlx_new_image(box->window, box->size, box->size);
 		for (int y = 0; y < box->size; y++)
@@ -92,7 +84,7 @@ int	main(void)
 	mlx_image_t	*tile;
 
 	box.size = 64;
-	box.window = mlx_init(64 * 20, 64 * 10, "box moving", true);
+	box.window = mlx_init(64 * 20, 64 * 10, "box moving", false);
 	if (!box.window)
 	{
 		fprintf(stderr, "Error: mlx_init failed\n");
