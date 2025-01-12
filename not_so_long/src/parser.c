@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 06:09:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/12 06:34:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static int	is_map_rec(list_t *map)
 
 static void	results_init(validate_t *results, list_t *map)
 {
-	(*results).collectibles_found = find_in_map(map, 'C');
-	(*results).exits_found = find_in_map(map, 'E');
-	(*results).players_found = find_in_map(map, 'P');
+	(*results).collectibles_found = search_in_map(map, 'C');
+	(*results).exits_found = search_in_map(map, 'E');
+	(*results).players_found = search_in_map(map, 'P');
 	(*results).line_len = ft_strlen(map->line);
 }
 

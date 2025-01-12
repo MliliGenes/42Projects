@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:58:08 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 08:01:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/12 06:59:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static char	*trim_new_line(char *line)
 	while (i-- > 0)
 		trimmed[i] = line[i];
 	free(line);
-	return  trimmed;
+	return (trimmed);
 }
 
 list_t	*create_map(char *path)
