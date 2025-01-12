@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 09:46:36 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/12 06:09:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static int	lexer(list_t *map)
 		i = 0;
 		while (map->line[i])
 		{
-			if (!(map->line[i] == '0' || map->line[i] == '1' || map->line[i] == 'P' || map->line[i] == 'C' || map->line[i] == 'E'))
+			if (!(map->line[i] == '0' || map->line[i] == '1'
+					|| map->line[i] == 'P' || map->line[i] == 'C'
+					|| map->line[i] == 'E'))
 				return (0);
 			i++;
 		}
@@ -45,26 +47,36 @@ static int	is_map_rec(list_t *map)
 	return (1);
 }
 
+static void	results_init(validate_t *results, list_t *map)
+{
+	(*results).collectibles_found = find_in_map(map, 'C');
+	(*results).exits_found = find_in_map(map, 'E');
+	(*results).players_found = find_in_map(map, 'P');
+	(*results).line_len = ft_strlen(map->line);
+}
+
+static int	validate_results(validate_t *data)
+{
+	return (data->collectibles_found >= 1 && data->exits_found <= 1
+		&& data->players_found <= 1);
+}
+
 int	parser(char *path, list_t **map)
 {
 	list_t		*tmp_map;
 	list_t		*cpy;
-	validate_t	results;
+	validate_t	data;
 
 	tmp_map = create_map(path);
-	if (!tmp_map)
+	if (!tmp_map || !*tmp_map->line)
 		return (0);
-	if (!is_map_rec(*map))
+	if (!is_map_rec(*map) || !lexer(tmp_map) || !is_map_enclosed(tmp_map))
 		return (clear_list_t_list(tmp_map), 0);
-	if (!lexer(tmp_map))
-		return (clear_list_t_list(tmp_map), 0);
-    if (!is_map_enclosed(tmp_map))
-        return (clear_list_t_list(tmp_map), 0);
 	cpy = list_dup(tmp_map);
 	if (!cpy)
 		return (clear_list_t_list(tmp_map), 0);
-	// results.collectibles_found = find_collectibles();
-	// results.line_len = str_len();
-	// results.found_exit = 0;
+	results_init(&data, tmp_map);
+	if (!validate_results(&data))
+		return (clear_list_t_list(tmp_map), 0);
 	return (1);
 }

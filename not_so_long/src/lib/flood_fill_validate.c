@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floodfill.c                                        :+:      :+:    :+:   */
+/*   flood_fill_validate.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 08:56:15 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 03:41:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/12 06:18:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void flood_and_validate(list_t *node, int x, validate_t *result)
+void flood_fill_validate(list_t *node, int x, validate_t *result)
 {
     char current;
 
@@ -24,12 +24,12 @@ void flood_and_validate(list_t *node, int x, validate_t *result)
     if (current == '1' || current == 'F')
         return;
     if (current == 'C')
-        result->collectibles_found++;
+        result->collectibles_found--;
     else if (current == 'E')
-        result->found_exit = 1;
+        result->exits_found--;
     node->line[x] = 'F';
-    flood_and_validate(node->prev, x, result);
-    flood_and_validate(node->next, x, result);
-    flood_and_validate(node, x - 1, result);
-    flood_and_validate(node, x + 1, result);
+    flood_fill_validate(node->prev, x, result);
+    flood_fill_validate(node->next, x, result);
+    flood_fill_validate(node, x - 1, result);
+    flood_fill_validate(node, x + 1, result);
 }

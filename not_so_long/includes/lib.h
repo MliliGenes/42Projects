@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 09:46:13 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/12 06:11:35 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct validate_s
 {
 	int				line_len;
 	int				collectibles_found;
-	int				found_exit;
+	int				exits_found;
+	int				players_found;
 }					validate_t;
 
 char				*get_next_line(int fd);
@@ -51,5 +52,8 @@ int					parser(char *path, list_t **map);
 list_t				*list_dup(list_t *list);
 int					is_map_enclosed(list_t *map);
 int					list_length(list_t *list);
+int					find_in_map(list_t *map, char to_find);
+void				flood_fill_validate(list_t *node, int x,
+						validate_t *result);
 
 #endif

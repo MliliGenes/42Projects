@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   find_in_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 14:06:51 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 00:39:34 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/12 05:48:10 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/12 05:52:47 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/push_swap.h"
-#include <stdio.h>
+#include "../../includes/lib.h"
 
-int	main(int argc, char **argv)
+int	find_in_map(list_t *map, char to_find)
 {
-	t_item	*stack_a;
-	t_item	*stack_b;
+	int	found;
+	int	i;
 
-	(void)argc;
-	stack_a = NULL;
-	stack_b = NULL;
-	if (!parser(argv, &stack_a))
-		error();
-	else
-		sort(&stack_a, &stack_b);
-	clear_list(stack_a);
-	return (0);
+	found = 0;
+	while (map)
+	{
+		i = 0;
+		while (map->line[i])
+		{
+			if (map->line[i] == to_find)
+				found++;
+			i++;
+		}
+		map = map->next;
+	}
+	return (found);
 }

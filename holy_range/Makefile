@@ -6,13 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 00:43:04 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/06 03:44:32 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/11 22:36:01 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 
 SRC_COMMON = push_swap.c \
 	lib/exec/execution.c \
