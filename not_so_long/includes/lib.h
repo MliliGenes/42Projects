@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 14:09:15 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:20:57 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
+
+/* ************************************************************************** */
+/*                                  STRUCTS                                   */
+/* ************************************************************************** */
 
 typedef struct list_s
 {
@@ -43,24 +47,53 @@ typedef struct validate_s
 	int				players_found;
 }					validate_t;
 
+/* ************************************************************************** */
+/*                            FILE HANDLING FUNCTIONS                         */
+/* ************************************************************************** */
+
 char				*get_next_line(int fd);
+int					file_to_fd(char *path);
+
+/* ************************************************************************** */
+/*                            STRING UTILITIES                                */
+/* ************************************************************************** */
+
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s);
 char				*ft_strjoin(char *s1, char *s2);
 char				*ft_strchr(const char *s, char c);
-int					file_to_fd(char *path);
-list_t				*create_map(char *path);
+
+/* ************************************************************************** */
+/*                              LIST UTILITIES                                */
+/* ************************************************************************** */
+
 list_t				*create_list_t_node(char *line);
 void				add_back_list_t(list_t **head, list_t *new_node);
 void				clear_list_t_list(list_t *head);
-int					parser(char *path, list_t **map);
-list_t				*list_dup(list_t *list);
-int					is_map_enclosed(list_t *map);
 int					list_length(list_t *list);
+list_t				*list_dup(list_t *list);
+
+/* ************************************************************************** */
+/*                            MAP HANDLING FUNCTIONS                          */
+/* ************************************************************************** */
+
+list_t				*create_map(char *path);
+int					parser(char *path, list_t **map);
+int					is_map_enclosed(list_t *map);
 int					search_in_map(list_t *map, char to_find);
+
+/* ************************************************************************** */
+/*                          VALIDATION FUNCTIONS                              */
+/* ************************************************************************** */
+
 void				flood_fill_validate(list_t *node, int x,
 						validate_t *result);
 void				find_pos_in_map(list_t *map, play_pos_t *pos);
+
+/* ************************************************************************** */
+/*                          ERROR HANDLING                                    */
+/* ************************************************************************** */
+
 void				error(char *message);
 
 #endif

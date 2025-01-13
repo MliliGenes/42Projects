@@ -10,9 +10,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	if (!parser(argv[1], &map))
-	{
-		error(message);
-		return (EXIT_FAILURE);
-	}
+		return (error(message), EXIT_FAILURE);
+	
 	return (EXIT_FAILURE);
 }
