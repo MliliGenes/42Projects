@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 06:34:54 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/13 09:59:40 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ static void	results_init(validate_t *results, list_t *map)
 
 static int	validate_results(validate_t *data)
 {
-	return (data->collectibles_found >= 1 && data->exits_found <= 1
-		&& data->players_found <= 1);
+	return (data->collectibles_found > 0 && data->exits_found == 1
+		&& data->players_found == 1);
 }
 
 int	parser(char *path, list_t **map)
 {
 	list_t		*tmp_map;
 	list_t		*cpy;
+	play_pos_t	pos;
 	validate_t	data;
 
 	tmp_map = create_map(path);
@@ -77,6 +78,11 @@ int	parser(char *path, list_t **map)
 		return (clear_list_t_list(tmp_map), 0);
 	results_init(&data, tmp_map);
 	if (!validate_results(&data))
+		return (clear_list_t_list(tmp_map), 0);
+	find_pos_in_map(cpy, &pos);
+	flood_fill_validate(pos.line, pos.x, &data);
+	clear_list_t_list(cpy);
+	if (!(data.collectibles_found == 0 && data.collectibles_found == 1))
 		return (clear_list_t_list(tmp_map), 0);
 	return (1);
 }
