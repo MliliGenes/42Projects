@@ -6,11 +6,11 @@
 
 typedef struct assets_s
 {
-	mlx_texture_t	*wall;
+	mlx_texture_t	*top_wall;
 	mlx_texture_t	*floor;
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*exit;
-	mlx_texture_t	*player_sprite_sheet;
+	mlx_texture_t	*player;
 }					assets_t;
 
 typedef struct animations_s
