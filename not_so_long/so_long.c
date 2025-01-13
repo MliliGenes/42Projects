@@ -1,21 +1,18 @@
 #include "includes/lib.h"
 
-// get_next_line
-
-// add file to fd function
-
-// read and push to **map
-
 int	main(int argc, char **argv)
 {
-	char	*path;
-	char	*prefix;
 	list_t	*map;
+	char	*message;
 
-	prefix = ft_strdup("./maps/map.ber");
-	path = ft_strjoin(prefix, argv[1]);
-
-    map = NULL;
-    if (!parser(path, &map))
-        return (EXIT_FAILURE);
+	(void)argc;
+	message = NULL;
+	if (argc != 2)
+		return (EXIT_FAILURE);
+	if (!parser(argv[1], &map))
+	{
+		error(message);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_FAILURE);
 }

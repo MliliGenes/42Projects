@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_back_list_t.c                                  :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/11 01:20:37 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 11:08:13 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/13 14:01:43 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/13 14:12:38 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void	add_back_list_t(list_t **head, list_t *new_node)
+void	error(char *message)
 {
-	list_t	*tmp;
-
-	if (!new_node || !head)
-		return ;
-	if (!*head)
+	write(2, "Error\n", 6);
+	if (message)
 	{
-		*head = new_node;
-		return ;
+		while (*message)
+			write(2, message++, 1);
+		write(2, "\n", 1);
 	}
-	tmp = *head;
-	while (tmp && tmp->next)
-		tmp = tmp->next;
-	new_node->prev = tmp;
-	tmp->next = new_node;
 }

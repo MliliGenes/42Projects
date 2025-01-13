@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 07:09:17 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:09:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -62,5 +61,6 @@ int					search_in_map(list_t *map, char to_find);
 void				flood_fill_validate(list_t *node, int x,
 						validate_t *result);
 void				find_pos_in_map(list_t *map, play_pos_t *pos);
+void				error(char *message);
 
 #endif

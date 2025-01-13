@@ -4,7 +4,6 @@
 # include "./lib.h"
 # include "./mlx42.h"
 
-
 typedef struct assets_s
 {
 	mlx_texture_t	*wall;
@@ -45,8 +44,8 @@ typedef enum state_s
 typedef struct play_s
 {
 	state_t			state;
-	position_t grid_pos;  // Grid position
-	position_t pixel_pos; // Actual render position
+	position_t		grid_pos;
+	position_t		pixel_pos;
 }					play_t;
 
 typedef struct map_s

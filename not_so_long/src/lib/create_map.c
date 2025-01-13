@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:58:08 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 06:59:52 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:06:49 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ list_t	*create_map(char *path)
 		if (!line)
 			break ;
 		line = trim_new_line(line);
-		if (!*line)
+		if (!line || !*line)
 			return (clear_list_t_list(head), NULL);
 		node = create_list_t_node(line);
 		if (!node)

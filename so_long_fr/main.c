@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/10 23:48:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:47:32 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,32 @@ typedef struct box
 // MLX_KEY_DOWN
 // MLX_KEY_UP
 
-void	my_key_hook(mlx_key_data_t keydata, void *obj)
+void	my_key_hook(void *obj)
 {
 	box	*box;
 
 	box = obj;
-	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		mlx_close_window(box->window);
 	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
-	{	
-		if (box->x + 64 <= 1280 - (64 * 2))
-			box->x += 64; ;
+	{
+
+			box->x += 10;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
-		if (box->x - 64  >= 64)
-			box->x -= 64; ;
+	{
+			box->x -= 10;
+	}
 	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
-		if (box->y + 64  <= 640 - (64 * 2))
-			box->y += 64;  ;
+	{
+
+			box->y += 10;
+	}
 	if (mlx_is_key_down(box->window, MLX_KEY_UP))
-		if (box->y - 64 >= 64)
-			box->y -= 64; 
-	
+	{
+			box->y -= 10;
+	}
 	mlx_delete_image(box->window, box->image);
 	box->image = mlx_new_image(box->window, box->size, box->size);
-		for (int y = 0; y < box->size; y++)
+	for (int y = 0; y < box->size; y++)
 	{
 		for (int x = 0; x < box->size; x++)
 		{
@@ -71,17 +72,17 @@ void	my_resize_hook(int32_t width, int32_t height, void *param)
 
 int	main(void)
 {
-	box			box;
-	mlx_t		*mlx;
-	int			center_x;
-	int			center_y;
-	int			radius;
-	int			i;
-	int			x;
-	int			y;
-	int			j;
-			mlx_texture_t *texture;
-	mlx_image_t	*tile;
+	box				box;
+	mlx_t			*mlx;
+	int				center_x;
+	int				center_y;
+	int				radius;
+	int				i;
+	int				x;
+	int				y;
+	int				j;
+	mlx_texture_t	*texture;
+	mlx_image_t		*tile;
 
 	box.size = 64;
 	box.window = mlx_init(64 * 20, 64 * 10, "box moving", false);
@@ -130,7 +131,6 @@ int	main(void)
 	box.x = 64;
 	box.y = 64;
 	box.image = mlx_new_image(box.window, box.size, box.size);
-	
 	for (int y = 0; y < box.size; y++)
 	{
 		for (int x = 0; x < box.size; x++)
@@ -140,8 +140,7 @@ int	main(void)
 	}
 	mlx_image_to_window(box.window, box.image, box.x, box.y);
 	// mlx_image_to_window(box.window, box.image, 0, 0);
-
-	mlx_key_hook(box.window, my_key_hook, &box);
+	mlx_loop_hook(box.window, my_key_hook, &box);
 	mlx_resize_hook(box.window, my_resize_hook, &box);
 	mlx_loop(box.window);
 	mlx_terminate(box.window);
