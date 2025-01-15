@@ -15,12 +15,11 @@ typedef struct assets_s
 
 typedef struct animations_s
 {
-	mlx_image_t		*idle[4];
+	mlx_image_t		*idle;
 	mlx_image_t		*walk_right[4];
 	mlx_image_t		*walk_left[4];
 	mlx_image_t		*walk_up[4];
 	mlx_image_t		*walk_down[4];
-	mlx_image_t		*death[4];
 	int				current_frame;
 	int				frame_duration;
 }					animations_t;
@@ -38,15 +37,14 @@ typedef enum state_s
 	MOVING_LEFT = 2,
 	MOVING_UP = 3,
 	MOVING_DOWN = 4,
-	DEAD = 5,
 }					state_t;
 
-typedef struct play_s
+typedef struct player_s
 {
 	state_t			state;
 	position_t		grid_pos;
 	position_t		pixel_pos;
-}					play_t;
+}					player_t;
 
 typedef struct map_s
 {
@@ -61,7 +59,7 @@ typedef struct game_s
 {
 	assets_t		*assets;
 	animations_t	*animations;
-	play_t			*player;
+	player_t		*player;
 	map_t			*map;
 	int				score;
 	int				moves;
