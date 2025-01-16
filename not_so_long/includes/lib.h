@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 14:20:57 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 09:50:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,11 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "structs.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
-
-/* ************************************************************************** */
-/*                                  STRUCTS                                   */
-/* ************************************************************************** */
-
-typedef struct list_s
-{
-	char			*line;
-	struct list_s	*next;
-	struct list_s	*prev;
-}					list_t;
-
-typedef struct play_pos_s
-{
-	list_t			*line;
-	int				x;
-}					play_pos_t;
-
-typedef struct validate_s
-{
-	int				line_len;
-	int				collectibles_found;
-	int				exits_found;
-	int				players_found;
-}					validate_t;
 
 /* ************************************************************************** */
 /*                            FILE HANDLING FUNCTIONS                         */
@@ -53,6 +29,7 @@ typedef struct validate_s
 
 char				*get_next_line(int fd);
 int					file_to_fd(char *path);
+void				*ft_calloc(size_t nmemb, size_t size);
 
 /* ************************************************************************** */
 /*                            STRING UTILITIES                                */

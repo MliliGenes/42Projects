@@ -6,13 +6,13 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:15:14 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/15 01:31:07 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/15 06:04:08 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
+// #include "../includes/game.h"
 
-void init_game_controller()
-{
+// void init_game_controller()
+// {
     
-}
+// }
