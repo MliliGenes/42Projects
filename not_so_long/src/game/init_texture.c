@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:05:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 21:06:10 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:20:24 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ t_assets	*init_assets(void)
 	assets = malloc(sizeof(t_assets));
 	if (!assets)
 		return (NULL);
-	assets->player = mlx_load_png("../../textures/idle/xsa.png");
+	assets->player = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/idle/xsa.png");
 	if (!assets->player)
-		return (0);
-	assets->wall = mlx_load_png("../../textures/tiles/wall.png");
+		return (NULL);
+	assets->wall = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/tiles/wall.png");
 	if (!assets->wall)
 		return (free_assets(assets));
-	assets->tile = mlx_load_png("../../textures/tiles/tile.png");
+	assets->tile = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/tiles/tile.png");
 	if (!assets->tile)
 		return (free_assets(assets));
 	return (assets);

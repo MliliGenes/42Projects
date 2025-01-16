@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 20:52:59 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 21:31:38 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lib.h"
-#include <stdio.h>
 
 static int	lexer(t_list *map)
 {
