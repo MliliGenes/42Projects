@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 09:35:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 09:37:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 18:12:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_bzero(void *s, size_t n)
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void *pointer;
+	void	*pointer;
 
 	if (size == 0 || nmemb == 0)
 	{

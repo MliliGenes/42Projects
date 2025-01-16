@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 21:07:36 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/16 20:56:08 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/16 20:58:04 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#include "../../includes/game.h"
 
-# include "lib.h"
-# include "mlx42.h"
-# include "structs.h"
+t_map *init_map(void)
+{
+    t_map *map;
 
-t_game		*init_game_struct(void);
-void		start_game(t_game *game);
-t_map		*init_map(void);
-t_assets	*init_assets(void);
-t_player	*init_player(void);
-
-#endif
+    map = malloc(sizeof(t_map));
+    if (!map)
+        return (NULL);
+    
+    map->grid = NULL;
+    map->width = 0;
+    map->height = 0;
+    
+    return (map);
+}

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 11:47:32 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 19:09:04 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,27 @@ void	my_key_hook(void *obj)
 	box	*box;
 
 	box = obj;
+	static int l = 1;
+	
+
+	printf("zebi");
 	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
 	{
 
-			box->x += 10;
+			box->x += 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
 	{
-			box->x -= 10;
+			box->x -= 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
 	{
 
-			box->y += 10;
+			box->y += 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_UP))
 	{
-			box->y -= 10;
+			box->y -= 5;
 	}
 	mlx_delete_image(box->window, box->image);
 	box->image = mlx_new_image(box->window, box->size, box->size);
@@ -62,7 +66,7 @@ void	my_key_hook(void *obj)
 		}
 	}
 	mlx_image_to_window(box->window, box->image, box->x, box->y);
-	printf("x:%d | y:%d\n", box->x, box->y);
+	// printf("x:%d | y:%d\n", box->x, box->y);
 }
 
 void	my_resize_hook(int32_t width, int32_t height, void *param)
@@ -83,6 +87,7 @@ int	main(void)
 	int				j;
 	mlx_texture_t	*texture;
 	mlx_image_t		*tile;
+
 
 	box.size = 64;
 	box.window = mlx_init(64 * 20, 64 * 10, "box moving", false);
@@ -137,6 +142,15 @@ int	main(void)
 		{
 			mlx_put_pixel(box.image, x, y, 0xffffffff);
 		}
+	}
+	double time = mlx_get_time();
+	double time_before = time;
+	double x_before = box.x;
+	if ((int)time >= (int)time_before + 1)
+	{
+		printf("%f\n", (double)box.x - x_before);
+		x_before = box.x;
+		time_before = time;
 	}
 	mlx_image_to_window(box.window, box.image, box.x, box.y);
 	// mlx_image_to_window(box.window, box.image, 0, 0);

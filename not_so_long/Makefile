@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/16 10:05:09 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/16 20:16:40 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,11 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/lib/list_len.c \
 			src/lib/list_t_dup.c \
 			src/lib/search_in_map.c \
-			src/error/error.c 
+			src/lib/ft_calloc.c \
+			src/error/error.c \
+			src/game/init_game.c \
+			src/game/init_texture.c \
+			src/game.c
 
 SRC_CHECKER = ""
 
@@ -39,11 +43,15 @@ OBJ_COMMON = $(SRC_COMMON:.c=.o)
 
 OBJ_BONUS = $(SRC_CHECKER:.c=.o)
 
-INCLUDE = ./includes
+INCLUDE = -I./includes
 
 NAME = so_long
 
 NAME_BONUS = so_long_fr
+
+LIBMLX = libmlx42.a
+
+LIBS = -lglfw -L"/goinfre/sel-mlil/homebrew/opt/glfw/lib"
 
 RM = rm -f
 
@@ -52,7 +60,7 @@ all: $(NAME)
 bonus : $(NAME_BONU)
 
 $(NAME): $(OBJ_COMMON)
-	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME) $(OBJ_COMMON)
+	$(CC) $(CFLAGS) $(OBJ_COMMON) $(LIBMLX) $(INCLUDE) $(LIBS) -o $(NAME)
 
 $(NAME_BONU): $(OBJ_CHECKER)
 	$(CC) $(CFLAGS) -I$(INCLUDE) -o $(NAME_BONUS) $(OBJ_CHECKER)

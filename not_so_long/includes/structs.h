@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 14:44:51 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 20:42:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define STRUCTS_H
 
 # include "mlx42.h"
+
+# ifndef TILE_SIZE
+#  define TILE_SIZE 64
+# endif
+
+# ifndef GAME_NAME
+#  define GAME_NAME "the binding of xsa"
+# endif
 
 typedef struct s_list
 {
