@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:42:49 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 09:50:30 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:23:18 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,28 @@ char				*ft_strchr(const char *s, char c);
 /*                              LIST UTILITIES                                */
 /* ************************************************************************** */
 
-list_t				*create_list_t_node(char *line);
-void				add_back_list_t(list_t **head, list_t *new_node);
-void				clear_list_t_list(list_t *head);
-int					list_length(list_t *list);
-list_t				*list_dup(list_t *list);
+t_list				*create_t_list_node(char *line);
+void				add_back_t_list(t_list **head, t_list *new_node);
+void				clear_t_list_list(t_list *head);
+int					list_length(t_list *list);
+t_list				*list_dup(t_list *list);
 
 /* ************************************************************************** */
 /*                            MAP HANDLING FUNCTIONS                          */
 /* ************************************************************************** */
 
-list_t				*create_map(char *path);
-int					parser(char *path, list_t **map);
-int					is_map_enclosed(list_t *map);
-int					search_in_map(list_t *map, char to_find);
+t_list				*create_map(char *path);
+int					parser(char *path, t_map **map);
+int					is_map_enclosed(t_list *map);
+int					search_in_map(t_list *map, char to_find);
 
 /* ************************************************************************** */
 /*                          VALIDATION FUNCTIONS                              */
 /* ************************************************************************** */
 
-void				flood_fill_validate(list_t *node, int x,
-						validate_t *result);
-void				find_pos_in_map(list_t *map, play_pos_t *pos);
+void				flood_fill_validate(t_list *node, int x,
+						t_validate *result);
+void				find_pos_in_map(t_list *map, t_play_pos *pos);
 
 /* ************************************************************************** */
 /*                          ERROR HANDLING                                    */

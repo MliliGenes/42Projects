@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:58:08 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 14:22:58 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:59:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static char	*trim_new_line(char *line)
 	return (trimmed);
 }
 
-list_t	*create_map(char *path)
+t_list	*create_map(char *path)
 {
-	list_t	*head;
-	list_t	*node;
+	t_list	*head;
+	t_list	*node;
 	char	*line;
 	int		fd;
 
@@ -52,11 +52,11 @@ list_t	*create_map(char *path)
 			break ;
 		line = trim_new_line(line);
 		if (!line || !*line)
-			return (clear_list_t_list(head), NULL);
-		node = create_list_t_node(line);
+			return (clear_t_list_list(head), NULL);
+		node = create_t_list_node(line);
 		if (!node)
-			return (clear_list_t_list(head), NULL);
-		add_back_list_t(&head, node);
+			return (clear_t_list_list(head), NULL);
+		add_back_t_list(&head, node);
 	}
 	return (close(fd), head);
 }

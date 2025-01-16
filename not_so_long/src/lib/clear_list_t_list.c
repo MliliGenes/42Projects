@@ -6,15 +6,15 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 01:34:58 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/11 01:40:10 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:59:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void	clear_list_t_list(list_t *head)
+void	clear_t_list_list(t_list *head)
 {
-	list_t	*tmp;
+	t_list	*tmp;
 
 	while (head)
 	{

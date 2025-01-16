@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 22:09:59 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/05 23:51:18 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:19:21 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	already_exists(int index, int *int_arr, int current)
 	while (index-- > 0)
 	{
 		if (current == int_arr[index])
-			return (10);
+			return (1);
 	}
 	return (0);
 }

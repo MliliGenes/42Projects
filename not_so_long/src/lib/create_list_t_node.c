@@ -6,17 +6,17 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 01:11:21 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/13 11:04:20 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:59:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-list_t	*create_list_t_node(char *line)
+t_list	*create_t_list_node(char *line)
 {
-	list_t	*tmp;
+	t_list	*tmp;
 
-	tmp = malloc(sizeof(list_t));
+	tmp = malloc(sizeof(t_list));
 	if (!tmp)
 		return (NULL);
 	tmp->line = ft_strdup(line);

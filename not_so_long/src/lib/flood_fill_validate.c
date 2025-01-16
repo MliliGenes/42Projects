@@ -6,13 +6,13 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 08:56:15 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 06:59:40 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:58:57 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/lib.h"
 
-void	flood_fill_validate(list_t *node, int x, validate_t *result)
+void	flood_fill_validate(t_list *node, int x, t_validate *result)
 {
 	char	current;
 
