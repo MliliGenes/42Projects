@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 20:42:13 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:23:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ typedef enum s_state
 
 typedef struct s_player
 {
+	mlx_image_t		*player;
 	t_state			state;
 	t_position		grid_pos;
-	t_position		pixel_pos;
 }					t_player;
 
 typedef struct s_map

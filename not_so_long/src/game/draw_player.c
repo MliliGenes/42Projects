@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 21:06:56 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/17 01:23:44 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/17 01:33:45 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/17 01:50:01 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-t_player	*init_player(void)
+static void	where_is_the_player(t_list *map)
 {
-	t_player *player;
+	t_position	pos;
+	int			i;
+	int			found;
 
-	player = malloc(sizeof(t_player));
-	if (!player)
-		return (NULL);
+    found = 0;
+	pos.y = 0;
+	while (map)
+	{
+		pos.x = 0;
+		i = 0;
+		while (map->line[i])
+		{
+			if (map->line[i] == 'P')
+			{
+                found = 1;
+                break;
+            }
+			pos.x += TILE_SIZE;
+			i++;
+		}
+        if ()
+		pos.y += TILE_SIZE;
+		map = map->next;
+	}
+}
 
-	player->state = IDLE;
-	player->player = NULL;
-	player->grid_pos.x = 0;
-	player->grid_pos.y = 0;
-
-	return (player);
+void	draw_player(t_game *game)
+{
 }

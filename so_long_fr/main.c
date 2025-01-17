@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 19:09:04 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/16 23:39:23 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,25 @@ void	my_key_hook(void *obj)
 	static int l = 1;
 	
 
-	printf("zebi");
 	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
 	{
 
-			box->x += 5;
+			box->image->instances->x += 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
 	{
-			box->x -= 5;
+			box->image->instances->x -= 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
 	{
 
-			box->y += 5;
+			box->image->instances->y += 5;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_UP))
 	{
-			box->y -= 5;
+			box->image->instances->y -= 5;
 	}
-	mlx_delete_image(box->window, box->image);
-	box->image = mlx_new_image(box->window, box->size, box->size);
-	for (int y = 0; y < box->size; y++)
-	{
-		for (int x = 0; x < box->size; x++)
-		{
-			mlx_put_pixel(box->image, x, y, 0xffffffff);
-		}
-	}
-	mlx_image_to_window(box->window, box->image, box->x, box->y);
+	
 	// printf("x:%d | y:%d\n", box->x, box->y);
 }
 

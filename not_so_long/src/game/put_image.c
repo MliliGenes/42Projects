@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.c                                             :+:      :+:    :+:   */
+/*   put_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 14:15:14 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 21:36:48 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/16 23:46:06 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/16 23:58:25 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
+#include "../../includes/game.h"
 
-void	start_game(t_game *game)
+int	put_image(void *mlx, mlx_texture_t *texture, int x, int y)
 {
-    game->mlx = mlx_init(game->map->width,game->map->height,game->title, false);
-    draw_map(game);
-    mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
+	mlx_image_t	*img;
+
+	img = mlx_texture_to_image(mlx, texture);
+	if (!img)
+		exit(EXIT_FAILURE);
+	if (mlx_image_to_window(mlx, img, x, y) < 0)
+		exit(EXIT_FAILURE);
+	return (1);
 }

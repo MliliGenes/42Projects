@@ -6,13 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/16 21:10:51 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/17 00:44:47 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror  -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror  #-fsanitize=address -g
 
 SRC_COMMON = so_long.c src/parser.c \
 			src/lib/add_back_list_t.c \
@@ -36,6 +36,8 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/game/init_game.c \
 			src/game/init_texture.c \
 			src/game/init_map.c \
+			src/game/draw_map.c \
+			src/game/put_image.c \
 			src/game/init_player.c \
 			src/game.c
 

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:05:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 21:20:24 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/17 01:06:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	*free_assets(t_assets *assets)
 		mlx_delete_texture(assets->wall);
 	if (assets->tile)
 		mlx_delete_texture(assets->tile);
+	if (assets->collectible)
+		mlx_delete_texture(assets->tile);
 	return (NULL);
 }
 
@@ -30,13 +32,16 @@ t_assets	*init_assets(void)
 	assets = malloc(sizeof(t_assets));
 	if (!assets)
 		return (NULL);
-	assets->player = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/idle/xsa.png");
+	assets->player = mlx_load_png("textures/idle/xsa.png");
 	if (!assets->player)
 		return (NULL);
-	assets->wall = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/tiles/wall.png");
+	assets->wall = mlx_load_png("textures/tiles/wall.png");
 	if (!assets->wall)
 		return (free_assets(assets));
-	assets->tile = mlx_load_png("/Users/sel-mlil/Projects/not_so_long/textures/tiles/tile.png");
+	assets->tile = mlx_load_png("textures/tiles/tile.png");
+	if (!assets->tile)
+		return (free_assets(assets));
+	assets->collectible = mlx_load_png("textures/collectible/collectible.png");
 	if (!assets->tile)
 		return (free_assets(assets));
 	return (assets);
