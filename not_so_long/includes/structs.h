@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:03:56 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:49:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 
 # ifndef SPEED
 #  define SPEED 8
+# endif
+
+# ifndef ANIMATE
+#  define ANIMATE true
 # endif
 
 # ifndef GAME_NAME

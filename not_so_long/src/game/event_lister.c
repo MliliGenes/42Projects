@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:10:54 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:50:24 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ void	event_listener(void *game)
 	game_instance = (t_game *)game;
 	movement(game_instance->mlx, game_instance->map->pixels,
 		game_instance->player);
-	update_player(game_instance, false);
+	update_player(game_instance);
 }

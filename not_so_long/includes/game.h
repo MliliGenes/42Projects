@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:10:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:50:35 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int			init_assets_animations_left(t_assets **assets);
 int			init_assets_animations_right(t_assets **assets);
 void		*free_assets(t_assets *assets);
 
-void		update_player(t_game *game, bool animate);
+void		update_player(t_game *game);
 
 #endif
