@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/17 01:23:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:40:26 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
+# endif
+
+# ifndef SPEED
+#  define SPEED 4
 # endif
 
 # ifndef GAME_NAME
@@ -55,7 +59,7 @@ typedef struct s_assets
 
 typedef struct s_animations
 {
-	mlx_image_t		*idle;
+	mlx_image_t		*idle[1];
 	mlx_image_t		*walk_right[4];
 	mlx_image_t		*walk_left[4];
 	mlx_image_t		*walk_up[4];
@@ -83,12 +87,12 @@ typedef struct s_player
 {
 	mlx_image_t		*player;
 	t_state			state;
-	t_position		grid_pos;
 }					t_player;
 
 typedef struct s_map
 {
 	t_list			*grid;
+	char			**pixels;
 	int				width;
 	int				height;
 }					t_map;

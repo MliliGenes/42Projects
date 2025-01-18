@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 23:39:23 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 10:45:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct box
 // MLX_KEY_DOWN
 // MLX_KEY_UP
 
-void	my_key_hook(void *obj)
+void	my_key_hook( void *obj)
 {
 	box	*box;
 
@@ -39,24 +39,23 @@ void	my_key_hook(void *obj)
 
 	if (mlx_is_key_down(box->window, MLX_KEY_RIGHT))
 	{
-
-			box->image->instances->x += 5;
+		box->image->instances->x += 4;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_LEFT))
 	{
-			box->image->instances->x -= 5;
+		box->image->instances->x -= 64;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_DOWN))
 	{
 
-			box->image->instances->y += 5;
+		box->image->instances->y += 64;
 	}
 	if (mlx_is_key_down(box->window, MLX_KEY_UP))
 	{
-			box->image->instances->y -= 5;
+		box->image->instances->y -= 64;
 	}
 	
-	// printf("x:%d | y:%d\n", box->x, box->y);
+	printf("x:%d | y:%d\n", box->x, box->y);
 }
 
 void	my_resize_hook(int32_t width, int32_t height, void *param)

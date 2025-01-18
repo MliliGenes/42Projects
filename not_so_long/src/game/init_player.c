@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 21:06:56 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/17 01:23:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 11:24:19 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ t_player	*init_player(void)
 
 	player->state = IDLE;
 	player->player = NULL;
-	player->grid_pos.x = 0;
-	player->grid_pos.y = 0;
 
 	return (player);
 }

@@ -6,13 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/18 07:57:15 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/18 18:25:35 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror  #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=address -g
 
 SRC_COMMON = so_long.c src/parser.c \
 			src/lib/add_back_list_t.c \
@@ -40,6 +40,10 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/game/draw_player.c \
 			src/game/put_image.c \
 			src/game/init_player.c \
+			src/game/event_lister.c \
+			src/game/convert_map.c \
+			src/game/expand_map.c \
+			src/game/free_expended_map.c \
 			src/game.c
 
 SRC_CHECKER = ""
@@ -80,3 +84,15 @@ fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
 
 re : fclean all
+
+# 111111111111111111111111111111
+# 1C00000001111011111100000000C1
+# 1011111101000000000101111110C1
+# 10P0000001111101111100000000C1
+# 1011111100000000000001111110C1
+# 1E00C0000111110111110000000001
+# 1011111100000000000001111110C1
+# 1000000001111101111100000000C1
+# 1011111101000000000101111110C1
+# 1C00000001111101111100000000C1
+# 111111111111111111111111111111

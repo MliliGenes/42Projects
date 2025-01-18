@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:56:08 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/16 20:58:04 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:19:17 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_map *init_map(void)
         return (NULL);
     
     map->grid = NULL;
+    map->pixels = NULL;
     map->width = 0;
     map->height = 0;
     

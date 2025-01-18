@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   convert_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 18:21:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 19:05:25 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/18 12:14:10 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/18 18:57:51 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/game.h"
-#include <stdio.h>
+#include "../../includes/game.h"
 
-
-int	main(int argc, char **argv)
+void	convert_map(t_game **game)
 {
-	t_game	*game;
-
-	if (argc != 2)
-		return (EXIT_FAILURE);
-	game = init_game_struct();
-	if (!game)
-		return (EXIT_FAILURE);
-	if (!parser(argv[1], &(game->map)))
-		return (error("BAD MAP FIX IT !!!"), free(game), EXIT_FAILURE);
-	convert_map(&game);
-	start_game(&game);
-	return (EXIT_FAILURE);
+	(*game)->map->pixels = expand_map_by_scale((*game)->map->grid,
+			(*game)->map->width / 64,(*game)->map->height / 64, 1);
 }
