@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/18 18:25:35 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/18 23:11:16 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,13 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/error/error.c \
 			src/game/init_game.c \
 			src/game/init_texture.c \
+			src/game/init_animations.c \
 			src/game/init_map.c \
 			src/game/draw_map.c \
 			src/game/draw_player.c \
 			src/game/put_image.c \
 			src/game/init_player.c \
+			src/game/update_player.c \
 			src/game/event_lister.c \
 			src/game/convert_map.c \
 			src/game/expand_map.c \

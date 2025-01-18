@@ -6,12 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 20:34:24 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:10:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
-#include <stdio.h>
+#include <stdbool.h>
 
 int	check_collision(char **map, int x, int y)
 {
@@ -83,10 +83,10 @@ void	movement(mlx_t *win, char **map, t_player *player)
 
 void	event_listener(void *game)
 {
-	t_game	*game_instance;
+	t_game		*game_instance;
 
 	game_instance = (t_game *)game;
-	dprintf(2, "%d", game_instance->player->state);
 	movement(game_instance->mlx, game_instance->map->pixels,
 		game_instance->player);
+	update_player(game_instance, false);
 }

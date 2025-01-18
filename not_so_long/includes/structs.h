@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 20:40:26 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:03:56 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 4
+#  define SPEED 8
 # endif
 
 # ifndef GAME_NAME
@@ -55,15 +55,14 @@ typedef struct s_assets
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*exit[2];
 	mlx_texture_t	*player;
+	mlx_texture_t	*walk_right[4];
+	mlx_texture_t	*walk_left[4];
+	mlx_texture_t	*walk_up[4];
+	mlx_texture_t	*walk_down[4];
 }					t_assets;
 
 typedef struct s_animations
 {
-	mlx_image_t		*idle[1];
-	mlx_image_t		*walk_right[4];
-	mlx_image_t		*walk_left[4];
-	mlx_image_t		*walk_up[4];
-	mlx_image_t		*walk_down[4];
 	int				current_frame;
 	int				frame_duration;
 }					t_animations;
