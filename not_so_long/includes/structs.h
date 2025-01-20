@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 12:36:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:41:18 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 4
+#  define SPEED 16
 # endif
 
 # ifndef ANIMATE
