@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 21:06:56 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 11:24:19 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:09:26 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 t_player	*init_player(void)
 {
-	t_player *player;
+	t_player	*player;
 
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-
 	player->state = IDLE;
 	player->player = NULL;
-
 	return (player);
 }

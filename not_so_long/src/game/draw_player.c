@@ -6,16 +6,16 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 01:33:45 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 20:56:01 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/19 00:07:47 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-static void where_is_the_player(t_list *map, t_position *pos)
+static void	where_is_the_player(t_list *map, t_position *pos)
 {
-	int			i;
-	int			found;
+	int	i;
+	int	found;
 
 	found = 0;
 	pos->y = 0;
@@ -26,7 +26,7 @@ static void where_is_the_player(t_list *map, t_position *pos)
 		while (map->line[i])
 		{
 			if (map->line[i] == 'P')
-                return ;
+				return ;
 			pos->x += TILE_SIZE;
 			i++;
 		}
@@ -37,8 +37,9 @@ static void where_is_the_player(t_list *map, t_position *pos)
 
 void	draw_player(t_game **game)
 {
-    t_position pos;
-    
-    where_is_the_player((*game)->map->grid, &pos);
-    (*game)->player->player = put_image((*game)->mlx, (*game)->assets->player, pos.x, pos.y);
+	t_position	pos;
+
+	where_is_the_player((*game)->map->grid, &pos);
+	(*game)->player->player = put_image((*game)->mlx, (*game)->assets->player,
+			pos.x, pos.y);
 }

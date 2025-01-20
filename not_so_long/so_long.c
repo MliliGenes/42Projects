@@ -6,13 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 18:21:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 19:05:25 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:57:17 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/game.h"
-#include <stdio.h>
-
 
 int	main(int argc, char **argv)
 {

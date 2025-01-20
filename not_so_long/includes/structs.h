@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:49:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:36:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 8
+#  define SPEED 4
 # endif
 
 # ifndef ANIMATE
@@ -28,7 +28,7 @@
 # endif
 
 # ifndef GAME_NAME
-#  define GAME_NAME "the binding of xsa"
+#  define GAME_NAME "nadariat 10"
 # endif
 
 typedef struct s_list
@@ -56,6 +56,7 @@ typedef struct s_assets
 {
 	mlx_texture_t	*wall;
 	mlx_texture_t	*tile;
+	mlx_texture_t	*rock;
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*exit[2];
 	mlx_texture_t	*player;
@@ -106,9 +107,10 @@ typedef struct s_game
 	t_assets		*assets;
 	t_animations	*animations;
 	t_player		*player;
+	mlx_image_t		**coins;
 	t_map			*map;
 	int				moves;
-	int				coins;
+	int				coins_count;
 	const char		*title;
 }					t_game;
 

@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:17:13 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 19:04:27 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:57:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
-#include <stdio.h>
 
 char	**allocate_expanded_map(int width, int height, int scale)
 {
@@ -19,14 +18,12 @@ char	**allocate_expanded_map(int width, int height, int scale)
 	int		i;
 	int		j;
 
-	// Allocate for the scaled height
-	expanded = malloc(sizeof(char *) * (height * scale + 1));  // +1 for NULL terminator
+	expanded = malloc(sizeof(char *) * (height * scale + 1));
 	if (!expanded)
 		return (NULL);
 	i = 0;
 	while (i < (height * scale))
 	{
-		// Allocate for the scaled width plus null terminator
 		expanded[i] = calloc((width * scale + 1), sizeof(char));
 		if (!expanded[i])
 		{
@@ -41,12 +38,12 @@ char	**allocate_expanded_map(int width, int height, int scale)
 		}
 		i++;
 	}
-	expanded[height * scale] = NULL;  // NULL terminate the array
+	expanded[height * scale] = NULL;
 	return (expanded);
 }
 
-void	expand_map_line(t_list *current_node, char **expanded_map, 
-						int start_y, int scale)
+void	expand_map_line(t_list *current_node, char **expanded_map, int start_y,
+		int scale)
 {
 	int	start_x;
 	int	block_y;
@@ -65,11 +62,10 @@ void	expand_map_line(t_list *current_node, char **expanded_map,
 			j = 0;
 			while (j < scale && (block_x + j) < (start_x + 1) * scale)
 			{
-				expanded_map[block_y + i][block_x + j] = 
-					current_node->line[start_x];
+				expanded_map[block_y + i][block_x
+					+ j] = current_node->line[start_x];
 				j++;
 			}
-			// Add null terminator at the end of each row
 			expanded_map[block_y + i][block_x + scale] = '\0';
 			i++;
 		}
@@ -85,7 +81,6 @@ char	**expand_map_by_scale(t_list *map, int width, int height, int scale)
 
 	if (!map || width <= 0 || height <= 0 || scale <= 0)
 		return (NULL);
-
 	expanded_map = allocate_expanded_map(width, height, scale);
 	if (!expanded_map)
 		return (NULL);

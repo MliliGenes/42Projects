@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 23:04:05 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:50:16 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:54:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_animation(t_game *game, bool animate)
 {
 	if (!animate)
 		return ;
-	if (game->animations->frame_duration >= 5)
+	if (game->animations->frame_duration == 8)
 	{
 		if (game->animations->current_frame == 3)
 			game->animations->current_frame = 0;
@@ -59,7 +59,7 @@ void	update_player(t_game *game)
 	t_state		state;
 
 	pos.x = game->player->player->instances->x;
-	pos.y =	game->player->player->instances->y;
+	pos.y = game->player->player->instances->y;
 	state = game->player->state;
 	mlx_delete_image(game->mlx, game->player->player);
 	game->player->player = NULL;

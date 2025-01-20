@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:50:24 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:21:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ int	check_collision(char **map, int x, int y)
 	t_position	positions[4];
 	int			i;
 
-	positions[0] = (t_position){x / TILE_SIZE, y / TILE_SIZE};
-	positions[1] = (t_position){(x + TILE_SIZE - 1) / TILE_SIZE, y / TILE_SIZE};
 	positions[2] = (t_position){x / TILE_SIZE, (y + TILE_SIZE - 1) / TILE_SIZE};
 	positions[3] = (t_position){(x + TILE_SIZE - 1) / TILE_SIZE, (y + TILE_SIZE
 			- 1) / TILE_SIZE};
+	positions[0] = (t_position){(x + 19) / TILE_SIZE, (y + 45) / TILE_SIZE};
+	positions[1] = (t_position){(x + TILE_SIZE - 1 - 18) / TILE_SIZE, (y + 45)
+		/ TILE_SIZE};
+	positions[2] = (t_position){(x + 19) / TILE_SIZE, (y + TILE_SIZE - 1)
+		/ TILE_SIZE};
+	positions[3] = (t_position){(x + TILE_SIZE - 1 - 18) / TILE_SIZE, (y
+			+ TILE_SIZE - 1) / TILE_SIZE};
 	i = 0;
 	while (i < 4)
 	{
@@ -59,14 +64,14 @@ void	movement(mlx_t *win, char **map, t_player *player)
 	if (mlx_is_key_down(win, MLX_KEY_W))
 	{
 		new_y -= SPEED;
-		if (!x_moved) // Prioritize horizontal states
+		if (!x_moved)
 			player->state = MOVING_UP;
 		y_moved = 1;
 	}
 	if (mlx_is_key_down(win, MLX_KEY_S))
 	{
 		new_y += SPEED;
-		if (!x_moved) // Prioritize horizontal states
+		if (!x_moved)
 			player->state = MOVING_DOWN;
 		y_moved = 1;
 	}
@@ -83,7 +88,7 @@ void	movement(mlx_t *win, char **map, t_player *player)
 
 void	event_listener(void *game)
 {
-	t_game		*game_instance;
+	t_game	*game_instance;
 
 	game_instance = (t_game *)game;
 	movement(game_instance->mlx, game_instance->map->pixels,

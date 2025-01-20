@@ -6,13 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/18 23:11:16 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/20 09:27:38 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror  -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_COMMON = so_long.c src/parser.c \
 			src/lib/add_back_list_t.c \
@@ -98,3 +98,5 @@ re : fclean all
 # 1011111101000000000101111110C1
 # 1C00000001111101111100000000C1
 # 111111111111111111111111111111
+
+

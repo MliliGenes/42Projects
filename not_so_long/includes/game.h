@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 23:50:35 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:26:32 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_game		*init_game_struct(void);
 void		start_game(t_game **game);
 t_map		*init_map(void);
 t_player	*init_player(void);
-void		draw_map(t_game **game);
+void		draw_map(t_game **game, int mx, int my);
 void		draw_player(t_game **game);
 mlx_image_t	*put_image(mlx_t *game, mlx_texture_t *texture, int x, int y);
 void		event_listener(void *game);
