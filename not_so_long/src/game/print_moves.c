@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_map.c                                      :+:      :+:    :+:   */
+/*   print_moves.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 12:14:10 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/22 18:55:27 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/22 19:58:04 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/23 21:50:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-int	convert_map(t_game **game)
+void print_moves(int count)
 {
-	(*game)->map->pixels = expand_map_by_scale((*game)->map->grid,
-			(*game)->map->width / 64, (*game)->map->height / 64, 1);
-	if (!(*game)->map->pixels)
-	{
-		clear_t_list_list((*game)->map->grid);
-		return (0);
-	}
-	return  (1);
+    write(1, "[ ", 2);
+    ft_putnbr(count);
+    write(1, " moves ]\n", 9);
 }

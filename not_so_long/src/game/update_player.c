@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 23:04:05 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:54:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:16:24 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_animation(t_game *game, bool animate)
 {
 	if (!animate)
 		return ;
-	if (game->animations->frame_duration == 8)
+	if (game->animations->frame_duration == 6)
 	{
 		if (game->animations->current_frame == 3)
 			game->animations->current_frame = 0;
@@ -25,9 +25,7 @@ void	update_animation(t_game *game, bool animate)
 		game->animations->frame_duration = 0;
 	}
 	else
-	{
 		game->animations->frame_duration++;
-	}
 }
 
 void	get_player_texture(t_game *game, t_state state, t_position pos)

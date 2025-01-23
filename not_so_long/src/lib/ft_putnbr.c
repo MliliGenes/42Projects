@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_map.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/18 12:14:10 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/22 18:55:27 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/22 19:54:43 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/22 19:56:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/game.h"
+#include "../../includes/lib.h"
 
-int	convert_map(t_game **game)
+static void	ft_putchar(char c)
 {
-	(*game)->map->pixels = expand_map_by_scale((*game)->map->grid,
-			(*game)->map->width / 64, (*game)->map->height / 64, 1);
-	if (!(*game)->map->pixels)
+	write(1, &c, sizeof(char));
+}
+
+void	ft_putnbr(int n)
+{
+	unsigned int np;
+
+	if (n < 0)
 	{
-		clear_t_list_list((*game)->map->grid);
-		return (0);
+		ft_putchar('-');
+		np = (unsigned int)(n * -1);
 	}
-	return  (1);
+	else
+		np = (unsigned int)(n);
+	if (np <= 9)
+		ft_putchar(np + '0');
+	else
+	{
+		ft_putnbr((np / 10));
+		ft_putchar((np % 10) + '0');
+	}
 }

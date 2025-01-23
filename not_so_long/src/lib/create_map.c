@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 00:58:08 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 09:41:02 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 18:37:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ t_list	*create_map(char *path)
 	int		fd;
 
 	head = NULL;
-	node = NULL;
-	line = NULL;
 	fd = file_to_fd(path);
 	if (fd == -1)
 		return (NULL);

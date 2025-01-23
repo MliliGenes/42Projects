@@ -6,84 +6,84 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:21:53 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:07:57 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
-#include <stdbool.h>
 
-int	check_collision(char **map, int x, int y)
+static void	update_coordinates(mlx_t *win, t_position *new_pos,
+		t_player *player)
 {
-	t_position	positions[4];
-	int			i;
-
-	positions[2] = (t_position){x / TILE_SIZE, (y + TILE_SIZE - 1) / TILE_SIZE};
-	positions[3] = (t_position){(x + TILE_SIZE - 1) / TILE_SIZE, (y + TILE_SIZE
-			- 1) / TILE_SIZE};
-	positions[0] = (t_position){(x + 19) / TILE_SIZE, (y + 45) / TILE_SIZE};
-	positions[1] = (t_position){(x + TILE_SIZE - 1 - 18) / TILE_SIZE, (y + 45)
-		/ TILE_SIZE};
-	positions[2] = (t_position){(x + 19) / TILE_SIZE, (y + TILE_SIZE - 1)
-		/ TILE_SIZE};
-	positions[3] = (t_position){(x + TILE_SIZE - 1 - 18) / TILE_SIZE, (y
-			+ TILE_SIZE - 1) / TILE_SIZE};
-	i = 0;
-	while (i < 4)
-	{
-		if (map[positions[i].y][positions[i].x] == '1')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-void	movement(mlx_t *win, char **map, t_player *player)
-{
-	int	new_x;
-	int	new_y;
-	int	x_moved;
-	int	y_moved;
-
-	new_x = player->player->instances->x;
-	new_y = player->player->instances->y;
-	x_moved = 0;
-	y_moved = 0;
 	if (mlx_is_key_down(win, MLX_KEY_D))
 	{
-		new_x += SPEED;
+		new_pos->x += SPEED;
 		player->state = MOVING_RIGHT;
-		x_moved = 1;
 	}
 	if (mlx_is_key_down(win, MLX_KEY_A))
 	{
-		new_x -= SPEED;
+		new_pos->x -= SPEED;
 		player->state = MOVING_LEFT;
-		x_moved = 1;
 	}
 	if (mlx_is_key_down(win, MLX_KEY_W))
 	{
-		new_y -= SPEED;
-		if (!x_moved)
-			player->state = MOVING_UP;
-		y_moved = 1;
+		new_pos->y -= SPEED;
+		player->state = MOVING_UP;
 	}
 	if (mlx_is_key_down(win, MLX_KEY_S))
 	{
-		new_y += SPEED;
-		if (!x_moved)
-			player->state = MOVING_DOWN;
-		y_moved = 1;
+		new_pos->y += SPEED;
+		player->state = MOVING_DOWN;
 	}
-	if (check_collision(map, new_x, player->player->instances->y))
-		player->player->instances->x = new_x;
-	if (check_collision(map, player->player->instances->x, new_y))
-		player->player->instances->y = new_y;
+}
+
+static int	check_x_movement(char **map, t_position *curr, t_position *new_pos)
+{
+	if (check_collision(map, new_pos->x, curr->y, '1'))
+	{
+		if (curr->x != new_pos->x)
+			return (1);
+		curr->x = new_pos->x;
+	}
+	return (0);
+}
+
+static int	check_y_movement(char **map, t_position *curr, t_position *new_pos)
+{
+	if (check_collision(map, curr->x, new_pos->y, '1'))
+	{
+		if (curr->y != new_pos->y)
+			return (1);
+		curr->y = new_pos->y;
+	}
+	return (0);
+}
+
+static void	movement(mlx_t *win, char **map, t_player *player, int *count)
+{
+	t_position	new_pos;
+	t_position	curr;
+
+	curr.x = player->player->instances->x;
+	curr.y = player->player->instances->y;
+	new_pos.x = curr.x;
+	new_pos.y = curr.y;
+	update_coordinates(win, &new_pos, player);
+	if (check_x_movement(map, &curr, &new_pos))
+	{
+		(*count)++;
+			print_moves(*count);
+		player->player->instances->x = new_pos.x;
+	}
+	if (check_y_movement(map, &curr, &new_pos))
+	{
+		(*count)++;
+			print_moves(*count);
+		player->player->instances->y = new_pos.y;
+	}
 	if (!mlx_is_key_down(win, MLX_KEY_D) && !mlx_is_key_down(win, MLX_KEY_A)
 		&& !mlx_is_key_down(win, MLX_KEY_W) && !mlx_is_key_down(win, MLX_KEY_S))
-	{
 		player->state = IDLE;
-	}
 }
 
 void	event_listener(void *game)
@@ -92,6 +92,15 @@ void	event_listener(void *game)
 
 	game_instance = (t_game *)game;
 	movement(game_instance->mlx, game_instance->map->pixels,
-		game_instance->player);
+		game_instance->player, &(game_instance->moves));
+	check_coins(game_instance, game_instance->coins,
+		game_instance->player->player->instances->x,
+		game_instance->player->player->instances->y);
 	update_player(game_instance);
+	// if (game_instance->coins_count == 0)
+	// {
+	// 	mlx_close_window(game_instance->mlx);
+	// 	clean_exit(&game_instance);
+	// 	exit(EXIT_SUCCESS);
+	// }
 }

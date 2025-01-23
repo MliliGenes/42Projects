@@ -1,44 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_coins.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 21:34:25 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 16:26:49 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/20 15:30:14 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/23 17:46:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-static int	checker(char **grid, t_position i_j, int mx, int my)
+static void	set_coin(t_game **game, mlx_image_t **coin, t_position pos)
 {
-	return (grid[i_j.y][i_j.x] == '1' && (i_j.x == 0 || i_j.y == 0
-			|| i_j.x == mx || i_j.y == my));
+	(*coin) = put_image((*game)->mlx, (*game)->assets->collectible, pos.x,
+			pos.y);
 }
 
-void	draw_map(t_game **game, int mx, int my)
+void	draw_coins(t_game **game)
 {
 	t_position	pos;
 	t_position	i_j;
+	int			i;
 	char		**grid;
 
 	pos.y = 0;
 	i_j.y = 0;
 	grid = (*game)->map->pixels;
+	i = 0;
 	while (grid[i_j.y])
 	{
 		pos.x = 0;
 		i_j.x = 0;
 		while (grid[i_j.y][i_j.x])
 		{
-			if (checker(grid, i_j, mx, my))
-				put_image((*game)->mlx, (*game)->assets->wall, pos.x, pos.y);
-			else if (grid[i_j.y][i_j.x] == '1')
-				put_image((*game)->mlx, (*game)->assets->rock, pos.x, pos.y);
-			else
-				put_image((*game)->mlx, (*game)->assets->tile, pos.x, pos.y);
+			if (grid[i_j.y][i_j.x] == 'C')
+			{
+				set_coin(game, &((*game)->coins[i]), pos);
+				i++;
+			}
 			pos.x += TILE_SIZE;
 			i_j.x++;
 		}

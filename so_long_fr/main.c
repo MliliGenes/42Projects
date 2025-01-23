@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 20:37:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 10:45:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:08:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	my_key_hook( void *obj)
 	
 	printf("x:%d | y:%d\n", box->x, box->y);
 }
+
 
 void	my_resize_hook(int32_t width, int32_t height, void *param)
 {

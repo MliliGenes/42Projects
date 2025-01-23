@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:05:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:10:34 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:49:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	free_walk_textures(t_assets *assets)
 	int	i;
 
 	i = 0;
-	// Freeing walk textures for all directions using a while loop
 	while (i < 4)
 	{
 		if (assets->walk_up[i])
@@ -57,7 +56,7 @@ t_assets	*init_assets(void)
 {
 	t_assets	*assets;
 
-	assets = malloc(sizeof(t_assets));
+	assets = ft_calloc(1, sizeof(t_assets));
 	if (!assets)
 		return (NULL);
 	assets->player = mlx_load_png("textures/idle/xsa.png");

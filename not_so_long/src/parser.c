@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/18 16:57:04 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:44:26 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int	parser(char *path, t_map **map)
 	clear_t_list_list(cpy);
 	if (!(data.collectibles_found == 0 && data.exits_found == 0))
 		return (clear_t_list_list(tmp_map), 0);
-	(*map)->grid = tmp_map;
 	(*map)->width = ft_strlen(tmp_map->line) * TILE_SIZE;
 	(*map)->height = list_length(tmp_map) * TILE_SIZE;
-	return (1);
+	return ((*map)->grid = tmp_map, 1);
 }

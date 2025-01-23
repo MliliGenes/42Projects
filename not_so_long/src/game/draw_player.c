@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 01:33:45 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/19 00:07:47 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/22 20:42:42 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	draw_player(t_game **game)
 
 	where_is_the_player((*game)->map->grid, &pos);
 	(*game)->player->player = put_image((*game)->mlx, (*game)->assets->player,
-			pos.x, pos.y);
+			pos.x, pos.y - 10);
 }

@@ -6,13 +6,13 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/12 03:43:17 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/20 09:27:38 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/23 21:47:04 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g -O3
 
 SRC_COMMON = so_long.c src/parser.c \
 			src/lib/add_back_list_t.c \
@@ -26,6 +26,7 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/lib/ft_strdup.c \
 			src/lib/ft_strjoin.c \
 			src/lib/ft_strlen.c \
+			src/lib/ft_putnbr.c \
 			src/lib/get_next_line.c \
 			src/lib/is_map_enclosed.c \
 			src/lib/list_len.c \
@@ -39,12 +40,16 @@ SRC_COMMON = so_long.c src/parser.c \
 			src/game/init_map.c \
 			src/game/draw_map.c \
 			src/game/draw_player.c \
+			src/game/draw_coins.c \
 			src/game/put_image.c \
 			src/game/init_player.c \
+			src/game/print_moves.c \
 			src/game/update_player.c \
 			src/game/event_lister.c \
+			src/game/collision.c \
 			src/game/convert_map.c \
 			src/game/expand_map.c \
+			src/game/clean_exit.c \
 			src/game/free_expended_map.c \
 			src/game.c
 

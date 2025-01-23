@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 12:17:13 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:57:53 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:38:56 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ char	**allocate_expanded_map(int width, int height, int scale)
 		}
 		i++;
 	}
-	expanded[height * scale] = NULL;
-	return (expanded);
+	return (expanded[height * scale] = NULL, expanded);
 }
 
 void	expand_map_line(t_list *current_node, char **expanded_map, int start_y,
@@ -61,11 +60,8 @@ void	expand_map_line(t_list *current_node, char **expanded_map, int start_y,
 		{
 			j = 0;
 			while (j < scale && (block_x + j) < (start_x + 1) * scale)
-			{
 				expanded_map[block_y + i][block_x
-					+ j] = current_node->line[start_x];
-				j++;
-			}
+					+ j++] = current_node->line[start_x];
 			expanded_map[block_y + i][block_x + scale] = '\0';
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 12:41:18 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:40:28 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 # ifndef SPEED
-#  define SPEED 16
+#  define SPEED 4
 # endif
 
 # ifndef ANIMATE
@@ -28,7 +28,7 @@
 # endif
 
 # ifndef GAME_NAME
-#  define GAME_NAME "nadariat 10"
+#  define GAME_NAME "so_long"
 # endif
 
 typedef struct s_list
@@ -60,7 +60,7 @@ typedef struct s_assets
 	mlx_texture_t	*collectible;
 	mlx_texture_t	*exit[2];
 	mlx_texture_t	*player;
-	mlx_texture_t	*walk_right[4];
+mlx_texture_t	*walk_right[4];
 	mlx_texture_t	*walk_left[4];
 	mlx_texture_t	*walk_up[4];
 	mlx_texture_t	*walk_down[4];
@@ -100,6 +100,7 @@ typedef struct s_map
 	int				width;
 	int				height;
 }					t_map;
+
 
 typedef struct s_game
 {

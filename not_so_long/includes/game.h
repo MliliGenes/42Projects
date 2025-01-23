@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:26:32 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 21:44:55 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,23 @@ t_map		*init_map(void);
 t_player	*init_player(void);
 void		draw_map(t_game **game, int mx, int my);
 void		draw_player(t_game **game);
+void		draw_coins(t_game **game);
 mlx_image_t	*put_image(mlx_t *game, mlx_texture_t *texture, int x, int y);
 void		event_listener(void *game);
-
-void		convert_map(t_game **game);
+void		print_moves(int count);
+int			convert_map(t_game **game);
 char		**expand_map_by_scale(t_list *map, int width, int height,
 				int scale);
 void		free_expanded_map(char **expanded, int exp_height);
-
 t_assets	*init_assets(void);
 int			init_assets_animations_up(t_assets **assets);
 int			init_assets_animations_down(t_assets **assets);
 int			init_assets_animations_left(t_assets **assets);
 int			init_assets_animations_right(t_assets **assets);
 void		*free_assets(t_assets *assets);
-
 void		update_player(t_game *game);
+void		clean_exit(t_game **game);
+int			check_collision(char **map, int x, int y, char end);
+void		check_coins(t_game *game, mlx_image_t **coins, int x, int y);
 
 #endif

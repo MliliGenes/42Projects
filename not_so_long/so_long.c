@@ -6,24 +6,32 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 18:21:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/20 10:57:17 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/23 22:06:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/game.h"
+#include <stdlib.h>
+
+void	ll(void)
+{
+	system("leaks so_long");
+}
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
 
+	atexit(ll);
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	game = init_game_struct();
 	if (!game)
-		return (EXIT_FAILURE);
+		return (clean_exit(&game), EXIT_FAILURE);
 	if (!parser(argv[1], &(game->map)))
-		return (error("BAD MAP FIX IT !!!"), free(game), EXIT_FAILURE);
-	convert_map(&game);
+		return (error("BAD MAP!!!"), free(game), EXIT_FAILURE);
+	if (!convert_map(&game))
+		return (EXIT_FAILURE);
 	start_game(&game);
-	return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
