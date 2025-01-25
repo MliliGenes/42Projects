@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 19:54:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/24 08:56:58 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/25 18:32:49 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/25 18:56:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/lib.h"
+#include "../../includes/game.h"
 
-static void	ft_putchar(char c)
+void	exit_game(t_game **game)
 {
-	write(1, &c, sizeof(char));
-}
-
-void	ft_putnbr(int n)
-{
-	unsigned int	np;
-
-	if (n < 0)
+	if (mlx_is_key_down((*game)->mlx, MLX_KEY_ESCAPE))
 	{
-		ft_putchar('-');
-		np = (unsigned int)(n * -1);
-	}
-	else
-		np = (unsigned int)(n);
-	if (np <= 9)
-		ft_putchar(np + '0');
-	else
-	{
-		ft_putnbr((np / 10));
-		ft_putchar((np % 10) + '0');
+        write(1, "LOSER <3", 8);
+		clean_exit(game);
 	}
 }

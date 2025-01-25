@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -27,4 +28,5 @@ void	clean_exit(t_game **game)
 	mlx_close_window((*game)->mlx);
 	mlx_terminate((*game)->mlx);
 	free(*game);
+	exit(EXIT_SUCCESS);
 }

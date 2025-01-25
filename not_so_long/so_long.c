@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 18:21:00 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 22:06:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:55:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
-	atexit(ll);
 	if (argc != 2)
 		return (EXIT_FAILURE);
 	game = init_game_struct();

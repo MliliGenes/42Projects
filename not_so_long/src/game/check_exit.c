@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   check_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 19:54:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/24 08:56:58 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/25 19:58:42 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/25 20:17:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/lib.h"
+#include "../../includes/game.h"
 
-static void	ft_putchar(char c)
+void	check_exit(t_game *game, int x, int y)
 {
-	write(1, &c, sizeof(char));
-}
+	t_position	positions[4];
+	int			i;
 
-void	ft_putnbr(int n)
-{
-	unsigned int	np;
-
-	if (n < 0)
+	check_player_positions(positions, x, y);
+	i = 0;
+	while (i < 4)
 	{
-		ft_putchar('-');
-		np = (unsigned int)(n * -1);
-	}
-	else
-		np = (unsigned int)(n);
-	if (np <= 9)
-		ft_putchar(np + '0');
-	else
-	{
-		ft_putnbr((np / 10));
-		ft_putchar((np % 10) + '0');
+		if (game->map->pixels[positions[i].y][positions[i].x] == 'E')
+            clean_exit(&game);
+		i++;
 	}
 }

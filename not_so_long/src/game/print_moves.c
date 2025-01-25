@@ -6,15 +6,15 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:58:04 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 21:50:15 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:10:14 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-void print_moves(int count)
+void	print_moves(int count)
 {
-    write(1, "[ ", 2);
-    ft_putnbr(count);
-    write(1, " moves ]\n", 9);
+	write(1, "[ ", 2);
+	ft_putnbr(count);
+	write(1, "\tmoves ]\n", 9);
 }

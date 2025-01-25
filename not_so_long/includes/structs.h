@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 17:40:28 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:43:34 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # endif
 
 # ifndef ANIMATE
-#  define ANIMATE true
+#  define ANIMATE false
 # endif
 
 # ifndef GAME_NAME
@@ -58,9 +58,9 @@ typedef struct s_assets
 	mlx_texture_t	*tile;
 	mlx_texture_t	*rock;
 	mlx_texture_t	*collectible;
-	mlx_texture_t	*exit[2];
+	mlx_texture_t	*exit;
 	mlx_texture_t	*player;
-mlx_texture_t	*walk_right[4];
+	mlx_texture_t	*walk_right[4];
 	mlx_texture_t	*walk_left[4];
 	mlx_texture_t	*walk_up[4];
 	mlx_texture_t	*walk_down[4];
@@ -101,7 +101,6 @@ typedef struct s_map
 	int				height;
 }					t_map;
 
-
 typedef struct s_game
 {
 	mlx_t			*mlx;
@@ -110,8 +109,9 @@ typedef struct s_game
 	t_player		*player;
 	mlx_image_t		**coins;
 	t_map			*map;
-	int				moves;
+	float			moves;
 	int				coins_count;
+	bool			can_exit;
 	const char		*title;
 }					t_game;
 

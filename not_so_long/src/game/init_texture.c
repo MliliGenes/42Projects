@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:05:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 21:49:30 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 19:42:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,19 @@ void	*free_assets(t_assets *assets)
 		mlx_delete_texture(assets->rock);
 	if (assets->collectible)
 		mlx_delete_texture(assets->collectible);
-	if (assets->exit[0])
-		mlx_delete_texture(assets->exit[0]);
-	if (assets->exit[1])
-		mlx_delete_texture(assets->exit[1]);
+	if (assets->exit)
+		mlx_delete_texture(assets->exit);
 	free_walk_textures(assets);
 	free(assets);
 	return (NULL);
+}
+
+int	init_exit(t_assets **assets)
+{
+	(*assets)->exit = mlx_load_png("textures/exit/exit.png");
+	if (!(*assets)->exit)
+		return (0);
+	return (1);
 }
 
 t_assets	*init_assets(void)
@@ -74,11 +80,5 @@ t_assets	*init_assets(void)
 	assets->collectible = mlx_load_png("textures/collectible/collectible.png");
 	if (!assets->collectible)
 		return (free_assets(assets));
-	// assets->exit[0] = mlx_load_png("textures/exit/exit1.png");
-	// if (!assets->exit[0])
-	// 	return (free_assets(assets));
-	// assets->exit[1] = mlx_load_png("textures/exit/exit2.png");
-	// if (!assets->exit[1])
-	// 	return (free_assets(assets));
 	return (assets);
 }

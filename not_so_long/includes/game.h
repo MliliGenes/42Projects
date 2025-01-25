@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 21:44:55 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 20:17:49 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char		**expand_map_by_scale(t_list *map, int width, int height,
 				int scale);
 void		free_expanded_map(char **expanded, int exp_height);
 t_assets	*init_assets(void);
+int			init_exit(t_assets **assets);
 int			init_assets_animations_up(t_assets **assets);
 int			init_assets_animations_down(t_assets **assets);
 int			init_assets_animations_left(t_assets **assets);
@@ -39,7 +40,13 @@ int			init_assets_animations_right(t_assets **assets);
 void		*free_assets(t_assets *assets);
 void		update_player(t_game *game);
 void		clean_exit(t_game **game);
+void		exit_game(t_game **game);
+void		draw_exit(t_game **game);
 int			check_collision(char **map, int x, int y, char end);
+void		check_player_positions(t_position *positions, int x, int y);
 void		check_coins(t_game *game, mlx_image_t **coins, int x, int y);
+void		check_exit(t_game *game, int x, int y);
+void		update_coordinates(mlx_t *win, t_position *new_pos,
+				t_player *player);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   draw_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 01:33:45 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 19:53:48 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/01/25 19:51:18 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/01/25 20:00:48 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-static void	where_is_the_player(t_list *map, t_position *pos)
+static void	where_is_the_exit(t_list *map, t_position *pos)
 {
 	int	i;
 	int	found;
@@ -25,7 +25,7 @@ static void	where_is_the_player(t_list *map, t_position *pos)
 		i = 0;
 		while (map->line[i])
 		{
-			if (map->line[i] == 'P')
+			if (map->line[i] == 'E')
 				return ;
 			pos->x += TILE_SIZE;
 			i++;
@@ -35,11 +35,10 @@ static void	where_is_the_player(t_list *map, t_position *pos)
 	}
 }
 
-void	draw_player(t_game **game)
+void	draw_exit(t_game **game)
 {
 	t_position	pos;
 
-	where_is_the_player((*game)->map->grid, &pos);
-	(*game)->player->player = put_image((*game)->mlx, (*game)->assets->player,
-			pos.x, pos.y);
+	where_is_the_exit((*game)->map->grid, &pos);
+	put_image((*game)->mlx, (*game)->assets->exit, pos.x, pos.y);
 }
