@@ -6,13 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 05:31:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 19:48:48 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:34:24 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 static t_animations	*init_animations(void)
 {

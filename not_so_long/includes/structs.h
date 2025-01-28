@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 20:43:34 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:18:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 # define STRUCTS_H
 
 # include "mlx42.h"
+# include <stdio.h>
 
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
 # endif
 
-# ifndef SPEED
-#  define SPEED 4
-# endif
-
 # ifndef ANIMATE
 #  define ANIMATE false
+# endif
+
+# ifndef SPEED
+#  define SPEED 4
 # endif
 
 # ifndef GAME_NAME

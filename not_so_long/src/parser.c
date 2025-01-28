@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/22 11:44:26 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:02:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	parser(char *path, t_map **map)
 		return (clear_t_list_list(tmp_map), 0);
 	results_init(&data, tmp_map);
 	if (!validate_results(&data))
-		return (clear_t_list_list(tmp_map), 0);
+		return (clear_t_list_list(cpy), clear_t_list_list(tmp_map), 0);
 	find_pos_in_map(cpy, &pos);
 	flood_fill_validate(pos.line, pos.x, &data);
 	clear_t_list_list(cpy);

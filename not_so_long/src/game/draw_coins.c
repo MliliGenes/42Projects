@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:30:14 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/23 17:46:12 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:50:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	draw_coins(t_game **game)
 		while (grid[i_j.y][i_j.x])
 		{
 			if (grid[i_j.y][i_j.x] == 'C')
-			{
-				set_coin(game, &((*game)->coins[i]), pos);
-				i++;
-			}
+				set_coin(game, &((*game)->coins[i++]), pos);
 			pos.x += TILE_SIZE;
 			i_j.x++;
 		}

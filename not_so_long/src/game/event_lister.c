@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 20:20:53 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:34:32 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
-#include <stdbool.h>
 
 static void	release(mlx_t *win, t_player *player)
 {
@@ -58,20 +57,14 @@ static void	movement(mlx_t *win, char **map, t_player *player, float *count)
 	if (check_x_movement(map, &curr, &new_pos))
 	{
 		player->player->instances->x = new_pos.x;
-		if (curr.x / 64 != new_pos.x / 64)
-		{
-			(*count)++;
-			print_moves(*count);
-		}
+		if ((curr.x + 32) / 64 != (new_pos.x + 32) / 64)
+			print_moves((int *)count);
 	}
 	if (check_y_movement(map, &curr, &new_pos))
 	{
 		player->player->instances->y = new_pos.y;
-		if (curr.y / 64 != new_pos.y / 64)
-		{
-			(*count)++;
-			print_moves(*count);
-		}
+		if ((curr.y + 32) / 64 != (new_pos.y + 32) / 64)
+			print_moves((int *)count);
 	}
 	release(win, player);
 }

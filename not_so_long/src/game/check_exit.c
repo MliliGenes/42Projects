@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:58:42 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 20:17:39 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:51:32 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_exit(t_game *game, int x, int y)
 	while (i < 4)
 	{
 		if (game->map->pixels[positions[i].y][positions[i].x] == 'E')
-            clean_exit(&game);
+			clean_exit(&game);
 		i++;
 	}
 }

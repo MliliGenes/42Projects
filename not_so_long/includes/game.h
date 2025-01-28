@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 20:17:49 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/25 23:46:29 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		draw_player(t_game **game);
 void		draw_coins(t_game **game);
 mlx_image_t	*put_image(mlx_t *game, mlx_texture_t *texture, int x, int y);
 void		event_listener(void *game);
-void		print_moves(int count);
+void		print_moves(int *count);
 int			convert_map(t_game **game);
 char		**expand_map_by_scale(t_list *map, int width, int height,
 				int scale);
