@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:26:39 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 23:51:16 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:32:07 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	clean_exit(t_game **game)
 	clear_t_list_list((*game)->map->grid);
 	if ((*game)->coins)
 		free((*game)->coins);
+	if ((*game)->spikes)
+		free((*game)->spikes);
 	if ((*game)->player)
 		free((*game)->player);
 	free_assets((*game)->assets);

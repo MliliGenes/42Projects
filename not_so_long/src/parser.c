@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 06:25:52 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 22:02:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:28:18 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	lexer(t_list *map)
 		{
 			if (!(map->line[i] == '0' || map->line[i] == '1'
 					|| map->line[i] == 'P' || map->line[i] == 'C'
-					|| map->line[i] == 'E'))
+					|| map->line[i] == 'E' || (ANIMATE && map->line[i] == 'S')))
 				return (0);
 			i++;
 		}

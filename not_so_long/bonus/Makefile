@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/26 18:31:11 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/28 16:13:12 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/30 22:39:29 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,20 +36,24 @@ SRC = ../src/parser.c \
 			../src/game/init_texture.c \
 			../src/game/init_animations.c \
 			../src/game/init_map.c \
+			../src/game/spike_collision.c \
 			../src/game/draw_map.c \
 			../src/game/draw_player.c \
 			../src/game/draw_exit.c \
 			../src/game/draw_coins.c \
+			../src/game/draw_spikes.c \
 			../src/game/put_image.c \
 			../src/game/init_player.c \
 			../src/game/print_moves.c \
 			../src/game/update_player.c \
+			../src/game/update_spikes.c \
 			../src/game/event_lister.c \
 			../src/game/collision.c \
 			../src/game/check_exit.c \
 			../src/game/convert_map.c \
 			../src/game/expand_map.c \
 			../src/game/clean_exit.c \
+			../src/game/ft_itoa.c \
 			../src/game/exit_game.c \
 			../src/game/free_expended_map.c \
 			../src/game.c \

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/26 18:18:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:35:08 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_assets
 	mlx_texture_t	*walk_left[4];
 	mlx_texture_t	*walk_up[4];
 	mlx_texture_t	*walk_down[4];
+	mlx_texture_t	*spikes[2];
 }					t_assets;
 
 typedef struct s_animations
@@ -88,6 +89,12 @@ typedef enum s_state
 	MOVING_DOWN,
 }					t_state;
 
+typedef enum s_spike_state
+{
+	SPIKE_UP,
+	SPIKE_DOWN
+}					t_spike_state;
+
 typedef struct s_player
 {
 	mlx_image_t		*player;
@@ -109,6 +116,8 @@ typedef struct s_game
 	t_animations	*animations;
 	t_player		*player;
 	mlx_image_t		**coins;
+	mlx_image_t		**spikes;
+	t_spike_state	spike_state;
 	t_map			*map;
 	float			moves;
 	int				coins_count;

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 23:04:05 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/28 17:41:35 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:38:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	update_animation(t_game *game, bool animate)
 {
 	if (!animate)
 		return ;
-	if (game->animations->frame_duration == 6)
+	if (game->animations->frame_duration == 5)
 	{
 		if (game->animations->current_frame == 3)
 			game->animations->current_frame = 0;

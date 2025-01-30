@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/28 17:34:32 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 22:27:33 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,11 @@ void	event_listener(void *game)
 	check_coins(game_instance, game_instance->coins,
 		game_instance->player->player->instances->x,
 		game_instance->player->player->instances->y);
+	check_spike(game_instance, game_instance->player->player->instances->x,
+		game_instance->player->player->instances->y);
 	update_player(game_instance);
+	if (ANIMATE)
+		update_spikes(game_instance);
 	exit_game(&game_instance);
 	if (!(game_instance->can_exit) && !game_instance->coins_count)
 	{

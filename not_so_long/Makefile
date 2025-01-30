@@ -10,10 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-MANDATORY_DIR = ./mandatory
+MANDATORY_DIR = ./all
 BONUS_DIR = ./bonus
 
-SWITCH_FILES = src/game/update_player.o
+SWITCH_FILES = src/game/update_player.o \
+			src/game/event_lister.o \
+			src/game.o \
+			src/parser.o 
 
 all:
 	$(if $(wildcard .bonus),rm -f $(SWITCH_FILES) .bonus)

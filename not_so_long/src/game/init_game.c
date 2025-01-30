@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 05:31:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 22:34:24 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 21:36:05 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_game	*init_game_struct(void)
 	if (!game)
 		return (NULL);
 	game->assets = init_assets();
-	if (!init_exit(&(game->assets))
+	if (!init_exit_spikes(&(game->assets))
 		|| !init_assets_animations_up(&(game->assets))
 		|| !init_assets_animations_down(&(game->assets))
 		|| !init_assets_animations_left(&(game->assets))
@@ -43,6 +43,7 @@ t_game	*init_game_struct(void)
 	game->map = init_map();
 	game->title = GAME_NAME;
 	game->moves = 0;
+	game->spike_state = SPIKE_DOWN;
 	game->can_exit = false;
 	if (!game->assets || !game->player || !game->map)
 		return (NULL);

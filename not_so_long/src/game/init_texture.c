@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:05:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/25 19:42:22 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 20:19:03 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,25 @@ void	*free_assets(t_assets *assets)
 		mlx_delete_texture(assets->collectible);
 	if (assets->exit)
 		mlx_delete_texture(assets->exit);
+	if (assets->spikes[0])
+		mlx_delete_texture(assets->spikes[0]);
+	if (assets->spikes[1])
+		mlx_delete_texture(assets->spikes[1]);
 	free_walk_textures(assets);
 	free(assets);
 	return (NULL);
 }
 
-int	init_exit(t_assets **assets)
+int	init_exit_spikes(t_assets **assets)
 {
 	(*assets)->exit = mlx_load_png("textures/exit/exit.png");
 	if (!(*assets)->exit)
+		return (0);
+	(*assets)->spikes[0] = mlx_load_png("textures/spikes/spike0.png");
+	if (!(*assets)->spikes[0])
+		return (0);
+	(*assets)->spikes[1] = mlx_load_png("textures/spikes/spike1.png");
+	if (!(*assets)->spikes[1])
 		return (0);
 	return (1);
 }
