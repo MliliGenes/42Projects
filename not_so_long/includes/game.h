@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 14:21:28 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/30 22:38:42 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:18:08 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ void		check_exit(t_game *game, int x, int y);
 void		update_coordinates(mlx_t *win, t_position *new_pos,
 				t_player *player);
 char		*ft_itoa(int n);
+void		print_moves_in_win(t_game *game);
 
 #endif

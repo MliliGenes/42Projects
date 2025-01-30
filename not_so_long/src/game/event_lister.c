@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 08:11:31 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/30 22:27:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:29:11 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	check_y_movement(char **map, t_position *curr, t_position *new_pos)
 	return (0);
 }
 
-static void	movement(mlx_t *win, char **map, t_player *player, float *count)
+static void	movement(mlx_t *win, char **map, t_player *player, int *count)
 {
 	t_position	new_pos;
 	t_position	curr;
@@ -58,13 +58,13 @@ static void	movement(mlx_t *win, char **map, t_player *player, float *count)
 	{
 		player->player->instances->x = new_pos.x;
 		if ((curr.x + 32) / 64 != (new_pos.x + 32) / 64)
-			print_moves((int *)count);
+			print_moves(count);
 	}
 	if (check_y_movement(map, &curr, &new_pos))
 	{
 		player->player->instances->y = new_pos.y;
 		if ((curr.y + 32) / 64 != (new_pos.y + 32) / 64)
-			print_moves((int *)count);
+			print_moves(count);
 	}
 	release(win, player);
 }
@@ -83,7 +83,10 @@ void	event_listener(void *game)
 		game_instance->player->player->instances->y);
 	update_player(game_instance);
 	if (ANIMATE)
+	{
 		update_spikes(game_instance);
+		print_moves_in_win(game_instance);
+	}
 	exit_game(&game_instance);
 	if (!(game_instance->can_exit) && !game_instance->coins_count)
 	{

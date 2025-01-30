@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/26 18:30:14 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/30 22:39:18 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/30 23:22:12 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC = ../src/parser.c \
 			../src/game/put_image.c \
 			../src/game/init_player.c \
 			../src/game/print_moves.c \
+			../src/game/print_moves_in_win.c \
 			../src/game/spike_collision.c \
 			../src/game/update_player.c \
 			../src/game/update_spikes.c \

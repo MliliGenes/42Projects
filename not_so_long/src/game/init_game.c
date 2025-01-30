@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 05:31:38 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/30 21:36:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:44:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_game	*init_game_struct(void)
 	game->player = init_player();
 	game->map = init_map();
 	game->title = GAME_NAME;
-	game->moves = 0;
+	game->moves = 1;
 	game->spike_state = SPIKE_DOWN;
 	game->can_exit = false;
 	if (!game->assets || !game->player || !game->map)

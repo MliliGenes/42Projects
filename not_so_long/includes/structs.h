@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 06:06:57 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/30 21:35:08 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/01/30 23:46:21 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ typedef struct s_game
 	mlx_image_t		**spikes;
 	t_spike_state	spike_state;
 	t_map			*map;
-	float			moves;
+	int				moves;
+	mlx_image_t		*move;
 	int				coins_count;
 	bool			can_exit;
 	const char		*title;

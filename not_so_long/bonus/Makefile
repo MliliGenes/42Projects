@@ -6,12 +6,12 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/26 18:31:11 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/30 22:39:29 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/01/30 23:22:30 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -DANIMATE=1
+CFLAGS = -Wall -Wextra -Werror -DANIMATE=1 -fsanitize=address -g
 SRC = ../src/parser.c \
 			../src/lib/add_back_list_t.c \
 			../src/lib/clear_list_t_list.c \
@@ -54,6 +54,7 @@ SRC = ../src/parser.c \
 			../src/game/expand_map.c \
 			../src/game/clean_exit.c \
 			../src/game/ft_itoa.c \
+			../src/game/print_moves_in_win.c \
 			../src/game/exit_game.c \
 			../src/game/free_expended_map.c \
 			../src/game.c \

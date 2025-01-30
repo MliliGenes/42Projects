@@ -29,7 +29,7 @@ bonus:
 
 clean:
 	@$(MAKE) -C $(MANDATORY_DIR) clean
-	@$(MAKE) -C $(BONUS_DIR) clean
+	@$(MAKE) -C $(BONUS_DIR) clean 
 
 fclean:
 	@$(MAKE) -C $(MANDATORY_DIR) fclean
