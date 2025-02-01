@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/26 18:31:11 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/01/30 23:22:30 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/02/01 17:23:19 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ HEADER_FILES = ../includes/structs.h \
 				../includes/game.h \
 				../includes/lib.h \
 				../includes/so_long.h
-NAME = ../so_long_fr
+NAME = ../so_long_bonus
 LIBMLX = ../libmlx42.a
 LIBS = -lglfw -L"/goinfre/sel-mlil/homebrew/opt/glfw/lib"
 RM = rm -f

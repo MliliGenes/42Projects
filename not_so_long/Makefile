@@ -19,11 +19,11 @@ SWITCH_FILES = src/game/update_player.o \
 			src/parser.o 
 
 all:
-	$(if $(wildcard .bonus),rm -f $(SWITCH_FILES) .bonus)
+	@if [ -f .bonus ]; then rm -f $(SWITCH_FILES) .bonus; fi
 	@$(MAKE) -C $(MANDATORY_DIR)
 
 bonus:
-	$(if $(wildcard .bonus),,rm -f $(SWITCH_FILES))
+	@if [ ! -f .bonus ]; then rm -f $(SWITCH_FILES); fi
 	@$(MAKE) -C $(BONUS_DIR)
 	touch .bonus
 
@@ -40,6 +40,6 @@ re:
 	@$(MAKE) all
 
 switch :
-	rm -f $(SWITCH_FILES)
+	rm -f .bonus
 
 .PHONY : bonus re fclean clean all
