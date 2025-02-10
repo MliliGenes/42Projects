@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/10 12:16:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:15:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipe
 	char	**envp;
 
 	int		pipe_fd[2];
+	int		*pids;
 	int		prev_pipe;
 
 	int		cmds_count;
@@ -253,7 +254,7 @@ bool	io_fds(t_pipe *pipe_x, char *in_file, char *out_file)
 		return (false);
 	fds[1] = open(out_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fds[1] == -1)
-		return (false);
+		return (close(fds[0]), false);
 	pipe_x->infile_fd = fds[0];
 	pipe_x->outfile_fd = fds[1];
 	return (true);
@@ -269,24 +270,76 @@ static int	skip_spaces(char *cmd, int *i)
 static int	handle_quotes(char *cmd, int *i, char *quote_type)
 {
 	if (cmd[*i] == '"' || cmd[*i] == '\'')
-	{
-		*quote_type = cmd[*i];
-		(*i)++;
-		return (1);
-	}
+		return (*quote_type = cmd[*i], 1);
 	return (0);
 }
+
+static bool	two_quotes(char type, char *token)
+{
+	int	i;
+	int	how_many;
+
+	i = 0;
+	how_many = 0;
+	while (token[i])
+	{
+		if (token[i] == type)
+			how_many++;
+		i++;
+	}
+	return (how_many == 2);
+}
+
+static bool	is_there_quote(char *token)
+{
+	int	i;
+
+	i = 0;
+	while (token[i])
+	{
+		if (token[i] == '"' || token[i] == '\'')
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+static void	trim_quotes(char *token)
+{
+	int		i;
+	int		j;
+	char	quote_type;
+
+	if (!token || !is_there_quote(token))
+		return ;
+	i = 0;
+	j = 0;
+	quote_type = 0;
+	while (token[i])
+	{
+		if ((token[i] == '"' || token[i] == '\'') && !quote_type)
+			quote_type = token[i++];
+		else if (token[i] == quote_type)
+			i++;
+		else
+			token[j++] = token[i++];
+	}
+	token[j] = '\0';
+}
+
 
 static int	extract_token(char *cmd, int *i, char **tokens, int *j)
 {
 	int		start;
 	char	quote_type;
-	int		len;
 
 	start = *i;
 	quote_type = 0;
 	if (handle_quotes(cmd, i, &quote_type))
+	{
 		start = *i;
+		(*i)++;
+	}
 	while (cmd[*i] && (quote_type || cmd[*i] != ' '))
 	{
 		if ((cmd[*i] == '"' || cmd[*i] == '\'') && quote_type == cmd[*i])
@@ -296,13 +349,11 @@ static int	extract_token(char *cmd, int *i, char **tokens, int *j)
 		}
 		(*i)++;
 	}
-	if (quote_type && quote_type != cmd[*i])
-	len = *i - start;
-	if (quote_type)
-		len--;
-	tokens[*j] = ft_substr(cmd, start, len);
-	if (!tokens[*j])
+	tokens[*j] = ft_substr(cmd, start, *i - start);
+	if (!tokens[*j] || (is_there_quote(tokens[*j]) && !two_quotes(quote_type,
+				tokens[*j])))
 		return (0);
+	trim_quotes(tokens[*j]);
 	(*j)++;
 	return (1);
 }
@@ -349,12 +400,12 @@ bool	set_cmds_arr(t_pipe *pipe_x, char **cmds, int cmds_count)
 	pipe_x->cmds_count = cmds_count;
 	pipe_x->cmds = malloc(sizeof(t_cmd) * (cmds_count));
 	if (!pipe_x->cmds)
-		return (printf("lol2"), false);
+		return (false);
 	while (index < cmds_count)
 	{
 		tokens = tokenize_cmd(cmds[index]);
 		if (!tokens)
-			return (printf("lol2"), false);
+			return (false);
 		set_cmd_data(&pipe_x->cmds[index], tokens);
 		index++;
 	}
@@ -380,9 +431,50 @@ bool	check_commands(t_pipe *pipe_x)
 				pipe_x->cmds[j].path = tmp;
 			i++;
 		}
+		if (!pipe_x->cmds[j].path)
+		{
+			if (access(pipe_x->cmds[j].cmd, X_OK) == 0)
+				pipe_x->cmds[j].path = pipe_x->cmds[j].cmd;
+			else
+				pipe_x->cmds[j].valid = false;
+		}
 		j++;
 	}
 	return (true);
+}
+
+void	redirect_io(t_pipe *pipe_x, int cmd_index)
+{
+	if (cmd_index == 0)
+	{
+		dup2(pipe_x->infile_fd, STDIN_FILENO);
+		close(pipe_x->infile_fd);
+	}
+	else
+	{
+		dup2(pipe_x->prev_pipe, STDIN_FILENO);
+		close(pipe_x->prev_pipe);
+	}
+	if (cmd_index == pipe_x->cmds_count - 1)
+	{
+		dup2(pipe_x->outfile_fd, STDOUT_FILENO);
+		close(pipe_x->outfile_fd);
+	}
+	else
+	{
+		dup2(pipe_x->pipe_fd[1], STDOUT_FILENO);
+		close(pipe_x->pipe_fd[1]);
+		close(pipe_x->pipe_fd[0]);
+	}
+}
+
+void execute_command(t_pipe *pipe_x, int cmd_index)
+{
+    t_cmd cmd = pipe_x->cmds[cmd_index];
+	if(!cmd.valid)
+		perror("tdaa");
+    execve(cmd.path, cmd.args, pipe_x->envp);
+    exit(1);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -399,8 +491,8 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	if (!set_cmds_arr(&pipe_x, argv + 2, argc - 3))
 		return (printf("lol2"), EXIT_FAILURE);
-	// if (!check_commands(&pipe_x))
-	// 	return (printf("lol3"), EXIT_FAILURE);
+	if (!check_commands(&pipe_x))
+		return (printf("lol3"), EXIT_FAILURE);
 	i = 0;
 	while (i < pipe_x.cmds_count)
 	{
@@ -414,24 +506,43 @@ int	main(int argc, char **argv, char **envp)
 			j = 0;
 			while (pipe_x.cmds[i].args[j])
 			{
-				printf("%s ", pipe_x.cmds[i].args[j]);
+				printf("%d[%s] - ", j, pipe_x.cmds[i].args[j]);
 				j++;
 			}
 		}
 		printf("\n\n");
 		i++;
 	}
-	// printf("%d\n", pipe_x.infile_fd);
-	// printf("%d\n", pipe_x.outfile_fd);
-	// while (*pipe_x.paths)
-	// {
-	// 	printf("%s\n", *pipe_x.paths);
-	// 	pipe_x.paths++;
-	// }
-	// while (*tokens)
-	// {
-	// 	printf("%s\n", *tokens);
-	// 	tokens++;
-	// }
+	pid_t   pid;
+
+    i = 0;
+    while (i < pipe_x.cmds_count)
+    {
+        if (i < pipe_x.cmds_count - 1)  // Not last command
+            if (pipe(pipe_x.pipe_fd) < 0)
+                exit(1);
+    
+        pid = fork();
+        if (pid < 0)
+            exit(1);
+        
+        if (pid == 0)
+       	{
+			redirect_io(&pipe_x, i);
+			execute_command(&pipe_x, i);
+		}
+        
+        if (i > 0)
+            close(pipe_x.prev_pipe);
+        if (i < pipe_x.cmds_count - 1)
+        {
+            close(pipe_x.pipe_fd[1]);
+            pipe_x.prev_pipe = pipe_x.pipe_fd[0];
+        }
+        i++;
+    }
+    
+    while (wait(NULL) > 0)
+        ;
 	return (EXIT_SUCCESS);
 }
