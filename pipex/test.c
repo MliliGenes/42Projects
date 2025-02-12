@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/12 07:35:54 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/12 08:30:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int	word_count(char *s, char sep)
 
 void	*free_arr(char **arr, int last_index)
 {
-	while (last_index-- >= 0)
+	while (--last_index >= 0)
 		free(arr[last_index]);
 	free(arr);
 	return (NULL);
@@ -389,10 +389,18 @@ static void	set_cmd_data(t_cmd *cmd, char **tokens)
 
 bool	free_cmds_arr(t_cmd *cmds, int index)
 {
-	while (index-- >= 0)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < index)
 	{
-		free(cmds[index].args);
-		free(cmds[index].path);
+		j = 0;
+		while (cmds[i].args[j])
+			j++;
+		free_arr(cmds[i].args, j);
+		free(cmds[i].path);
+		i++;
 	}
 	free(cmds);
 	return (false);
@@ -424,7 +432,7 @@ static void	edge_case(t_cmd *cmd)
 {
 	cmd->valid = access(cmd->cmd, X_OK) == 0;
 	if (cmd->valid)
-		cmd->path = cmd->cmd;
+		cmd->path = ft_strdup(cmd->cmd);
 }
 
 bool	check_commands(t_pipe *pipe_x)
@@ -443,7 +451,8 @@ bool	check_commands(t_pipe *pipe_x)
 			if (!tmp)
 				return (free_cmds_arr(pipe_x->cmds, pipe_x->cmds_count));
 			if (access(tmp, X_OK) == 0)
-				pipe_x->cmds[j].path = tmp;
+				pipe_x->cmds[j].path = ft_strdup(tmp);
+			free(tmp);
 			i++;
 		}
 		if (!pipe_x->cmds[j].path)
@@ -502,7 +511,10 @@ void	free_paths(char **paths)
 		i++;
 	free_arr(paths, i);
 }
-
+void	ll(void)
+{
+	system("leaks -q a.out");
+}
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	pipe_x;
@@ -549,6 +561,8 @@ int	main(int argc, char **argv, char **envp)
 		;
 	close(pipe_x.outfile_fd);
 	close(pipe_x.infile_fd);
+	free_paths(pipe_x.paths);
+	free_cmds_arr(pipe_x.cmds, pipe_x.cmds_count);
 	return (EXIT_SUCCESS);
 }
 
