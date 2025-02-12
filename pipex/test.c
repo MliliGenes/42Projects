@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/10 20:15:13 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/12 07:35:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 typedef struct s_cmd
 {
+	char	*cmd;
 	char	**args;
 	char	*path;
-	char	*cmd;
 	bool	valid;
 }			t_cmd;
 
@@ -32,7 +32,6 @@ typedef struct s_pipe
 	char	**envp;
 
 	int		pipe_fd[2];
-	int		*pids;
 	int		prev_pipe;
 
 	int		cmds_count;
@@ -98,10 +97,10 @@ static int	word_count(char *s, char sep)
 	return (cp);
 }
 
-static void	*free_arr(char **arr, int i)
+void	*free_arr(char **arr, int last_index)
 {
-	while (--i >= 0)
-		free(arr[i]);
+	while (last_index-- >= 0)
+		free(arr[last_index]);
 	free(arr);
 	return (NULL);
 }
@@ -222,7 +221,7 @@ char	*ft_strjoin(char *s1, char *s2, char sep)
 
 // tools
 
-bool	check_set_path(t_pipe *pipe_x, char **envp)
+bool	check_set_paths(t_pipe *pipe_x, char **envp)
 {
 	char	*path;
 
@@ -327,8 +326,7 @@ static void	trim_quotes(char *token)
 	token[j] = '\0';
 }
 
-
-static int	extract_token(char *cmd, int *i, char **tokens, int *j)
+static bool	extract_token(char *cmd, int *i, char **tokens, int *j)
 {
 	int		start;
 	char	quote_type;
@@ -352,10 +350,9 @@ static int	extract_token(char *cmd, int *i, char **tokens, int *j)
 	tokens[*j] = ft_substr(cmd, start, *i - start);
 	if (!tokens[*j] || (is_there_quote(tokens[*j]) && !two_quotes(quote_type,
 				tokens[*j])))
-		return (0);
+		return (false);
 	trim_quotes(tokens[*j]);
-	(*j)++;
-	return (1);
+	return ((*j)++, true);
 }
 
 char	**tokenize_cmd(char *cmd)
@@ -390,6 +387,17 @@ static void	set_cmd_data(t_cmd *cmd, char **tokens)
 	cmd->valid = true;
 }
 
+bool	free_cmds_arr(t_cmd *cmds, int index)
+{
+	while (index-- >= 0)
+	{
+		free(cmds[index].args);
+		free(cmds[index].path);
+	}
+	free(cmds);
+	return (false);
+}
+
 bool	set_cmds_arr(t_pipe *pipe_x, char **cmds, int cmds_count)
 {
 	char	**tokens;
@@ -405,11 +413,18 @@ bool	set_cmds_arr(t_pipe *pipe_x, char **cmds, int cmds_count)
 	{
 		tokens = tokenize_cmd(cmds[index]);
 		if (!tokens)
-			return (false);
+			return (free_cmds_arr(pipe_x->cmds, index));
 		set_cmd_data(&pipe_x->cmds[index], tokens);
 		index++;
 	}
 	return (true);
+}
+
+static void	edge_case(t_cmd *cmd)
+{
+	cmd->valid = access(cmd->cmd, X_OK) == 0;
+	if (cmd->valid)
+		cmd->path = cmd->cmd;
 }
 
 bool	check_commands(t_pipe *pipe_x)
@@ -426,18 +441,13 @@ bool	check_commands(t_pipe *pipe_x)
 		{
 			tmp = ft_strjoin(pipe_x->paths[i], pipe_x->cmds[j].cmd, '/');
 			if (!tmp)
-				return (free(pipe_x->cmds), false);
+				return (free_cmds_arr(pipe_x->cmds, pipe_x->cmds_count));
 			if (access(tmp, X_OK) == 0)
 				pipe_x->cmds[j].path = tmp;
 			i++;
 		}
 		if (!pipe_x->cmds[j].path)
-		{
-			if (access(pipe_x->cmds[j].cmd, X_OK) == 0)
-				pipe_x->cmds[j].path = pipe_x->cmds[j].cmd;
-			else
-				pipe_x->cmds[j].valid = false;
-		}
+			edge_case(&pipe_x->cmds[j]);
 		j++;
 	}
 	return (true);
@@ -468,81 +478,97 @@ void	redirect_io(t_pipe *pipe_x, int cmd_index)
 	}
 }
 
-void execute_command(t_pipe *pipe_x, int cmd_index)
+void	execute_command(t_pipe *pipe_x, int cmd_index)
 {
-    t_cmd cmd = pipe_x->cmds[cmd_index];
-	if(!cmd.valid)
-		perror("tdaa");
-    execve(cmd.path, cmd.args, pipe_x->envp);
-    exit(1);
+	t_cmd	cmd;
+
+	cmd = pipe_x->cmds[cmd_index];
+	execve(cmd.path, cmd.args, pipe_x->envp);
+	exit(1);
+}
+
+void	closing_io(int in, int out)
+{
+	close(in);
+	close(out);
+}
+
+void	free_paths(char **paths)
+{
+	int	i;
+
+	i = 0;
+	while (paths[i])
+		i++;
+	free_arr(paths, i);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	pipe_x;
+	pid_t	pid;
 	int		i;
 	int		j;
 
 	if (argc < 5)
 		return (EXIT_FAILURE);
-	if (!check_set_path(&pipe_x, envp))
-		return (EXIT_FAILURE);
 	if (!io_fds(&pipe_x, argv[1], argv[argc - 1]))
 		return (EXIT_FAILURE);
+	if (!check_set_paths(&pipe_x, envp))
+		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd), EXIT_FAILURE);
 	if (!set_cmds_arr(&pipe_x, argv + 2, argc - 3))
-		return (printf("lol2"), EXIT_FAILURE);
+		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd),
+			free_paths(pipe_x.paths), EXIT_FAILURE);
 	if (!check_commands(&pipe_x))
-		return (printf("lol3"), EXIT_FAILURE);
+		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd),
+			free_paths(pipe_x.paths), EXIT_FAILURE);
 	i = 0;
 	while (i < pipe_x.cmds_count)
 	{
-		printf("Command %d:\n", i + 1);
-		printf("  cmd: %s\n", pipe_x.cmds[i].cmd);
-		printf("  path: %s\n", pipe_x.cmds[i].path);
-		printf("  valid: %d\n", pipe_x.cmds[i].valid);
-		printf("  args: ");
-		if (pipe_x.cmds[i].args)
+		if (i < pipe_x.cmds_count - 1)
+			if (pipe(pipe_x.pipe_fd) < 0)
+				exit(1);
+		pid = fork();
+		if (pid < 0)
+			exit(1);
+		if (pid == 0)
 		{
-			j = 0;
-			while (pipe_x.cmds[i].args[j])
-			{
-				printf("%d[%s] - ", j, pipe_x.cmds[i].args[j]);
-				j++;
-			}
-		}
-		printf("\n\n");
-		i++;
-	}
-	pid_t   pid;
-
-    i = 0;
-    while (i < pipe_x.cmds_count)
-    {
-        if (i < pipe_x.cmds_count - 1)  // Not last command
-            if (pipe(pipe_x.pipe_fd) < 0)
-                exit(1);
-    
-        pid = fork();
-        if (pid < 0)
-            exit(1);
-        
-        if (pid == 0)
-       	{
 			redirect_io(&pipe_x, i);
 			execute_command(&pipe_x, i);
 		}
-        
-        if (i > 0)
-            close(pipe_x.prev_pipe);
-        if (i < pipe_x.cmds_count - 1)
-        {
-            close(pipe_x.pipe_fd[1]);
-            pipe_x.prev_pipe = pipe_x.pipe_fd[0];
-        }
-        i++;
-    }
-    
-    while (wait(NULL) > 0)
-        ;
+		if (i > 0)
+			close(pipe_x.prev_pipe);
+		if (i < pipe_x.cmds_count - 1)
+		{
+			close(pipe_x.pipe_fd[1]);
+			pipe_x.prev_pipe = pipe_x.pipe_fd[0];
+		}
+		i++;
+	}
+	while (wait(NULL) > 0)
+		;
+	close(pipe_x.outfile_fd);
+	close(pipe_x.infile_fd);
 	return (EXIT_SUCCESS);
 }
+
+// i = 0;
+// while (i < pipe_x.cmds_count)
+// {
+// 	printf("Command %d:\n", i + 1);
+// 	printf("  cmd: %s\n", pipe_x.cmds[i].cmd);
+// 	printf("  path: %s\n", pipe_x.cmds[i].path);
+// 	printf("  valid: %d\n", pipe_x.cmds[i].valid);
+// 	printf("  args: ");
+// 	if (pipe_x.cmds[i].args)
+// 	{
+// 		j = 0;
+// 		while (pipe_x.cmds[i].args[j])
+// 		{
+// 			printf("%d[%s] - ", j, pipe_x.cmds[i].args[j]);
+// 			j++;
+// 		}
+// 	}
+// 	printf("\n\n");
+// 	i++;
+// }
