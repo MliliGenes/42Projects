@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/12 08:30:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:38:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -561,6 +561,7 @@ int	main(int argc, char **argv, char **envp)
 		;
 	close(pipe_x.outfile_fd);
 	close(pipe_x.infile_fd);
+	atexit(ll);
 	free_paths(pipe_x.paths);
 	free_cmds_arr(pipe_x.cmds, pipe_x.cmds_count);
 	return (EXIT_SUCCESS);
