@@ -6,41 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/12 09:38:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/13 07:13:06 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/fcntl.h>
-#include <unistd.h>
-
-typedef struct s_cmd
-{
-	char	*cmd;
-	char	**args;
-	char	*path;
-	bool	valid;
-}			t_cmd;
-
-typedef struct s_pipe
-{
-	char	**paths;
-	char	**envp;
-
-	int		pipe_fd[2];
-	int		prev_pipe;
-
-	int		cmds_count;
-
-	int		infile_fd;
-	int		outfile_fd;
-
-	t_cmd	*cmds;
-}			t_pipe;
+#include "pipex.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -70,6 +40,49 @@ char	*ft_strdup(const char *s)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+char	*ft_strstr(const char *big, const char *little)
+{
+	size_t	i;
+	int		ii;
+
+	if (!big)
+		return (NULL);
+	i = 0;
+	while (big[i])
+	{
+		ii = 0;
+		while (little[ii] && big[i + ii] == little[ii])
+			ii++;
+		if (!little[ii])
+			return ((char *)(big + i));
+		i++;
+	}
+	return (NULL);
+}
+
+char	*ft_strjoin(char *s1, char *s2, char sep)
+{
+	int		i;
+	int		j;
+	char	*ptr;
+
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 2);
+	if (!ptr)
+		return (NULL);
+	j = 0;
+	i = 0;
+	while (s1[i])
+		ptr[j++] = s1[i++];
+	ptr[j++] = sep;
+	i = 0;
+	while (s2[i])
+		ptr[j++] = s2[i++];
+	ptr[j] = '\0';
+	return (ptr);
 }
 
 static int	word_count(char *s, char sep)
@@ -176,51 +189,6 @@ char	**ft_split(char const *s, char c)
 	return (filling_arr(c, s, splitted, words));
 }
 
-char	*ft_strstr(const char *big, const char *little)
-{
-	size_t	i;
-	int		ii;
-
-	if (!big)
-		return (NULL);
-	i = 0;
-	while (big[i])
-	{
-		ii = 0;
-		while (little[ii] && big[i + ii] == little[ii])
-			ii++;
-		if (!little[ii])
-			return ((char *)(big + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strjoin(char *s1, char *s2, char sep)
-{
-	int		i;
-	int		j;
-	char	*ptr;
-
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	ptr = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 2);
-	if (!ptr)
-		return (NULL);
-	j = 0;
-	i = 0;
-	while (s1[i])
-		ptr[j++] = s1[i++];
-	ptr[j++] = sep;
-	i = 0;
-	while (s2[i])
-		ptr[j++] = s2[i++];
-	ptr[j] = '\0';
-	return (ptr);
-}
-
-// tools
-
 bool	check_set_paths(t_pipe *pipe_x, char **envp)
 {
 	char	*path;
@@ -244,6 +212,16 @@ bool	check_set_paths(t_pipe *pipe_x, char **envp)
 	return (false);
 }
 
+void	free_paths(char **paths)
+{
+	int	i;
+
+	i = 0;
+	while (paths[i])
+		i++;
+	free_arr(paths, i);
+}
+
 bool	io_fds(t_pipe *pipe_x, char *in_file, char *out_file)
 {
 	int	fds[2];
@@ -257,6 +235,37 @@ bool	io_fds(t_pipe *pipe_x, char *in_file, char *out_file)
 	pipe_x->infile_fd = fds[0];
 	pipe_x->outfile_fd = fds[1];
 	return (true);
+}
+
+void	closing_io(int in, int out)
+{
+	close(in);
+	close(out);
+}
+
+void	redirect_io(t_pipe *pipe_x, int cmd_index)
+{
+	if (cmd_index == 0)
+	{
+		dup2(pipe_x->infile_fd, STDIN_FILENO);
+		close(pipe_x->infile_fd);
+	}
+	else
+	{
+		dup2(pipe_x->prev_pipe, STDIN_FILENO);
+		close(pipe_x->prev_pipe);
+	}
+	if (cmd_index == pipe_x->cmds_count - 1)
+	{
+		dup2(pipe_x->outfile_fd, STDOUT_FILENO);
+		close(pipe_x->outfile_fd);
+	}
+	else
+	{
+		dup2(pipe_x->pipe_fd[1], STDOUT_FILENO);
+		close(pipe_x->pipe_fd[1]);
+		close(pipe_x->pipe_fd[0]);
+	}
 }
 
 static int	skip_spaces(char *cmd, int *i)
@@ -462,31 +471,6 @@ bool	check_commands(t_pipe *pipe_x)
 	return (true);
 }
 
-void	redirect_io(t_pipe *pipe_x, int cmd_index)
-{
-	if (cmd_index == 0)
-	{
-		dup2(pipe_x->infile_fd, STDIN_FILENO);
-		close(pipe_x->infile_fd);
-	}
-	else
-	{
-		dup2(pipe_x->prev_pipe, STDIN_FILENO);
-		close(pipe_x->prev_pipe);
-	}
-	if (cmd_index == pipe_x->cmds_count - 1)
-	{
-		dup2(pipe_x->outfile_fd, STDOUT_FILENO);
-		close(pipe_x->outfile_fd);
-	}
-	else
-	{
-		dup2(pipe_x->pipe_fd[1], STDOUT_FILENO);
-		close(pipe_x->pipe_fd[1]);
-		close(pipe_x->pipe_fd[0]);
-	}
-}
-
 void	execute_command(t_pipe *pipe_x, int cmd_index)
 {
 	t_cmd	cmd;
@@ -496,94 +480,109 @@ void	execute_command(t_pipe *pipe_x, int cmd_index)
 	exit(1);
 }
 
-void	closing_io(int in, int out)
-{
-	close(in);
-	close(out);
-}
-
-void	free_paths(char **paths)
+bool	is_cmds_empty(char **cmd, int end)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (paths[i])
+	while (i < end)
+	{
+		j = 0;
+		while (cmd[i][j] && cmd[i][j] == ' ')
+			j++;
+		if (!cmd[i][j])
+			return (false);
 		i++;
-	free_arr(paths, i);
+	}
+	return (true);
 }
+
 void	ll(void)
 {
 	system("leaks -q a.out");
 }
-int	main(int argc, char **argv, char **envp)
-{
-	t_pipe	pipe_x;
-	pid_t	pid;
-	int		i;
-	int		j;
 
+bool	cleanup(t_pipe *pipe_x, int steps)
+{
+	if (steps >= 1)
+		closing_io(pipe_x->infile_fd, pipe_x->outfile_fd);
+	if (steps >= 2)
+		free_paths(pipe_x->paths);
+	if (steps >= 3)
+		free_cmds_arr(pipe_x->cmds, pipe_x->cmds_count);
+	return (false);
+}
+
+bool	parser(t_pipe *pipe_x, int argc, char **argv, char **envp)
+{
 	if (argc < 5)
-		return (EXIT_FAILURE);
-	if (!io_fds(&pipe_x, argv[1], argv[argc - 1]))
-		return (EXIT_FAILURE);
-	if (!check_set_paths(&pipe_x, envp))
-		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd), EXIT_FAILURE);
-	if (!set_cmds_arr(&pipe_x, argv + 2, argc - 3))
-		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd),
-			free_paths(pipe_x.paths), EXIT_FAILURE);
-	if (!check_commands(&pipe_x))
-		return (closing_io(pipe_x.infile_fd, pipe_x.outfile_fd),
-			free_paths(pipe_x.paths), EXIT_FAILURE);
-	i = 0;
-	while (i < pipe_x.cmds_count)
+		return (false);
+	if (!is_cmds_empty(argv + 2, argc - 2))
+		return (false);
+	if (!io_fds(pipe_x, argv[1], argv[argc - 1]))
+		return (false);
+	if (!check_set_paths(pipe_x, envp))
+		return (cleanup(pipe_x, 1));
+	if (!set_cmds_arr(pipe_x, argv + 2, argc - 3))
+		return (cleanup(pipe_x, 2));
+	if (!check_commands(pipe_x))
+		return (cleanup(pipe_x, 2));
+	return (true);
+}
+
+static bool	handle_child_process(t_pipe *pipe_x, int i)
+{
+	pid_t	pid;
+
+	if (i < pipe_x->cmds_count - 1)
+		if (pipe(pipe_x->pipe_fd) < 0)
+			return (cleanup(pipe_x, 3));
+	pid = fork();
+	if (pid < 0)
+		return (cleanup(pipe_x, 3));
+	if (pid == 0)
 	{
-		if (i < pipe_x.cmds_count - 1)
-			if (pipe(pipe_x.pipe_fd) < 0)
-				exit(1);
-		pid = fork();
-		if (pid < 0)
-			exit(1);
-		if (pid == 0)
-		{
-			redirect_io(&pipe_x, i);
-			execute_command(&pipe_x, i);
-		}
-		if (i > 0)
-			close(pipe_x.prev_pipe);
-		if (i < pipe_x.cmds_count - 1)
-		{
-			close(pipe_x.pipe_fd[1]);
-			pipe_x.prev_pipe = pipe_x.pipe_fd[0];
-		}
+		redirect_io(pipe_x, i);
+		execute_command(pipe_x, i);
+	}
+	if (i > 0)
+		close(pipe_x->prev_pipe);
+	if (i < pipe_x->cmds_count - 1)
+	{
+		close(pipe_x->pipe_fd[1]);
+		pipe_x->prev_pipe = pipe_x->pipe_fd[0];
+	}
+	return (true);
+}
+
+bool	executor(t_pipe *pipe_x)
+{
+	int	i;
+
+	i = 0;
+	while (i < pipe_x->cmds_count)
+	{
+		if (!handle_child_process(pipe_x, i))
+			return (false);
 		i++;
 	}
 	while (wait(NULL) > 0)
 		;
+	return (true);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_pipe	pipe_x;
+
+	if (!parser(&pipe_x, argc, argv, envp))
+		return (EXIT_FAILURE);
+	if (!executor(&pipe_x))
+		return (EXIT_FAILURE);
 	close(pipe_x.outfile_fd);
 	close(pipe_x.infile_fd);
-	atexit(ll);
 	free_paths(pipe_x.paths);
 	free_cmds_arr(pipe_x.cmds, pipe_x.cmds_count);
 	return (EXIT_SUCCESS);
 }
-
-// i = 0;
-// while (i < pipe_x.cmds_count)
-// {
-// 	printf("Command %d:\n", i + 1);
-// 	printf("  cmd: %s\n", pipe_x.cmds[i].cmd);
-// 	printf("  path: %s\n", pipe_x.cmds[i].path);
-// 	printf("  valid: %d\n", pipe_x.cmds[i].valid);
-// 	printf("  args: ");
-// 	if (pipe_x.cmds[i].args)
-// 	{
-// 		j = 0;
-// 		while (pipe_x.cmds[i].args[j])
-// 		{
-// 			printf("%d[%s] - ", j, pipe_x.cmds[i].args[j]);
-// 			j++;
-// 		}
-// 	}
-// 	printf("\n\n");
-// 	i++;
-// }
