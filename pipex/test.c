@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 21:19:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/13 07:13:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/14 09:51:36 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <unistd.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -498,10 +499,10 @@ bool	is_cmds_empty(char **cmd, int end)
 	return (true);
 }
 
-void	ll(void)
-{
-	system("leaks -q a.out");
-}
+// void	ll(void)
+// {
+// 	system("leaks -q a.out");
+// }
 
 bool	cleanup(t_pipe *pipe_x, int steps)
 {
@@ -580,9 +581,6 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	if (!executor(&pipe_x))
 		return (EXIT_FAILURE);
-	close(pipe_x.outfile_fd);
-	close(pipe_x.infile_fd);
-	free_paths(pipe_x.paths);
-	free_cmds_arr(pipe_x.cmds, pipe_x.cmds_count);
+	cleanup(&pipe_x, 3);
 	return (EXIT_SUCCESS);
 }

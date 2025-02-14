@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 04:57:24 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/01/12 01:06:12 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/14 19:14:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	push_to_b(t_item **stack_a, t_item **stack_b)
 
 	size = list_size(*stack_a);
 	start = 0;
-	if (size <= 100)
-		end = 15;
-	else
-		end = 30;
+	end = size * .048 + 10;
 	while (*stack_a)
 	{
 		if ((*stack_a)->index <= end)
