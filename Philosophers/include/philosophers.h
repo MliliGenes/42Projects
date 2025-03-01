@@ -6,24 +6,57 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/25 16:32:09 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/02/28 21:30:59 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-typedef struct s_params
+# include <pthread.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/time.h>
+# include <unistd.h>
+
+typedef enum s_type
 {
-	int	philos_count;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	meals_count;
-}		t_params;
+	ODD,
+	EVEN
+}					t_type;
+typedef struct s_data
+{
+	int				philo_count;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 
+	long			start_time;
 
-// philo's node
-// odd/even enum
+	int				must_eat_count;
+	int				philosophers_done;
+	int				end_flag;
+
+	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	death_state_mutex;
+	pthread_mutex_t	ate_mutex;
+	pthread_mutex_t	end_mutex;
+}					t_data;
+
+typedef struct s_philo
+{
+	int				id;
+	t_type			type;
+	pthread_t		thread;
+
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+
+	size_t			last_meal_time;
+	int				meals_eaten;
+
+	t_data			*data;
+}					t_philo;
 
 #endif
