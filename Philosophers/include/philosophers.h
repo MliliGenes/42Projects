@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/28 21:30:59 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/01 02:23:56 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef enum s_type
 	ODD,
 	EVEN
 }					t_type;
+
 typedef struct s_data
 {
 	int				philo_count;
@@ -36,12 +37,10 @@ typedef struct s_data
 
 	int				must_eat_count;
 	int				philosophers_done;
-	int				end_flag;
+	bool			end_flag;
 
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	death_state_mutex;
-	pthread_mutex_t	ate_mutex;
-	pthread_mutex_t	end_mutex;
+	pthread_mutex_t	locker_mutex;
 }					t_data;
 
 typedef struct s_philo

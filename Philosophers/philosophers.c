@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:42 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/01 00:11:41 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/01 03:13:21 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+bool			getter(t_data *data);
 
 int	ft_atoi(const char *nptr)
 {
@@ -84,7 +87,7 @@ int	fill_params(char **args, t_data *params)
 	params->time_to_sleep = tmp[3];
 	params->must_eat_count = tmp[4];
 	params->philosophers_done = 0;
-	params->end_flag = 0;
+	params->end_flag = false;
 	return (EXIT_SUCCESS);
 }
 
@@ -113,8 +116,12 @@ void	ft_usleep(int duration, t_data *data)
 	size_t	target;
 
 	target = get_current_time() + duration;
-	while (target > get_current_time() && data && !data->end_flag)
-		usleep(50);
+	while (target > get_current_time())
+	{
+		if (getter(data))
+			break ;
+		usleep(100);
+	}
 }
 
 pthread_mutex_t	*init_forks(int count)
@@ -157,7 +164,7 @@ void	create_philo(t_philo *philo, t_data *data, int index)
 {
 	philo->id = index;
 	philo->type = index % 2;
-	philo->last_meal_time = data->start_time;
+	philo->last_meal_time = 0;
 	philo->meals_eaten = 0;
 	philo->data = data;
 	philo->left_fork = NULL;
@@ -222,6 +229,8 @@ void	*routine(void *args)
 		action(philo, "is thinking", data->time_to_eat, NULL, NULL);
 	while (1)
 	{
+		if (getter(data))
+			break ;
 		action(philo, "is eating", data->time_to_eat, philo->right_fork,
 			philo->left_fork);
 		philo->last_meal_time = get_current_time();
@@ -232,6 +241,8 @@ void	*routine(void *args)
 	return (NULL);
 }
 
+void			monitoring(t_philo *philos, t_data *data);
+
 void	start_simulation(t_philo *philos, int count)
 {
 	int	index;
@@ -239,15 +250,84 @@ void	start_simulation(t_philo *philos, int count)
 	index = 0;
 	while (index < count)
 	{
+		philos[index].last_meal_time = get_current_time();
 		pthread_create(&philos[index].thread, NULL, routine,
 			(void *)&philos[index]);
+		usleep(5);
 		index++;
 	}
+	monitoring(philos, philos[0].data);
 	index = 0;
 	while (index < count)
 	{
 		pthread_join(philos[index].thread, NULL);
 		index++;
+	}
+}
+
+bool	getter(t_data *data)
+{
+	bool	flag;
+
+	pthread_mutex_lock(&data->locker_mutex);
+	flag = data->end_flag;
+	pthread_mutex_unlock(&data->locker_mutex);
+	return (flag);
+}
+
+int	getter_id(t_philo *philo)
+{
+	int	flag;
+
+	pthread_mutex_lock(&philo->data->locker_mutex);
+	flag = philo->id + 1;
+	pthread_mutex_unlock(&philo->data->locker_mutex);
+	return (flag);
+}
+
+void	setter(t_data *data, bool flag)
+{
+	pthread_mutex_lock(&data->locker_mutex);
+	data->end_flag = flag;
+	pthread_mutex_unlock(&data->locker_mutex);
+}
+
+void	monitoring(t_philo *philos, t_data *data)
+{
+	int	i;
+	int	all_philosophers_done;
+	int	death;
+
+	while (1)
+	{
+		all_philosophers_done = 1;
+		death = 0;
+		i = 0;
+		while (i < data->philo_count)
+		{
+			if (data->must_eat_count != -1
+				&& philos[i].meals_eaten < data->must_eat_count)
+				all_philosophers_done = 0;
+			if (get_current_time()
+				- philos[i].last_meal_time > data->time_to_die)
+			{
+				death = getter_id(&philos[i]);
+				break ;
+			}
+			i++;
+		}
+		if (all_philosophers_done || death != 0)
+		{
+			if (death != 0)
+			{
+				pthread_mutex_lock(&data->write_mutex);
+				printf("%ld %d %s\n", get_current_time() - data->start_time,
+					death, "died");
+				pthread_mutex_unlock(&data->write_mutex);
+			}
+			setter(data, true);
+			break ;
+		}
 	}
 }
 
@@ -266,7 +346,6 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	if (check_params(&data))
 		return (EXIT_FAILURE);
-	
 	// setting things up
 	data.start_time = get_current_time();
 	forks = init_forks(data.philo_count);
@@ -276,13 +355,9 @@ int	main(int ac, char *av[])
 	if (!philos)
 		return (EXIT_FAILURE);
 	assign_forks(philos, forks, data.philo_count);
-	
 	// start simulation
 	pthread_mutex_init(&data.write_mutex, NULL);
-	pthread_mutex_init(&data.death_state_mutex, NULL);
-	pthread_mutex_init(&data.ate_mutex, NULL);
-	pthread_mutex_init(&data.end_mutex, NULL);
+	pthread_mutex_init(&data.locker_mutex, NULL);
 	start_simulation(philos, data.philo_count);
-	
-	// monitoring thread
+	return (0);
 }
