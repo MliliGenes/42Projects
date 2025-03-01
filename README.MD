@@ -6,25 +6,25 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 
 ## Progress Table
 
-| Project Name                  | Status      | Score | Completed Date |
-|-------------------------------|-------------|-------|-----------------|
-| **Libft**                     | ✅ Done     | 125/125 | YYYY-MM-DD     |
-| **Born2beroot**               | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **ft_printf**                 | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **get_next_line**             | ✅ Done     | 125/125 | YYYY-MM-DD     |
-| **Pipex**                     | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **push_swap**                 | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **so_long**                   | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **Philosophers**              | 🟢 In Progress     | 100/100 | YYYY-MM-DD     |
-<!-- | **minishell**                 | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **NetPractice**               | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **cub3d**                     | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **CPP Modules**               | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **ft_containers**             | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **Inception**                 | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **webserv**                   | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **ft_irc**                    | ✅ Done     | 100/100 | YYYY-MM-DD     |
-| **transcendence**             | ✅ Done     | 100/100 | YYYY-MM-DD     | -->
+| Project Name                  | Status      | Score |
+|-------------------------------|-------------|-------|
+| **Libft**                     | ✅ Done     | 125/125 |
+| **Born2beroot**               | ✅ Done     | 125/125 |
+| **ft_printf**                 | ✅ Done     | 100/125 |
+| **get_next_line**             | ✅ Done     | 114/125 |
+| **Pipex**                     | ✅ Done     | 125/125 |
+| **push_swap**                 | ✅ Done     | 125/125 |
+| **so_long**                   | ✅ Done     | 125/125 |
+| **Philosophers**              | 🟢 In Progress     | 100/100 |
+<!-- | **minishell**                 | ✅ Done     | 100/100 |
+| **NetPractice**               | ✅ Done     | 100/100 |
+| **cub3d**                     | ✅ Done     | 100/100 |
+| **CPP Modules**               | ✅ Done     | 100/100 |
+| **ft_containers**             | ✅ Done     | 100/100 |
+| **Inception**                 | ✅ Done     | 100/100 |
+| **webserv**                   | ✅ Done     | 100/100 |
+| **ft_irc**                    | ✅ Done     | 100/100 |
+| **transcendence**             | ✅ Done     | 100/100 | -->
 
 ---
 
