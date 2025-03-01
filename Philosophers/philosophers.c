@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:42 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/01 07:54:11 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/01 08:05:58 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,7 @@ void monitoring(t_philo *philos, t_data *data)
                 pthread_mutex_lock(&data->write_mutex);
                 printf("%ldms %d died\n", get_current_time() - data->start_time, philos[i].id + 1);
                 pthread_mutex_unlock(&data->write_mutex);
+				pthread_mutex_unlock(philos[i].right_fork);
                 return;
             }
             if (data->must_eat_count != -1 && philos[i].meals_eaten >= data->must_eat_count)
