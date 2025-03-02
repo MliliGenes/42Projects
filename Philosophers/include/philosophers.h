@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/01 05:30:23 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/02 17:00:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_data
 
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	locker_mutex;
+	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	locker3_mutex;
+	pthread_mutex_t	locker4_mutex;
+	
 }					t_data;
 
 typedef struct s_philo
@@ -51,6 +55,7 @@ typedef struct s_philo
 
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meal_mutex;
 
 	size_t			last_meal_time;
 	int				meals_eaten;
