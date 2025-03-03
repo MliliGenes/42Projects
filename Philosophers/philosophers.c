@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:42 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/02 17:09:01 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:19:19 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ void	create_philo(t_philo *philo, t_data *data, int index)
 	philo->data = data;
 	philo->left_fork = NULL;
 	philo->right_fork = NULL;
+	philo->last_meal_time = get_current_time();
 	pthread_mutex_init(&philo->meal_mutex, NULL);
 }
 
@@ -233,13 +234,12 @@ void	*routine(void *args)
 
 	philo = (t_philo *)args;
 	data = philo->data;
-	philo->last_meal_time = data->start_time;
 	if (philo->type == ODD)
-		action(philo, "is thinking", data->time_to_eat, NULL, NULL);
+		action(philo, "is sleeping", data->time_to_sleep, NULL, NULL);
 	while (!getter(data))
 	{
-		action(philo, "is eating", data->time_to_eat, philo->right_fork,
-			philo->left_fork);
+		action(philo, "is eating", data->time_to_eat, philo->left_fork,
+			philo->right_fork);
 		setter_last_meal(philo, get_current_time());
 		philo->meals_eaten++;
 		action(philo, "is sleeping", data->time_to_sleep, NULL, NULL);
@@ -260,10 +260,9 @@ void	start_simulation(t_data *data, t_philo *philos, int count)
 	{
 		pthread_create(&philos[index].thread, NULL, routine,
 			(void *)&philos[index]);
-		usleep(5);
 		index++;
 	}
-	monitoring(philos, data);
+	// monitoring(philos, data);
 	index = 0;
 	while (index < count)
 	{
@@ -299,9 +298,9 @@ void	setter_last_meal(t_philo *philo, long timestamp)
 	pthread_mutex_unlock(&philo->meal_mutex);
 }
 
-int	getter_time_to_die(t_data *data)
+size_t	getter_time_to_die(t_data *data)
 {
-	int	flag;
+	size_t	flag;
 
 	pthread_mutex_lock(&data->death_mutex);
 	flag = data->time_to_die;
@@ -357,16 +356,13 @@ void monitoring(t_philo *philos, t_data *data)
             }
             i++;
         }
-        
-        // Check if all philosophers are done outside the loop
         if (data->must_eat_count != -1 && done_count == data->philo_count)
         {
             setter(data, true);
             return;
         }
-        
-        // Add a small sleep to prevent CPU hogging
-        usleep(500);
+		
+        usleep(100);
     }
 }
 
