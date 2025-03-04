@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:42 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/04 00:59:19 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/04 01:47:48 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,39 +247,36 @@ void	setter(t_data *data, bool flag)
 
 void	write_message(t_philo *philo, const char *message)
 {
-         
-	printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-		philo->id + 1, message);
-	// }
+	pthread_mutex_lock(&philo->data->write_mutex);
+	if (!philo->data->end_flag)
+		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
+			philo->id + 1, message);
+	pthread_mutex_unlock(&philo->data->write_mutex);
 }
 
 void	action(t_philo *philo, int type)
 {
 	if (type == 1)
-	{
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, "is thinking");
-	}
+		write_message(philo, "is thinking");
 	else if (type == 2)
 	{
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, "is sleeping");
+		write_message(philo, "is sleeping");
 		ft_usleep(philo->data->time_to_sleep, philo->data);
 	}
 	else if (type == 3)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, "has taken a fork");
+		write_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, "has taken a fork");
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, "is eating");
+		write_message(philo, "has taken a fork");
+		
+		write_message(philo, "is eating");
 		ft_usleep(philo->data->time_to_eat, philo->data);
 		setter_last_meal(philo, get_current_time());
+		
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		
 	}
 }
 
@@ -294,9 +291,9 @@ void	*routine(void *args)
 		action(philo, 2);
 	while (!getter(data))
 	{
+		action(philo, 1);
 		action(philo, 3);
 		action(philo, 2);
-		action(philo, 1);
 	}
 	return (NULL);
 }
@@ -315,7 +312,7 @@ void	start_simulation(t_data *data, t_philo *philos, int count)
 			(void *)&philos[index]);
 		index++;
 	}
-	// monitoring(philos, data);
+	monitoring(philos, data);
 	index = 0;
 	while (index < count)
 	{
