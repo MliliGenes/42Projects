@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/03 18:04:42 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/03 21:47:14 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct s_data
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	locker_mutex;
 	pthread_mutex_t	death_mutex;
-	pthread_mutex_t	locker3_mutex;
-	pthread_mutex_t	locker4_mutex;
 	
 }					t_data;
 
