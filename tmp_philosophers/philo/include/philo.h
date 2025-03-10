@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 01:02:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/10 02:33:39 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,28 @@ typedef struct s_philo
 
 	t_data			*data;
 }					t_philo;
+
+int					ft_atoi(const char *nptr);
+void				write_message(t_philo *philo, const char *message);
+int					check_args(char **args);
+int					fill_params(char **args, t_data *params);
+int					check_params(t_data *params);
+size_t				get_current_time(void);
+void				ft_usleep(int duration, t_data *data);
+bool				getter(t_data *data);
+void				setter(t_data *data, bool flag);
+;
+size_t				getter_last_meal(t_philo *philo);
+void				setter_last_meal(t_philo *philo);
+size_t				getter_time_to_die(t_data *data);
+pthread_mutex_t		*init_forks(int count);
+void				assign_forks(t_philo *philos, pthread_mutex_t *forks,
+						int cœount);
+void				create_philo(t_philo *philo, t_data *data, int index);
+t_philo				*init_philos(t_data *data);
+void				action(t_philo *philo, int type);
+void				*routine(void *args);
+void				monitoring(t_philo *philos, t_data *data);
+void				start_simulation(t_data *data, t_philo *philos, int count);
 
 #endif
