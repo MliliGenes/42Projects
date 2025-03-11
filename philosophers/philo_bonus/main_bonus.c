@@ -1,32 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 00:10:42 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/11 01:07:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
-
-static void	clean(t_data data, pthread_mutex_t *forks, t_philo *philos)
-{
-	int	i;
-
-	i = 0;
-	while (i < data.philo_count)
-		pthread_mutex_destroy(&forks[i++]);
-	free(forks);
-	forks = NULL;
-	i = 0;
-	while (i < data.philo_count)
-		pthread_mutex_destroy(&philos[i++].meal_mutex);
-	free(philos);
-	philos = NULL;
-}
+#include "include/philo_bonus.h"
 
 static bool	parser(int ac, char **av, t_data *data)
 {
@@ -43,23 +27,12 @@ static bool	parser(int ac, char **av, t_data *data)
 
 int	main(int ac, char *av[])
 {
-	t_data			data;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
+	t_data data;
+	t_philo *philos;
+	pthread_mutex_t *forks;
 
 	if (!parser(ac, av, &data))
 		return (EXIT_FAILURE);
-	forks = init_forks(data.philo_count);
-	if (!forks)
-		return (EXIT_FAILURE);
-	philos = init_philos(&data);
-	if (!philos)
-		return (EXIT_FAILURE);
-	assign_forks(philos, forks, data.philo_count);
-	pthread_mutex_init(&data.write_mutex, NULL);
-	pthread_mutex_init(&data.locker_mutex, NULL);
-	pthread_mutex_init(&data.death_mutex, NULL);
-	start_simulation(&data, philos, data.philo_count);
-	clean(data, forks, philos);
-	return (EXIT_SUCCESS);
+
+	return (0);
 }

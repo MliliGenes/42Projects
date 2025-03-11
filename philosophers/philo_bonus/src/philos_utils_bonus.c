@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos_utils.c                                     :+:      :+:    :+:   */
+/*   philos_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 23:59:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/11 00:57:06 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo.h"
+#include "../include/philo_bonus.h"
 
 pthread_mutex_t	*init_forks(int count)
 {
@@ -63,8 +63,8 @@ void	create_philo(t_philo *philo, t_data *data, int index)
 
 t_philo	*init_philos(t_data *data)
 {
-	int		index;
-	t_philo	*philos_arr;
+	int index;
+	t_philo *philos_arr;
 
 	philos_arr = malloc(sizeof(t_philo) * data->philo_count);
 	if (!philos_arr)

@@ -6,23 +6,17 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/11 00:02:41 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/11 00:56:12 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 SRC_DIR = src
 INCLUDE_DIR = include
 
-SRCS = main.c \
-       $(SRC_DIR)/getters_setters.c \
-       $(SRC_DIR)/lib.c \
-       $(SRC_DIR)/parsing_utils.c \
-       $(SRC_DIR)/philos_utils.c \
-       $(SRC_DIR)/simualtion_utils.c \
-       $(SRC_DIR)/time_utils.c
+SRCS = 
 
 OBJS = $(SRCS:.c=.o)
 
