@@ -16,8 +16,8 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 | **push_swap**                 | ✅ Done     | 125/125 |
 | **so_long**                   | ✅ Done     | 125/125 |
 | **Philosophers**              | ✅ In Progress     | 100/100 |
-<!-- | **minishell**                 | ✅ Done     | 100/100 |
-| **NetPractice**               | ✅ Done     | 100/100 |
+| **minishell**                 | ✅ Done     | 100/100 |
+<!-- | **NetPractice**               | ✅ Done     | 100/100 |
 | **cub3d**                     | ✅ Done     | 100/100 |
 | **CPP Modules**               | ✅ Done     | 100/100 |
 | **ft_containers**             | ✅ Done     | 100/100 |
