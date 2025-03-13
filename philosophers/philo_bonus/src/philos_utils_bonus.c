@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 02:56:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 03:50:37 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <sys/semaphore.h>
 
 sem_t	*init_forks(int count)
 {
