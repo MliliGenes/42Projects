@@ -6,13 +6,14 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 00:03:44 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 03:11:56 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -61,7 +62,7 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
-int					ft_atoi(const char *nptr);
+long long			ft_atoi(const char *nptr);
 void				write_message(t_philo *philo, const char *message);
 int					check_args(char **args);
 int					fill_params(char **args, t_data *params);

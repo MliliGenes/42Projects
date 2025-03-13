@@ -6,13 +6,13 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:01:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 00:57:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 03:21:16 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
 	long long	nb;
 	int			sign;
@@ -39,9 +39,5 @@ int	ft_atoi(const char *nptr)
 
 void	write_message(t_philo *philo, const char *message)
 {
-	pthread_mutex_lock(&philo->data->write_mutex);
-	if (!getter(philo->data))
-		printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
-			philo->id + 1, message);
-	pthread_mutex_unlock(&philo->data->write_mutex);
+	// write
 }

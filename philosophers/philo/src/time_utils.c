@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:06:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 00:01:08 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 00:49:00 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	ft_usleep(int duration, t_data *data)
 	{
 		if (data && getter(data))
 			break ;
-		usleep(500);
+		usleep(100);
 	}
 }

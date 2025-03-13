@@ -6,13 +6,13 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:01:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 01:25:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 03:10:55 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
 	long long	nb;
 	int			sign;

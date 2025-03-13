@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 01:07:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 03:01:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ int	main(int ac, char *av[])
 {
 	t_data data;
 	t_philo *philos;
-	pthread_mutex_t *forks;
+	sem_t *sem;
 
 	if (!parser(ac, av, &data))
 		return (EXIT_FAILURE);
-
+	sem = init_forks(data.philo_count);
+	if (!sem)
+		return (EXIT_FAILURE);
 	return (0);
 }

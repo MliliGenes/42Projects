@@ -6,46 +6,17 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/11 00:57:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 02:56:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
+#include <sys/semaphore.h>
 
-pthread_mutex_t	*init_forks(int count)
+sem_t	*init_forks(int count)
 {
-	int				i;
-	pthread_mutex_t	*forks;
-
-	forks = malloc(sizeof(pthread_mutex_t) * count);
-	if (!forks)
-		return (NULL);
-	i = 0;
-	while (i < count)
-	{
-		if (pthread_mutex_init(&forks[i], NULL) != 0)
-		{
-			while (--i >= 0)
-				pthread_mutex_destroy(&forks[i]);
-			free(forks);
-			return (NULL);
-		}
-		i++;
-	}
-	return (forks);
-}
-
-void	assign_forks(t_philo *philos, pthread_mutex_t *forks, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		philos[i].left_fork = &forks[i];
-		philos[i].right_fork = &forks[(i + 1) % count];
-		i++;
-	}
+	sem_t	*sem = sem_open("/sema_forks", O_CREAT, 0644, count);
+	return (sem);
 }
 
 void	create_philo(t_philo *philo, t_data *data, int index)
@@ -54,10 +25,6 @@ void	create_philo(t_philo *philo, t_data *data, int index)
 	philo->type = index % 2;
 	philo->last_meal_time = 0;
 	philo->meals_eaten = 0;
-	philo->data = data;
-	philo->left_fork = NULL;
-	philo->right_fork = NULL;
-	pthread_mutex_init(&philo->meal_mutex, NULL);
 	philo->last_meal_time = get_current_time();
 }
 
