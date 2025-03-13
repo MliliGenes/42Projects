@@ -15,7 +15,7 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 | **Pipex**                     | ✅ Done     | 125/125 |
 | **push_swap**                 | ✅ Done     | 125/125 |
 | **so_long**                   | ✅ Done     | 125/125 |
-| **Philosophers**              | 🟢 In Progress     | 100/100 |
+| **Philosophers**              | ✅ In Progress     | 100/100 |
 <!-- | **minishell**                 | ✅ Done     | 100/100 |
 | **NetPractice**               | ✅ Done     | 100/100 |
 | **cub3d**                     | ✅ Done     | 100/100 |
@@ -68,16 +68,14 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 ### 8. **Philosophers**
    - **Description**: Solving the dining philosophers problem using threads and mutexes.
    - **Skills**: Multithreading, synchronization, deadlock prevention.
-   - **Status**: 🟢 In Progress
-
-
-
-<!-- ### 9. **minishell**
-   - **Description**: Building a simple shell program that mimics basic Bash functionality.
-   - **Skills**: Parsing, process management, pipes, redirections.
    - **Status**: ✅ Done
 
-### 10. **NetPractice**
+### 9. **minishell**
+   - **Description**: Building a simple shell program that mimics basic Bash functionality.
+   - **Skills**: Parsing, process management, pipes, redirections.
+   - **Status**: 🟢 In Progress
+
+<!-- ### 10. **NetPractice**
    - **Description**: A network configuration exercise to understand IP addressing, subnets, and routing.
    - **Skills**: Networking, IP addressing, subnetting.
    - **Status**: ✅ Done
