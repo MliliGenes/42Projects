@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:11:56 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 02:26:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,24 @@
 
 typedef enum s_type
 {
+	EVEN,
 	ODD,
-	EVEN
 }					t_type;
 
 typedef struct s_data
 {
+	size_t			start_time;
 	int				philo_count;
 	size_t			time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-
-	long			start_time;
-
 	int				must_eat_count;
-	int				philosophers_done;
 	int				end_flag;
 
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	locker_mutex;
 	pthread_mutex_t	death_mutex;
-
+	pthread_mutex_t	test_mutex;
 }					t_data;
 
 typedef struct s_philo
@@ -59,6 +56,7 @@ typedef struct s_philo
 	size_t			last_meal_time;
 	int				meals_eaten;
 
+	bool			is_done;
 	t_data			*data;
 }					t_philo;
 
@@ -74,6 +72,7 @@ void				setter(t_data *data, bool flag);
 ;
 size_t				getter_last_meal(t_philo *philo);
 void				setter_last_meal(t_philo *philo);
+bool				getter_is_done(t_philo *philo);
 size_t				getter_time_to_die(t_data *data);
 pthread_mutex_t		*init_forks(int count);
 void				assign_forks(t_philo *philos, pthread_mutex_t *forks,

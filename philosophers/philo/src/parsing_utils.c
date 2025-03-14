@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:03:29 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:16:50 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 02:10:13 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	fill_params(char **args, t_data *params)
 	params->time_to_eat = (int)tmp[2];
 	params->time_to_sleep = (int)tmp[3];
 	params->must_eat_count = (int)tmp[4];
-	params->philosophers_done = 0;
 	params->end_flag = false;
 	return (EXIT_SUCCESS);
 }

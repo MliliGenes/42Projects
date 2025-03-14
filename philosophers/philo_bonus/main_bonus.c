@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:01:54 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 00:15:14 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int	main(int ac, char *av[])
 	sem = init_forks(data.philo_count);
 	if (!sem)
 		return (EXIT_FAILURE);
+	philos = init_philos(&data);
+	start_simulation(philos, &data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:08:54 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 01:10:41 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 09:19:49 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	setter_last_meal(t_philo *philo)
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	philo->meals_eaten++;
+	if (philo->meals_eaten == philo->data->must_eat_count)
+		philo->is_done = true;
 	pthread_mutex_unlock(&philo->meal_mutex);
 }
 

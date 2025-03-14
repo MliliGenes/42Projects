@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 00:52:28 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 04:11:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,17 @@ void	*routine(void *args)
 	return (NULL);
 }
 
-void	check_philosophers_status(t_philo *philos, t_data *data,
-		int *done_count)
+static int	check_philosophers_status(t_philo *philos, t_data *data)
 {
 	int	i;
+	int	done_count;
 
 	i = 0;
-	*done_count = 0;
+	done_count = 0;
 	while (i < data->philo_count)
 	{
+		if (data->must_eat_count != -1 && getter_is_done(&philos[i]) == true)
+			done_count++;
 		if (get_current_time()
 			- getter_last_meal(&philos[i]) > getter_time_to_die(data))
 		{
@@ -70,17 +72,11 @@ void	check_philosophers_status(t_philo *philos, t_data *data,
 			printf("%ld %d died\n", get_current_time() - data->start_time,
 				philos[i].id + 1);
 			pthread_mutex_unlock(&data->write_mutex);
-			return ;
-		}
-		if (data->must_eat_count != -1)
-		{
-			pthread_mutex_lock(&philos[i].meal_mutex);
-			if (philos[i].meals_eaten >= data->must_eat_count)
-				(*done_count)++;
-			pthread_mutex_unlock(&philos[i].meal_mutex);
+			return (-1);
 		}
 		i++;
 	}
+	return (done_count);
 }
 
 void	monitoring(t_philo *philos, t_data *data)
@@ -89,8 +85,10 @@ void	monitoring(t_philo *philos, t_data *data)
 
 	while (!getter(data))
 	{
-		check_philosophers_status(philos, data, &done_count);
-		if (data->must_eat_count != -1 && done_count == data->philo_count)
+		done_count = check_philosophers_status(philos, data);
+		if (getter(data))
+			return ;
+		if (data->must_eat_count != -1 && done_count >= data->philo_count)
 		{
 			setter(data, true);
 			return ;

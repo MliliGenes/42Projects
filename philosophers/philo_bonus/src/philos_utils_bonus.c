@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:50:37 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 23:30:57 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ sem_t	*init_forks(int count)
 
 void	create_philo(t_philo *philo, t_data *data, int index)
 {
+	philo->data = data;
 	philo->id = index;
 	philo->type = index % 2;
 	philo->last_meal_time = 0;

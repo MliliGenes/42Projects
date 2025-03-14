@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:03:29 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:26:34 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 23:54:32 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	fill_params(char **args, t_data *params)
 			return (EXIT_FAILURE);
 		index++;
 	}
+	params->pids = malloc(sizeof(pid_t) * (int)tmp[0]);
+	if (!params->pids)
+		return (EXIT_FAILURE);
 	params->philo_count = (int)tmp[0];
 	params->time_to_die = (int)tmp[1];
 	params->time_to_eat = (int)tmp[2];

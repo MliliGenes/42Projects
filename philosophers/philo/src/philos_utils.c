@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 23:59:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/14 09:20:28 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	assign_forks(t_philo *philos, pthread_mutex_t *forks, int count)
 void	create_philo(t_philo *philo, t_data *data, int index)
 {
 	philo->id = index;
-	philo->type = index % 2;
+	philo->type = (index % 2);
 	philo->last_meal_time = 0;
 	philo->meals_eaten = 0;
 	philo->data = data;
 	philo->left_fork = NULL;
 	philo->right_fork = NULL;
 	pthread_mutex_init(&philo->meal_mutex, NULL);
+	philo->is_done = false;
 	philo->last_meal_time = get_current_time();
 }
 
@@ -76,4 +77,14 @@ t_philo	*init_philos(t_data *data)
 		index++;
 	}
 	return (philos_arr);
+}
+
+bool	getter_is_done(t_philo *philo)
+{
+	bool	flag;
+
+	pthread_mutex_lock(&philo->meal_mutex);
+	flag = philo->is_done;
+	pthread_mutex_unlock(&philo->meal_mutex);
+	return (flag);
 }

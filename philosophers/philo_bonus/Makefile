@@ -6,17 +6,23 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/11 00:56:12 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/14 04:09:08 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
-INCLUDE_DIR = include
+HEADER_FILE = include/philo_bonus.h
 
-SRCS = 
+SRCS = main_bonus.c \
+	$(SRC_DIR)/getters_setters_bonus.c \
+	$(SRC_DIR)/lib_bonus.c \
+	$(SRC_DIR)/parsing_utils_bonus.c \
+	$(SRC_DIR)/philos_utils_bonus.c \
+	$(SRC_DIR)/simualtion_utils_bonus.c \
+    $(SRC_DIR)/time_utils_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -25,10 +31,10 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME) 
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+%.o: %.c 
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

@@ -6,15 +6,15 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/11 00:02:41 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/14 04:09:38 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 
 SRC_DIR = src
-INCLUDE_DIR = include
+HEADER_FILE = include/philo.h
 
 SRCS = main.c \
        $(SRC_DIR)/getters_setters.c \
@@ -28,13 +28,13 @@ OBJS = $(SRCS:.c=.o)
 
 NAME = philo
 
-all: $(NAME)
+all: $(NAME) 
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
+%.o: %.c $(HEADER_FILE)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

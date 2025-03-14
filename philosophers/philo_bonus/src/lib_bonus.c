@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:01:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 03:21:16 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/13 23:29:50 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long long	ft_atoi(const char *nptr)
 	return (nb * sign);
 }
 
-void	write_message(t_philo *philo, const char *message)
-{
-	// write
-}
+// void	write_message(t_philo *philo, const char *message)
+// {
+// 	write
+// }
