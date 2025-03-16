@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/14 04:11:15 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/16 06:43:37 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	action(t_philo *philo, int type)
 		pthread_mutex_lock(philo->left_fork);
 		write_message(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
-		setter_last_meal(philo);
 		write_message(philo, "has taken a fork");
+		setter_last_meal(philo);
 		write_message(philo, "is eating");
 		ft_usleep(philo->data->time_to_eat, philo->data);
 		pthread_mutex_unlock(philo->left_fork);
@@ -105,8 +105,9 @@ void	start_simulation(t_data *data, t_philo *philos, int count)
 	index = 0;
 	while (index < count)
 	{
-		pthread_create(&philos[index].thread, NULL, routine,
-			(void *)&philos[index]);
+		if (pthread_create(&philos[index].thread, NULL, routine,
+				(void *)&philos[index]))
+			return ;
 		index++;
 	}
 	monitoring(philos, data);

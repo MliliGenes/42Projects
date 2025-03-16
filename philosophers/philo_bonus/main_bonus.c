@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/14 00:15:14 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/16 09:48:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ static bool	parser(int ac, char **av, t_data *data)
 
 int	main(int ac, char *av[])
 {
-	t_data data;
-	t_philo *philos;
-	sem_t *sem;
+	t_data	data;
+	t_philo	*philos;
 
 	if (!parser(ac, av, &data))
 		return (EXIT_FAILURE);
-	sem = init_forks(data.philo_count);
-	if (!sem)
+	data.forks = init_forks(data.philo_count);
+	data.write = write_sem();
+	if (!data.forks)
 		return (EXIT_FAILURE);
 	philos = init_philos(&data);
+	if (!philos)
+		return (EXIT_FAILURE);
 	start_simulation(philos, &data);
 	return (0);
 }

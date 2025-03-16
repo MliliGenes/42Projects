@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "philo_bonus.h": "c"
-    }
+    },
+    "makefile.configureOnOpen": false
 }

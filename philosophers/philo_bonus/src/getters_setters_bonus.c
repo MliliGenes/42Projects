@@ -6,28 +6,29 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:08:54 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/13 02:39:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/16 09:37:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
 
-// bool	getter(t_data *data)
-// {
-// 	bool	flag;
+bool	getter(t_philo *philo)
+{
+	bool	flag;
 
-// 	pthread_mutex_lock(&data->locker_mutex);
-// 	flag = data->end_flag;
-// 	pthread_mutex_unlock(&data->locker_mutex);
-// 	return (flag);
-// }
+	sem_wait(philo->locker);
+	flag = (get_current_time() - philo->last_meal_time) > philo->data->time_to_die;
+	sem_post(philo->locker);
+	return (flag);
+}
 
-// void	setter(t_data *data, bool flag)
-// {
-// 	pthread_mutex_lock(&data->locker_mutex);
-// 	data->end_flag = flag;
-// 	pthread_mutex_unlock(&data->locker_mutex);
-// }
+void	setter(t_philo *philo)
+{
+	sem_wait(philo->locker);
+	philo->last_meal_time = get_current_time();
+    philo->meals_eaten++;
+	sem_post(philo->locker);
+}
 
 // size_t	getter_last_meal(t_philo *philo)
 // {
