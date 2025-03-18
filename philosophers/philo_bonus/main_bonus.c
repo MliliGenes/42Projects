@@ -6,12 +6,28 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:11:53 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:55:15 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo_bonus.h"
-#include <sys/semaphore.h>
+
+// static void cleaning()
+// {
+// 	// 
+// }
+
+void	init_sems(t_data *data)
+{
+	sem_unlink("/sema_forks");
+	data->forks = sem_open("/sema_forks", O_CREAT, 0644, data->philo_count);
+	sem_unlink("/sema_write");
+	data->write = sem_open("/sema_write", O_CREAT, 0644, 1);
+	sem_unlink("/sema_death");
+	data->death = sem_open("/sema_death", O_CREAT, 0644, 1);
+	sem_unlink("/sema_start");
+	data->start = sem_open("/sema_start", O_CREAT, 0644, data->philo_count);
+}
 
 static bool	parser(int ac, char **av, t_data *data)
 {

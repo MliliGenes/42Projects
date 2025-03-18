@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:19:21 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 03:49:47 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	do_routine(t_philo *philo)
 {
 	pthread_t	monitor_thread;
 
+	while (get_current_time() < philo->data->start_time)
+		ft_usleep(20);
+	philo->last_meal_time = get_current_time();                                                 
 	if (pthread_create(&monitor_thread, NULL, monitor, philo))
 		exit(EXIT_FAILURE);
 	pthread_detach(monitor_thread);
@@ -86,15 +89,17 @@ bool	start_simulation(t_philo *philos, t_data *data)
 {
 	int	index;
 
-	data->start_time = get_current_time();
 	index = 0;
+	data->start_time = get_current_time() + (data->philo_count * 20);
 	while (index < data->philo_count)
 	{
 		data->pids[index] = fork();
 		if (data->pids[index] == -1)
 			return (false);
 		if (data->pids[index] == 0)
+		{
 			do_routine(&philos[index]);
+		}
 		index++;
 	}
 	return (gb_monitor(data));

@@ -6,12 +6,12 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/18 02:17:25 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/18 02:41:13 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror 
 
 SRC_DIR = src
 HEADER_FILE = include/philo_bonus.h

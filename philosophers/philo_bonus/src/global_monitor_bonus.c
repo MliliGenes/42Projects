@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 02:15:07 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:16:46 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:51:22 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ bool	gb_monitor(t_data *data)
 				return (true);
 			}
 		}
+		ft_usleep(1);
 	}
 }
