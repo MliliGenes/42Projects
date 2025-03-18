@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_utils_bonus.c                                 :+:      :+:    :+:   */
+/*   global_monitor_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:06:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:18:57 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/03/18 02:15:07 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/03/18 02:16:46 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <sys/semaphore.h>
 
-size_t	get_current_time(void)
+bool	gb_monitor(t_data *data)
 {
-	struct timeval	time;
+	int	index;
+	int	exit_code;
 
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-void	ft_usleep(int duration)
-{
-	size_t	target;
-
-	target = get_current_time() + duration;
-	while (get_current_time() < target)
+	index = 0;
+	while (1)
 	{
-		usleep(500);
+		index = 0;
+		while (index < data->philo_count)
+		{
+			if (waitpid(data->pids[index++], &exit_code, WNOHANG) > 0
+				&& WEXITSTATUS(exit_code) == EXIT_FAILURE)
+			{
+				kill_em_philos(data->pids, data->philo_count);
+				return (true);
+			}
+		}
 	}
 }

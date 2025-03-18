@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 00:29:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:11:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char *av[])
 		return (EXIT_FAILURE);
 	init_sems(&data);
 	if (data.death == SEM_FAILED || data.forks == SEM_FAILED
-		|| data.write == SEM_FAILED)
+		|| data.write == SEM_FAILED || data.start == SEM_FAILED)
 		return (EXIT_FAILURE);
 	philos = init_philos(&data);
 	if (!philos)

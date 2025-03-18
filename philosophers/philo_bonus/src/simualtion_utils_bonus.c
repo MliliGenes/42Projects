@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 01:57:59 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:19:21 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
+#include <sys/semaphore.h>
 
 void	kill_em_philos(pid_t *pids, int count)
 {
@@ -84,7 +85,6 @@ void	do_routine(t_philo *philo)
 bool	start_simulation(t_philo *philos, t_data *data)
 {
 	int	index;
-	int	exit_code;
 
 	data->start_time = get_current_time();
 	index = 0;
@@ -97,19 +97,5 @@ bool	start_simulation(t_philo *philos, t_data *data)
 			do_routine(&philos[index]);
 		index++;
 	}
-	index = 0;
-	while (1)
-	{
-		index = 0;
-		while (index < data->philo_count)
-		{
-			if (waitpid(data->pids[index++], &exit_code, WNOHANG) > 0
-				&& WEXITSTATUS(exit_code) == EXIT_FAILURE)
-			{
-				kill_em_philos(data->pids, data->philo_count);
-				return (true);
-			}
-		}
-	}
-	return (true);
+	return (gb_monitor(data));
 }

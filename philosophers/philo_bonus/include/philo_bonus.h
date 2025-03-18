@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 01:18:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 01:18:51 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:19:06 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_data
 	sem_t	*forks;
 	sem_t	*write;
 	sem_t	*death;
+	sem_t	*start;
 }			t_data;
 
 typedef struct s_philo
@@ -73,5 +74,7 @@ void		do_routine(t_philo *philo);
 bool		start_simulation(t_philo *philos, t_data *data);
 bool		getter(t_philo *philo);
 void		setter(t_philo *philo);
+void		kill_em_philos(pid_t *pids, int count);
+bool		gb_monitor(t_data *data);
 
 #endif

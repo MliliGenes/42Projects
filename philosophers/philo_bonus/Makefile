@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/14 04:09:08 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/18 02:17:25 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS = main_bonus.c \
 	$(SRC_DIR)/parsing_utils_bonus.c \
 	$(SRC_DIR)/philos_utils_bonus.c \
 	$(SRC_DIR)/simualtion_utils_bonus.c \
-    $(SRC_DIR)/time_utils_bonus.c
+    $(SRC_DIR)/time_utils_bonus.c \
+    $(SRC_DIR)/global_monitor_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 

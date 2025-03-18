@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 00:35:01 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:14:31 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_sems(t_data *data)
 	data->write = sem_open("/sema_write", O_CREAT, 0644, 1);
 	sem_unlink("/sema_death");
 	data->death = sem_open("/sema_death", O_CREAT, 0644, 1);
+	sem_unlink("/sema_start");
+	data->start = sem_open("/sema_start", O_CREAT, 0644, 0);
 }
 
 bool	create_philo(t_philo *philo, t_data *data, int index)
