@@ -6,32 +6,20 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/16 09:50:55 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:35:01 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
 
-sem_t	*init_forks(int count)
+void	init_sems(t_data *data)
 {
-	sem_t	*sem;
-
 	sem_unlink("/sema_forks");
-	sem = sem_open("/sema_forks", O_CREAT, 0644, count);
-	if (sem == SEM_FAILED)
-		return (NULL);
-	return (sem);
-}
-
-sem_t	*write_sem(void)
-{
-	sem_t	*sem;
-
+	data->forks = sem_open("/sema_forks", O_CREAT, 0644, data->philo_count);
 	sem_unlink("/sema_write");
-	sem = sem_open("/sema_write", O_CREAT, 0644, 1);
-	if (sem == SEM_FAILED)
-		return (NULL);
-	return (sem);
+	data->write = sem_open("/sema_write", O_CREAT, 0644, 1);
+	sem_unlink("/sema_death");
+	data->death = sem_open("/sema_death", O_CREAT, 0644, 1);
 }
 
 bool	create_philo(t_philo *philo, t_data *data, int index)

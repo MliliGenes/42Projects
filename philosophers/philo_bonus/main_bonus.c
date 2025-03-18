@@ -6,11 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/16 09:48:43 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:29:43 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo_bonus.h"
+#include <sys/semaphore.h>
 
 static bool	parser(int ac, char **av, t_data *data)
 {
@@ -32,9 +33,9 @@ int	main(int ac, char *av[])
 
 	if (!parser(ac, av, &data))
 		return (EXIT_FAILURE);
-	data.forks = init_forks(data.philo_count);
-	data.write = write_sem();
-	if (!data.forks)
+	init_sems(&data);
+	if (data.death == SEM_FAILED || data.forks == SEM_FAILED
+		|| data.write == SEM_FAILED)
 		return (EXIT_FAILURE);
 	philos = init_philos(&data);
 	if (!philos)

@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:06:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/14 00:26:18 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:20:23 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,5 @@ void	ft_usleep(int duration)
 
 	target = get_current_time() + duration;
 	while (get_current_time() < target)
-	{
 		usleep(500);
-	}
 }
-

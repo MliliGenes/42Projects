@@ -6,12 +6,12 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:03:29 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/16 09:51:31 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:03:52 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <sys/semaphore.h>
+#include <stdio.h>
 
 int	check_args(char **args)
 {
@@ -33,6 +33,13 @@ int	check_args(char **args)
 		i++;
 	}
 	return (EXIT_SUCCESS);
+}
+
+int	get_last_odd(int count)
+{
+	while (!(count % 2))
+		count--;
+	return (count);
 }
 
 int	fill_params(char **args, t_data *params)
@@ -59,6 +66,7 @@ int	fill_params(char **args, t_data *params)
 	params->time_to_eat = (int)tmp[2];
 	params->time_to_sleep = (int)tmp[3];
 	params->must_eat_count = (int)tmp[4];
+	params->last_odd = get_last_odd((int)tmp[0] - 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -75,7 +83,9 @@ int	check_params(t_data *params)
 void	write_message(t_philo *philo, const char *message)
 {
 	sem_wait(philo->data->write);
+	sem_wait(philo->data->death);
 	printf("%ld %d %s\n", get_current_time() - philo->data->start_time,
 		philo->id + 1, message);
 	sem_post(philo->data->write);
+	sem_post(philo->data->death);
 }

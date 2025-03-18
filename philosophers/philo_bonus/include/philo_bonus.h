@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 10:00:40 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/10 02:33:39 by sel-mlil         ###   ########.fr       */
+/*   Created: 2025/03/18 01:18:43 by sel-mlil          #+#    #+#             */
+/*   Updated: 2025/03/18 01:18:51 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef struct s_data
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		must_eat_count;
+	int		last_odd;
 	sem_t	*forks;
 	sem_t	*write;
+	sem_t	*death;
 }			t_data;
 
 typedef struct s_philo
@@ -65,8 +67,7 @@ int			fill_params(char **args, t_data *params);
 int			check_params(t_data *params);
 size_t		get_current_time(void);
 void		ft_usleep(int duration);
-sem_t		*init_forks(int count);
-sem_t		*write_sem(void);
+void		init_sems(t_data *data);
 t_philo		*init_philos(t_data *data);
 void		do_routine(t_philo *philo);
 bool		start_simulation(t_philo *philos, t_data *data);

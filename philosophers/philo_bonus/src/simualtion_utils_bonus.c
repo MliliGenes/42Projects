@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/16 09:39:48 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:57:59 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ void	action(t_philo *philo, int type)
 		sem_post(philo->data->forks);
 		sem_post(philo->data->forks);
 	}
+	if (philo->data->must_eat_count != -1 && philo->id == philo->data->last_odd
+		&& philo->meals_eaten == philo->data->must_eat_count)
+		exit(EXIT_FAILURE);
 }
 
 void	*monitor(void *arg)
@@ -52,15 +55,11 @@ void	*monitor(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (1)
-	{
-		if (getter(philo))
-		{
-			write_message(philo, "died");
-			exit(EXIT_FAILURE);
-		}
-		ft_usleep(50);
-	}
+	while (!getter(philo))
+		;
+	write_message(philo, "died");
+	sem_wait(philo->data->death);
+	exit(EXIT_FAILURE);
 	return (NULL);
 }
 
@@ -77,9 +76,6 @@ void	do_routine(t_philo *philo)
 	{
 		action(philo, 1);
 		action(philo, 3);
-		if (philo->data->must_eat_count != -1
-			&& philo->meals_eaten == philo->data->must_eat_count)
-			exit(EXIT_SUCCESS);
 		action(philo, 2);
 	}
 	exit(EXIT_SUCCESS);
@@ -102,12 +98,18 @@ bool	start_simulation(t_philo *philos, t_data *data)
 		index++;
 	}
 	index = 0;
-	while (index < data->philo_count)
+	while (1)
 	{
-		if (waitpid(data->pids[index], &exit_code, 0) > 0
-			&& WEXITSTATUS(exit_code) == EXIT_FAILURE)
-			kill_em_philos(data->pids, data->philo_count);
-		index++;
+		index = 0;
+		while (index < data->philo_count)
+		{
+			if (waitpid(data->pids[index++], &exit_code, WNOHANG) > 0
+				&& WEXITSTATUS(exit_code) == EXIT_FAILURE)
+			{
+				kill_em_philos(data->pids, data->philo_count);
+				return (true);
+			}
+		}
 	}
 	return (true);
 }
