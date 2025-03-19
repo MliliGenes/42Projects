@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 03:42:17 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 06:17:58 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	create_philo(t_philo *philo, t_data *data, int index)
 	philo->type = index % 2;
 	philo->last_meal_time = 0;
 	philo->meals_eaten = 0;
-	philo->name = ft_strjoin("philo_", ft_itoa(index + 1));
+	philo->name = ft_strjoin("/philo_", ft_itoa(index + 1));
 	sem_unlink(philo->name);
 	philo->locker = sem_open(philo->name, O_CREAT, 0644, 1);
 	if (philo->locker == SEM_FAILED)

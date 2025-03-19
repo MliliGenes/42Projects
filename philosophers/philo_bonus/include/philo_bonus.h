@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 01:18:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 02:30:53 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 06:24:47 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_data
 	int		last_odd;
 	sem_t	*forks;
 	sem_t	*write;
-	sem_t	*death;
 	sem_t	*stop_start;
 }			t_data;
 

@@ -6,26 +6,29 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/14 02:26:27 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:09:44 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-static void	clean(t_data data, pthread_mutex_t *forks, t_philo *philos)
+static void	clean(t_data *data, pthread_mutex_t *forks, t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	while (i < data.philo_count)
+	while (i < data->philo_count)
 		pthread_mutex_destroy(&forks[i++]);
 	free(forks);
 	forks = NULL;
 	i = 0;
-	while (i < data.philo_count)
+	while (i < data->philo_count)
 		pthread_mutex_destroy(&philos[i++].meal_mutex);
 	free(philos);
 	philos = NULL;
+	pthread_mutex_destroy(&data->write_mutex);
+	pthread_mutex_destroy(&data->locker_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
 }
 
 static bool	parser(int ac, char **av, t_data *data)
@@ -59,8 +62,7 @@ int	main(int ac, char *av[])
 	pthread_mutex_init(&data.write_mutex, NULL);
 	pthread_mutex_init(&data.locker_mutex, NULL);
 	pthread_mutex_init(&data.death_mutex, NULL);
-	pthread_mutex_init(&data.test_mutex, NULL);
 	start_simulation(&data, philos, data.philo_count);
-	clean(data, forks, philos);
+	clean(&data, forks, philos);
 	return (EXIT_SUCCESS);
 }

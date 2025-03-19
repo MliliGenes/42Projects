@@ -6,12 +6,12 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/16 06:22:11 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/19 07:18:25 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
 
 SRC_DIR = src
 HEADER_FILE = include/philo.h
