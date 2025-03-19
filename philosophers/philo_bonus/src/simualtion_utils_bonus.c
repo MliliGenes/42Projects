@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 05:24:27 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 06:06:12 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ void	kill_em_philos(pid_t *pids, int count)
 void	action(t_philo *philo, int type)
 {
 	if (type == 1)
-		write_message(philo, "is thinking");
+		write_message(philo, "\033[0;90mis thinking\033[0m");
 	else if (type == 2)
 	{
-		write_message(philo, "is sleeping");
+		write_message(philo, "\033[0;34mis sleeping\033[0m");
 		ft_usleep(philo->data->time_to_sleep);
 	}
 	else if (type == 3)
 	{
 		sem_wait(philo->data->forks);
-		write_message(philo, "has taken a fork");
+		write_message(philo, "\033[0;33mhas taken a fork\033[0m");
 		sem_wait(philo->data->forks);
-		write_message(philo, "has taken a fork");
-		write_message(philo, "is eating");
+		write_message(philo, "\033[0;33mhas taken a fork\033[0m");
+		write_message(philo, "\033[0;32mis eating\033[0m");
 		setter(philo);
 		ft_usleep(philo->data->time_to_eat);
 		sem_post(philo->data->forks);
@@ -58,7 +58,7 @@ void	*monitor(void *arg)
 	while (!getter(philo))
 		usleep(500);
 	sem_wait(philo->data->write);
-	printf("%ld %d died\n", get_current_time() - philo->data->start_time,
+	printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time() - philo->data->start_time,
 		philo->id + 1);
 	exit(EXIT_FAILURE);
 	return (NULL);

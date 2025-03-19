@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 05:44:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 06:03:50 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 void	action(t_philo *philo, int type)
 {
 	if (type == 1)
-		write_message(philo, "is thinking");
+		write_message(philo, "\033[0;90mis thinking\033[0m");
 	else if (type == 2)
 	{
-		write_message(philo, "is sleeping");
+		write_message(philo, "\033[0;34mis sleeping\033[0m");
 		ft_usleep(philo->data->time_to_sleep, philo->data);
 	}
 	else if (type == 3)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		write_message(philo, "has taken a fork");
+		write_message(philo, "\033[0;33mhas taken a fork\033[0m");
 		pthread_mutex_lock(philo->right_fork);
-		write_message(philo, "has taken a fork");
+		write_message(philo, "\033[0;33mhas taken a fork\033[0m");
 		setter_last_meal(philo);
-		write_message(philo, "is eating");
+		write_message(philo, "\033[0;32mis eating\033[0m");
 		ft_usleep(philo->data->time_to_eat, philo->data);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
@@ -69,7 +69,7 @@ static int	check_philosophers_status(t_philo *philos, t_data *data)
 		{
 			setter(data, true);
 			pthread_mutex_lock(&data->write_mutex);
-			printf("%ld %d died\n", get_current_time() - data->start_time,
+			printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time() - data->start_time,
 				philos[i].id + 1);
 			pthread_mutex_unlock(&data->write_mutex);
 			return (-1);
