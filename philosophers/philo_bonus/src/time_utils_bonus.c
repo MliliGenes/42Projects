@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:06:11 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:18:57 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:31:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <sys/semaphore.h>
 
 size_t	get_current_time(void)
 {
@@ -21,13 +20,13 @@ size_t	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	ft_usleep(int duration)
+void	ft_usleep(size_t duration)
 {
 	size_t	target;
 
 	target = get_current_time() + duration;
 	while (get_current_time() < target)
 	{
-		usleep(500);
+		usleep(200);
 	}
 }

@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 03:49:47 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 05:24:27 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <sys/semaphore.h>
 
 void	kill_em_philos(pid_t *pids, int count)
 {
@@ -20,7 +19,7 @@ void	kill_em_philos(pid_t *pids, int count)
 	index = 0;
 	while (index < count)
 	{
-		kill(pids[index], SIGTERM);
+		kill(pids[index], SIGKILL);
 		index++;
 	}
 }
@@ -57,9 +56,10 @@ void	*monitor(void *arg)
 
 	philo = (t_philo *)arg;
 	while (!getter(philo))
-		;
-	write_message(philo, "died");
-	sem_wait(philo->data->death);
+		usleep(500);
+	sem_wait(philo->data->write);
+	printf("%ld %d died\n", get_current_time() - philo->data->start_time,
+		philo->id + 1);
 	exit(EXIT_FAILURE);
 	return (NULL);
 }
@@ -68,12 +68,10 @@ void	do_routine(t_philo *philo)
 {
 	pthread_t	monitor_thread;
 
-	while (get_current_time() < philo->data->start_time)
-		ft_usleep(20);
-	philo->last_meal_time = get_current_time();                                                 
+	sem_wait(philo->data->stop_start);
+	philo->last_meal_time = get_current_time();
 	if (pthread_create(&monitor_thread, NULL, monitor, philo))
 		exit(EXIT_FAILURE);
-	pthread_detach(monitor_thread);
 	if (philo->type == ODD)
 		action(philo, 2);
 	while (true)
@@ -82,7 +80,7 @@ void	do_routine(t_philo *philo)
 		action(philo, 3);
 		action(philo, 2);
 	}
-	exit(EXIT_SUCCESS);
+	pthread_join(monitor_thread, NULL);
 }
 
 bool	start_simulation(t_philo *philos, t_data *data)
@@ -90,7 +88,7 @@ bool	start_simulation(t_philo *philos, t_data *data)
 	int	index;
 
 	index = 0;
-	data->start_time = get_current_time() + (data->philo_count * 20);
+	data->start_time = get_current_time();
 	while (index < data->philo_count)
 	{
 		data->pids[index] = fork();
@@ -99,7 +97,14 @@ bool	start_simulation(t_philo *philos, t_data *data)
 		if (data->pids[index] == 0)
 		{
 			do_routine(&philos[index]);
+			exit(EXIT_SUCCESS);
 		}
+		index++;
+	}
+	index = 0;
+	while (index < data->philo_count)
+	{
+		sem_post(data->stop_start);
 		index++;
 	}
 	return (gb_monitor(data));

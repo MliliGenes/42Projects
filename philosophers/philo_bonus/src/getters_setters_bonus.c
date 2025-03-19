@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:08:54 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:44:05 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:43:11 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 bool	getter(t_philo *philo)
 {
-	bool	flag;
-
 	sem_wait(philo->locker);
-	printf("");
-	flag = (get_current_time()
-			- philo->last_meal_time) > philo->data->time_to_die;
-	printf("");
+	if ((get_current_time()
+			- philo->last_meal_time) >= philo->data->time_to_die)
+	{
+		sem_post(philo->locker);
+		return (true);
+	}
 	sem_post(philo->locker);
-	return (flag);
+	return (false);
 }
 
 void	setter(t_philo *philo)

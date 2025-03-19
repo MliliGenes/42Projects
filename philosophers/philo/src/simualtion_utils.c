@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/16 06:43:37 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 05:44:06 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	monitoring(t_philo *philos, t_data *data)
 			setter(data, true);
 			return ;
 		}
-		ft_usleep(50, NULL);
+		ft_usleep(1, NULL);
 	}
 }
 
@@ -105,6 +105,7 @@ void	start_simulation(t_data *data, t_philo *philos, int count)
 	index = 0;
 	while (index < count)
 	{
+		philos[index].last_meal_time = get_current_time();
 		if (pthread_create(&philos[index].thread, NULL, routine,
 				(void *)&philos[index]))
 			return ;

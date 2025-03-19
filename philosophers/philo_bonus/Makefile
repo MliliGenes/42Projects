@@ -6,7 +6,7 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 01:48:10 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/03/18 02:41:13 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/19 05:44:52 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = main_bonus.c \
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = philo
+NAME = philo_bonus
 
 all: $(NAME)
 

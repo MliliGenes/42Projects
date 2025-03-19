@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 01:18:43 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/18 02:19:06 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:30:53 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_data
 	sem_t	*forks;
 	sem_t	*write;
 	sem_t	*death;
-	sem_t	*start;
+	sem_t	*stop_start;
 }			t_data;
 
 typedef struct s_philo
@@ -67,7 +67,7 @@ int			check_args(char **args);
 int			fill_params(char **args, t_data *params);
 int			check_params(t_data *params);
 size_t		get_current_time(void);
-void		ft_usleep(int duration);
+void		ft_usleep(size_t duration);
 void		init_sems(t_data *data);
 t_philo		*init_philos(t_data *data);
 void		do_routine(t_philo *philo);

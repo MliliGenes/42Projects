@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:17:35 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/14 09:20:28 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 05:26:41 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,8 @@ void	create_philo(t_philo *philo, t_data *data, int index)
 	philo->data = data;
 	philo->left_fork = NULL;
 	philo->right_fork = NULL;
-	pthread_mutex_init(&philo->meal_mutex, NULL);
 	philo->is_done = false;
-	philo->last_meal_time = get_current_time();
+	pthread_mutex_init(&philo->meal_mutex, NULL);
 }
 
 t_philo	*init_philos(t_data *data)
