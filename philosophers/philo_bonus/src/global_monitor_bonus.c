@@ -6,11 +6,23 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 02:15:07 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 07:14:57 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:39:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
+
+void	kill_em_philos(pid_t *pids, int count)
+{
+	int	index;
+
+	index = 0;
+	while (index < count)
+	{
+		kill(pids[index], SIGKILL);
+		index++;
+	}
+}
 
 bool	gb_monitor(t_data *data)
 {
@@ -30,6 +42,6 @@ bool	gb_monitor(t_data *data)
 				return (true);
 			}
 		}
-		ft_usleep(2);
+		ft_usleep(10);
 	}
 }

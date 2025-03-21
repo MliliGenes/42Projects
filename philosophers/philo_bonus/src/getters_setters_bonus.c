@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:08:54 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 07:16:40 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:58:07 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <stdio.h>
 
 bool	getter(t_philo *philo)
 {

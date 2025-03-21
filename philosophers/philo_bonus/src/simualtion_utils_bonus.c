@@ -6,23 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 07:15:00 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:48:07 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-
-void	kill_em_philos(pid_t *pids, int count)
-{
-	int	index;
-
-	index = 0;
-	while (index < count)
-	{
-		kill(pids[index], SIGKILL);
-		index++;
-	}
-}
 
 void	action(t_philo *philo, int type)
 {
@@ -53,13 +41,13 @@ void	action(t_philo *philo, int type)
 void	*monitor(void *arg)
 {
 	t_philo	*philo;
-	
+
 	philo = (t_philo *)arg;
 	while (!getter(philo))
-		ft_usleep(2);
+		ft_usleep(10);
 	sem_wait(philo->data->write);
-	printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time() - philo->data->start_time,
-		philo->id + 1);
+	printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time()
+		- philo->data->start_time, philo->id + 1);
 	exit(EXIT_FAILURE);
 	return (NULL);
 }

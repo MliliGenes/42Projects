@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:16:48 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 06:56:57 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:25:29 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	clean(t_data *data, t_philo *philos)
 	sem_close(data->write);
 	sem_close(data->stop_start);
 }
+
 void	init_sems(t_data *data)
 {
 	sem_unlink("/sema_forks");

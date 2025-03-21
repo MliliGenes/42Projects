@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:22:30 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 07:09:25 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:25:54 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ static int	check_philosophers_status(t_philo *philos, t_data *data)
 		{
 			setter(data, true);
 			pthread_mutex_lock(&data->write_mutex);
-			printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time() - data->start_time,
-				philos[i].id + 1);
+			printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time()
+				- data->start_time, philos[i].id + 1);
 			pthread_mutex_unlock(&data->write_mutex);
 			return (-1);
 		}

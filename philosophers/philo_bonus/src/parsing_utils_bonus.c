@@ -6,12 +6,11 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 01:03:29 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/03/19 02:37:33 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/19 07:33:49 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo_bonus.h"
-#include <stdio.h>
 
 int	check_args(char **args)
 {
