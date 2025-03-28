@@ -72,6 +72,7 @@ static int	check_philosophers_status(t_philo *philos, t_data *data)
 			printf("%ld %d \033[1;31mdied\033[0m\n", get_current_time()
 				- data->start_time, philos[i].id + 1);
 			pthread_mutex_unlock(&data->write_mutex);
+			pthread_mutex_unlock(philos[i].left_fork);
 			return (-1);
 		}
 		i++;
