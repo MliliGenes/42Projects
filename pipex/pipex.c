@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:20:32 by sel-mlil          #+#    #+#             */
-/*   Updated: 2025/02/16 06:38:10 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:51:45 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,15 @@ void	init_pipe(t_pipe *pipe_x)
 	pipe_x->pid = -1;
 }
 
+void ll(){
+	while (1);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	pipe_x;
 
+	atexit(ll);
 	init_pipe(&pipe_x);
 	if (!parser(&pipe_x, argc, argv, envp))
 		return (EXIT_FAILURE);

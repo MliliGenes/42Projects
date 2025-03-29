@@ -6,12 +6,12 @@
 #    By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/15 16:57:41 by sel-mlil          #+#    #+#              #
-#    Updated: 2025/02/17 18:42:10 by sel-mlil         ###   ########.fr        #
+#    Updated: 2025/03/24 17:54:02 by sel-mlil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src
 INCLUDE_DIR = ../includes/pipex.h
