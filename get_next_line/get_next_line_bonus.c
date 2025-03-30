@@ -92,8 +92,12 @@ char	*get_next_line(int fd)
 	static char	*stash[10240];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	if (BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
+	{
+		if (fd < 0)
+			return (NULL);
 		return (free(stash[fd]), stash[fd] = NULL, NULL);
+	}
 	stash[fd] = get_chunk(stash[fd], fd);
 	if (!stash[fd])
 		return (free(stash[fd]), stash[fd] = NULL, NULL);
