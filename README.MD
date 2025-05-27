@@ -11,14 +11,14 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 | **Libft**                     | ✅ Done     | 125/125 |
 | **Born2beroot**               | ✅ Done     | 125/125 |
 | **ft_printf**                 | ✅ Done     | 100/125 |
-| **get_next_line**             | ✅ Done     | 114/125 |
+| **get_next_line**             | ✅ Done     | 125/125 |
 | **Pipex**                     | ✅ Done     | 125/125 |
 | **push_swap**                 | ✅ Done     | 125/125 |
 | **so_long**                   | ✅ Done     | 125/125 |
-| **Philosophers**              | ✅ In Progress     | 125/125 |
-| **minishell**                 | 🟢 In Progress     | 0/125 |
+| **Philosophers**              | ✅ Done     | 125/125 |
+| **minishell**                 | ✅ Done     | 125/125 |
+| **cub3d**                     | 🟢 In Progress     | 0/125 |
 <!-- | **NetPractice**               | ✅ Done     | 100/100 |
-| **cub3d**                     | ✅ Done     | 100/100 |
 | **CPP Modules**               | ✅ Done     | 100/100 |
 | **ft_containers**             | ✅ Done     | 100/100 |
 | **Inception**                 | ✅ Done     | 100/100 |
@@ -73,6 +73,11 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 ### 9. **minishell**
    - **Description**: Building a simple shell program that mimics basic Bash functionality.
    - **Skills**: Parsing, process management, pipes, redirections.
+   - **Status**: ✅ Done
+
+### 11. **cub3d**
+   - **Description**: Creating a 3D game inspired by Wolfenstein 3D using raycasting.
+   - **Skills**: 3D rendering, raycasting, game development.
    - **Status**: 🟢 In Progress
 
 <!-- ### 10. **NetPractice**
@@ -80,10 +85,6 @@ Welcome to my **Common Core** repository! This repository contains all the proje
    - **Skills**: Networking, IP addressing, subnetting.
    - **Status**: ✅ Done
 
-### 11. **cub3d**
-   - **Description**: Creating a 3D game inspired by Wolfenstein 3D using raycasting.
-   - **Skills**: 3D rendering, raycasting, game development.
-   - **Status**: ✅ Done
 
 ### 12. **CPP Modules**
    - **Description**: A series of C++ exercises to learn object-oriented programming.
