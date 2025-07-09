@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "cub3d_bonus.h": "c",
+        "game_bonus.h": "c",
+        "dependencies_bonus.h": "c",
+        "lib_bonus.h": "c",
+        "string.h": "c",
+        "structs_bonus.h": "c"
+    }
+}
