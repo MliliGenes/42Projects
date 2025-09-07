@@ -18,9 +18,9 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 | **Philosophers**              | ✅ Done     | 125/125 |
 | **minishell**                 | ✅ Done     | 125/125 |
 | **cub3d**                     | ✅ Done     | 125/125 |
-| **CPP Modules**               | 🟢 In Progress      | 100/100 |
-<!-- | **NetPractice**               | 🟢 In Progress    | 100/100 |
-| **ft_containers**             | ✅ Done     | 100/100 |
+| **CPP Modules**               | ✅ Done      | 100/100 |
+| **NetPractice**               | 🟢 In Progress    | 100/100 |
+<!-- | **ft_containers**             | ✅ Done     | 100/100 |
 | **Inception**                 | ✅ Done     | 100/100 |
 | **webserv**                   | ✅ Done     | 100/100 |
 | **ft_irc**                    | ✅ Done     | 100/100 |
@@ -83,14 +83,14 @@ Welcome to my **Common Core** repository! This repository contains all the proje
 ### 12. **CPP Modules**
    - **Description**: A series of C++ exercises to learn object-oriented programming.
    - **Skills**: C++, OOP, classes, inheritance, polymorphism.
-   - **Status**: 🟢 In Progress
-
-<!-- ### 10. **NetPractice**
-   - **Description**: A network configuration exercise to understand IP addressing, subnets, and routing.
-   - **Skills**: Networking, IP addressing, subnetting.
    - **Status**: ✅ Done
 
-### 13. **ft_containers**
+### 10. **NetPractice**
+   - **Description**: A network configuration exercise to understand IP addressing, subnets, and routing.
+   - **Skills**: Networking, IP addressing, subnetting.
+   - **Status**: 🟢 In Progress
+
+<!-- ### 13. **ft_containers**
    - **Description**: Reimplementing C++ STL containers (vector, map, stack, etc.).
    - **Skills**: C++, data structures, templates.
    - **Status**: ✅ Done
